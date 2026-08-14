@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistente de Processos — Faturamento &amp; Contratos</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%A4%96</text></svg>">
+<style>
+  :root{
+    --bg:#eef2f2;
+    --card:#ffffff;
+    --primary:#146b66;
+    --primary-dark:#0e4f4b;
+    --accent-soft:#e6f2f1;
+    --bot-bubble:#f3f5f6;
+    --text:#1c2733;
+    --text-soft:#6b7a82;
+    --border:#e6eaec;
+    --user-bubble:#146b66;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    display:flex;
+    justify-content:center;
+    padding:24px 14px;
+  }
+  .card{
+    width:100%;
+    max-width:640px;
+    height:calc(100vh - 48px);
+    max-height:880px;
+    background:var(--card);
+    border-radius:20px;
+    box-shadow:0 18px 50px rgba(15,45,42,.14);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+  }
+  header{
+    background:var(--primary);
+    color:#fff;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .avatar{
+    width:40px;height:40px;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;
+    flex-shrink:0;
+  }
+  .header-text{flex:1; min-width:0;}
+  header h1{
+    margin:0;
+    font-size:1rem;
+    font-weight:600;
+  }
+  .status{
+    display:flex;align-items:center;gap:6px;
+    font-size:.76rem;
+    color:#cfe8e5;
+    margin-top:2px;
+  }
+  .status .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:#5fe0a0;
+    display:inline-block;
+  }
+  .topics-toggle{
+    background:rgba(255,255,255,.14);
+    border:none;
+    color:#fff;
+    font-size:.76rem;
+    padding:7px 12px;
+    border-radius:20px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .topics-toggle:hover{background:rgba(255,255,255,.24);}
+
+  .topics-panel{
+    max-height:0;
+    overflow:hidden;
+    background:var(--accent-soft);
+    transition:max-height .25s ease;
+    flex-shrink:0;
+  }
+  .topics-panel.open{max-height:160px; overflow-y:auto;}
+  .topics-inner{
+    padding:12px 16px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .chip{
+    background:#fff;
+    border:1px solid var(--border);
+    color:var(--primary-dark);
+    font-size:.78rem;
+    padding:7px 12px;
+    border-radius:20px;
+    cursor:pointer;
+    line-height:1.2;
+  }
+  .chip:hover{background:var(--primary); color:#fff; border-color:var(--primary);}
+
+  .messages{
+    flex:1;
+    overflow-y:auto;
+    padding:20px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .row{
+    display:flex;
+    align-items:flex-end;
+    gap:8px;
+    margin:6px 0;
+  }
+  .row.user{justify-content:flex-end;}
+  .row .mini-avatar{
+    width:26px;height:26px;
+    border-radius:50%;
+    background:var(--primary);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;
+    flex-shrink:0;
+  }
+  .row.miss .mini-avatar{background:#b5766f;}
+  .bubble{
+    max-width:78%;
+    padding:12px 15px;
+    border-radius:16px;
+    font-size:.91rem;
+    line-height:1.55;
+  }
+  .row.bot .bubble{
+    background:var(--bot-bubble);
+    border-bottom-left-radius:4px;
+  }
+  .row.miss .bubble{
+    background:#fbeeec;
+    color:#7a3a30;
+    border-bottom-left-radius:4px;
+  }
+  .row.user .bubble{
+    background:var(--user-bubble);
+    color:#fff;
+    border-bottom-right-radius:4px;
+  }
+  .bubble h3{
+    margin:0 0 6px;
+    font-size:.95rem;
+    color:var(--primary-dark);
+  }
+  .bubble ol, .bubble ul{margin:6px 0; padding-left:20px;}
+  .bubble .note{
+    margin-top:8px;
+    padding:8px 10px;
+    background:#fff4e0;
+    color:#8a5a00;
+    border-radius:8px;
+    font-size:.82rem;
+  }
+  .bubble .rephrase-tag{
+    display:inline-block;
+    font-size:.72rem;
+    font-weight:700;
+    color:var(--primary);
+    background:var(--accent-soft);
+    padding:2px 9px;
+    border-radius:20px;
+    margin-bottom:8px;
+  }
+  .typing-row .bubble{
+    display:flex;
+    gap:4px;
+    align-items:center;
+    padding:12px 16px;
+  }
+  .typing-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--text-soft);
+    animation:blink 1.2s infinite ease-in-out;
+  }
+  .typing-dot:nth-child(2){animation-delay:.2s;}
+  .typing-dot:nth-child(3){animation-delay:.4s;}
+  @keyframes blink{0%,80%,100%{opacity:.25;} 40%{opacity:1;}}
+
+  form{
+    display:flex;
+    gap:8px;
+    padding:14px 16px;
+    border-top:1px solid var(--border);
+    background:var(--card);
+  }
+  input[type=text]{
+    flex:1;
+    border:1px solid var(--border);
+    background:var(--bg);
+    border-radius:22px;
+    padding:11px 16px;
+    font-size:.9rem;
+    outline:none;
+  }
+  input[type=text]:focus{border-color:var(--primary);}
+  button.send{
+    width:42px; height:42px;
+    background:var(--primary);
+    color:#fff;
+    border:none;
+    border-radius:50%;
+    font-size:1.05rem;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  button.send:hover{background:var(--primary-dark);}
+
+  @media (max-width:480px){
+    body{padding:0;}
+    .card{border-radius:0; height:100vh; max-height:none;}
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <header>
+    <div class="avatar">🤖</div>
+    <div class="header-text">
+      <h1>Assistente de Processos</h1>
+      <div class="status"><span class="dot"></span> Setor de Solicitações · sempre disponível</div>
+    </div>
+    <button class="topics-toggle" id="topicsToggle" type="button">📋 Processos</button>
+  </header>
+
+  <div class="topics-panel" id="topicsPanel">
+    <div class="topics-inner" id="topicsInner"></div>
+  </div>
+
+  <div class="messages" id="messages"></div>
+
+  <form id="form">
+    <input type="text" id="input" placeholder="Digite sua dúvida..." autocomplete="off">
+    <button class="send" type="submit" aria-label="Enviar">➤</button>
+  </form>
+</div>
+
+<script>
+/* =========================================================================
+   BASE DE CONHECIMENTO
+   -------------------------------------------------------------------------
+   Para adicionar um novo processo, copie um bloco { ... } abaixo e edite:
+     id        -> identificador único, sem espaço (ex: "novo-processo")
+     title     -> título mostrado no chip do menu e na resposta
+     keywords  -> palavras/expressões que o representante pode digitar
+     html      -> resposta detalhada, em HTML (<ol>, <ul>, <b>, a classe
+                  "note" destaca avisos importantes)
+     simple    -> uma versão curta, em linguagem simples, usada quando a
+                  pessoa diz que não entendeu a explicação detalhada
+   Depois de editar, salve o arquivo e recarregue no navegador. Não precisa
+   de mais nada — não há servidor nem banco de dados externo.
+   ========================================================================= */
+const KNOWLEDGE_BASE = [
+  {
+    id: "transferencias-700-701",
+    title: "Transferências (TOP 700 x 701)",
+    keywords: ["transferencia","transferência","top 700","top 701","transferir equipamento",
+      "movimentacao interna","movimentação interna","entre unidades","entre locais","matriz domiciliar"],
+    simple: "Resumindo: TOP 700 é quando os dois locais contam como a mesma unidade no sistema (ex: Matriz VR e Domiciliar VR/RJ). TOP 701 é quando são unidades realmente diferentes (ex: Matriz SP e Domiciliar SP). Na prática: abre o Portal de Movimentações Internas, clica em \"+\", escolhe 700 ou 701, preenche empresa origem/destino e o produto, e confirma.",
+    html: `
+      <h3>TOP 700 x TOP 701</h3>
+      <p>Existem duas TOPs para transferência de equipamentos:</p>
+      <ul>
+        <li><b>TOP 700 – Transferência entre Locais:</b> usada quando os dois locais são tratados pelo sistema como a <b>mesma unidade</b>, mesmo sendo endereços físicos diferentes.<br>
+          Exemplos: Matriz VR ↔ Domiciliar RJ · Matriz VR ↔ Domiciliar VR · Matriz VR ↔ Assistência Técnica.</li>
+        <li><b>TOP 701 – Transferência entre Unidades:</b> usada quando os locais são unidades distintas no sistema.<br>
+          Exemplos: Matriz SP ↔ Domiciliar SP · Domiciliar SP ↔ Matriz SP.</li>
+      </ul>
+      <h3>Passo a passo (Portal de Movimentações Internas)</h3>
+      <ol>
+        <li>Clicar em "+" → selecionar <b>701 – Transferência entre empresas</b>.</li>
+        <li>Aba <b>Cabeçalho</b>: preencher Empresa Origem, Empresa Destino, Série da nota (sempre 01), Natureza (produto de locação / venda / conserto) e Centro de Resultado (unidade que está enviando).</li>
+        <li>Dar o check.</li>
+        <li>Aba <b>Itens</b>: inserir produto, quantidade, local origem e local destino.</li>
+        <li>Dar o check.</li>
+        <li>Clicar em número de série e selecioná-lo.</li>
+        <li>Fechar a tela e dar o check.</li>
+        <li>Confirmar a nota.</li>
+      </ol>
+      <p><b>Se for TOP 700:</b> no cabeçalho, todas as empresas ficam com o código 1 — a diferença entre origem e destino é definida só na aba Itens. O restante do passo a passo segue igual.</p>
+      <div class="note">Sempre que houver transferência de itens de venda da Matriz para o Carro Domiciliar (inclusive Pulmonair), é obrigatório emitir também uma Nota Fiscal adicional pela TOP 2525 — pergunte sobre "remessa para venda domiciliar" para ver esse passo a passo.</div>
+    `
+  },
+  {
+    id: "remessa-venda-domiciliar-2525",
+    title: "Remessa Venda Domiciliar (2525)",
+    keywords: ["top 2525","remessa","venda domiciliar","nota fiscal adicional","carro domiciliar",
+      "representante domiciliar","nota para o representante"],
+    simple: "Resumindo: toda vez que um item de venda sai da Matriz pro Carro Domiciliar, precisa emitir uma nota extra (TOP 2525), além da transferência normal. Essa nota vai pro representante e serve de comprovante numa fiscalização.",
+    html: `
+      <h3>Remessa para Venda Domiciliar — TOP 2525</h3>
+      <p>Obrigatória sempre que um item de venda for transferido da Matriz para o Carro Domiciliar (vale também para Domiciliares da Pulmonair).</p>
+      <h3>Aba Cabeçalho</h3>
+      <ul>
+        <li>Série: 1</li>
+        <li>Parceiro: Matriz</li>
+        <li>Empresa: Matriz</li>
+        <li>Tipo de Negociação: não alterar</li>
+        <li>Centro de Resultado: Matriz Oxigenar</li>
+        <li>Vendedor: vendedor vinculado à Loja Matriz</li>
+      </ul>
+      <div class="note">No campo Observações, registrar nome completo e CPF do Representante do Atendimento Domiciliar.</div>
+      <h3>Aba Itens</h3>
+      <ol>
+        <li>Inserir o item a transferir, quantidade e local de origem = Domiciliar específico.</li>
+        <li>Informar número de série/lote e confirmar a Nota Fiscal.</li>
+        <li>Salvar a NF em PDF e enviar ao representante que solicitou.</li>
+      </ol>
+      <div class="note">O representante só pode transitar com os equipamentos/acessórios de posse dessa NF — em caso de fiscalização (blitz), ela comprova a autorização de transporte.</div>
+    `
+  },
+  {
+    id: "venda-scooters-cadeiras-11011",
+    title: "Venda Scooters/Cadeiras (11011)",
+    keywords: ["scooter","cadeira de rodas","top 11011","isencao","isenção pis cofins","venda de cadeira"],
+    simple: "Resumindo: vendeu scooter ou cadeira de rodas, usa sempre a TOP 11011. Preenche os dados normais de venda (cliente, forma de pagamento, vendedor) e confirma.",
+    html: `
+      <h3>Venda de Scooters e Cadeiras — TOP 11011</h3>
+      <p>Toda venda desse tipo de equipamento usa a <b>TOP 11011 – Venda com isenção de PIS e COFINS</b>.</p>
+      <h3>Aba Cabeçalho</h3>
+      <ul>
+        <li>Série da nota: 1</li>
+        <li>Parceiro: nome do cliente</li>
+        <li>Empresa: unidade que está realizando a venda</li>
+        <li>Tipo de negociação: forma de pagamento (crédito, débito, PIX, etc.)</li>
+        <li>Centro de resultado: unidade que está realizando a venda</li>
+        <li>Vendedor: representante comercial responsável</li>
+      </ul>
+      <h3>Aba Itens</h3>
+      <ol>
+        <li>Inserir produto, quantidade, local origem e local destino.</li>
+        <li>Dar o check e confirmar a nota.</li>
+      </ol>
+    `
+  },
+  {
+    id: "nota-fiscal-frete",
+    title: "Nota Fiscal com Frete",
+    keywords: ["frete","transportadora","cif","fob","peso bruto","volumes","correios","uber","braspress"],
+    simple: "Resumindo: quando tem frete, escolhe a transportadora, informa quantos volumes e se quem paga é a empresa (CIF) ou o cliente (FOB). Depois confirma a nota.",
+    html: `
+      <h3>Nota Fiscal com Frete Incluso</h3>
+      <ul>
+        <li><b>Parceiro Transportadora:</b> Correios ES, Uber, Braspress etc. — solicitar essa informação ao Representante.</li>
+        <li><b>Qtd. volumes:</b> preencher conforme informado.</li>
+        <li><b>Tipo de frete:</b> "Incluso" se o pagamento do frete for do cliente; "Extra nota" se não for.</li>
+        <li><b>CIF:</b> a Oxigenar paga o frete. <b>FOB:</b> o cliente paga o frete.</li>
+        <li><b>Peso bruto:</b> verificar e preencher se necessário.</li>
+      </ul>
+      <p>Dar o check na parte superior esquerda, confirmar o valor na aba Totais e, estando tudo certo, confirmar a NF.</p>
+    `
+  },
+  {
+    id: "pagamento-misto-desdobramento",
+    title: "Pagamento Misto (Desdobramento)",
+    keywords: ["pagamento misto","desdobramento","parcelar","varios titulos","vários títulos","aba financeiro"],
+    simple: "Resumindo: quando o cliente paga de duas formas diferentes (ex: parte no PIX, parte no cartão), vai na aba Financeiro, clica em parcelar com vários tipos de título, e lança cada forma separadamente.",
+    html: `
+      <h3>Pagamento Misto — Desdobramento</h3>
+      <p>Depois de preencher Cabeçalho e Itens normalmente:</p>
+      <ol>
+        <li>Ir na aba <b>Financeiro</b> → "Parcelar com vários tipos de título".</li>
+        <li>Clicar em "+" e preencher:
+          <ul>
+            <li>Tipo de título: conforme a forma de pagamento.</li>
+            <li>Nº de parcelas: conforme comprovante.</li>
+            <li>Prazo entre parcelas: 0 se débito/PIX; 30 se crédito.</li>
+            <li>Valor do desdobramento: conforme comprovante.</li>
+          </ul>
+        </li>
+        <li>Clicar em confirmar.</li>
+        <li>Dar o check na aba Itens.</li>
+        <li>Confirmar a nota.</li>
+      </ol>
+    `
+  },
+  {
+    id: "higienizacao",
+    title: "Higienização (processo completo)",
+    keywords: ["higienizacao","higienização","limpeza do equipamento","top 1004","top 2515",
+      "pedido de venda servico","pedido de venda serviço","pedido de assistencia","pedido de assistência",
+      "portal de compras"],
+    simple: "Resumindo, são 4 passos: 1) emite uma nota de serviço de higienização pro cliente assinar; 2) inclui o equipamento do cliente no sistema (portal de compras); 3) faz o pedido de assistência; 4) transfere o equipamento pra assistência técnica.",
+    html: `
+      <h3>Higienização</h3>
+      <p>Processo de limpeza do equipamento do cliente. Durante o período, o cliente pode ou não locar um equipamento da empresa até o dele ficar pronto.</p>
+      <h3>1. Pedido de Venda-Serviço (Portal de Vendas, TOP 1004)</h3>
+      <ul>
+        <li>Série da nota: 1</li>
+        <li>Parceiro: nome do cliente</li>
+        <li>Empresa / Centro de resultado: unidade que está realizando a venda</li>
+        <li>Tipo de negociação: forma de pagamento</li>
+        <li>Vendedor: representante comercial responsável</li>
+        <li>Produto: Higienização — preencher quantidade e valor</li>
+      </ul>
+      <p>Dar o check e confirmar a nota. <b>Essa nota deve ser assinada pelo cliente</b>, digitalizada e enviada no grupo de digitalização do representante.</p>
+      <h3>2. Portal de Compras (TOP 2515)</h3>
+      <p>Inclui o equipamento do cliente no sistema para depois transferir para a assistência técnica.</p>
+      <ul>
+        <li>Parceiro: nome do cliente</li>
+        <li>Tipo de negociação: 47 – Sem financeiro</li>
+        <li>Empresa: unidade que está fazendo a inclusão</li>
+        <li>Série: 1</li>
+        <li>Comprador: Anderson / sem vendedor</li>
+        <li>Produto: nome do produto inserido</li>
+      </ul>
+      <h3>3. Pedido de Assistência</h3>
+      <p>Produto: CLIENTE + equipamento informado. Quantidade conforme informado. No campo valor, informar o valor de venda do equipamento. Confirmar a nota.</p>
+      <h3>4. Transferência para a Assistência Técnica</h3>
+      <p>Finaliza o processo transferindo o equipamento da unidade para a assistência técnica.</p>
+      <div class="note">Se o cliente ficar com algum equipamento enquanto o dele está em higienização, fazer contrato e remessa normalmente.</div>
+    `
+  },
+  {
+    id: "nf-venda-pj",
+    title: "NF de Venda para PJ",
+    keywords: ["venda para pj","nf pj","pessoa juridica","pessoa jurídica","emissao pj","emissão pj"],
+    simple: "Resumindo: primeiro transfere o equipamento pro local \"EMISSÃO PJ – VR\", depois emite a nota normal escolhendo esse local como estoque.",
+    html: `
+      <h3>NF de Venda para PJ</h3>
+      <ol>
+        <li>Transferir o equipamento para o local <b>EMISSÃO PJ – VR</b> (vinculado à matriz): na tela de Itens, colocar o produto desejado e finalizar a transferência.</li>
+        <li>Emitir a nota normalmente (mesmo fluxo de faturamento padrão), selecionando: Empresa 1, Centro de Resultado Matriz e local de estoque EMISSÃO PJ – VR.</li>
+        <li>Confirmar a nota.</li>
+      </ol>
+    `
+  },
+  {
+    id: "nf-prefeitura",
+    title: "NF na Prefeitura (Volta Redonda)",
+    keywords: ["prefeitura","simplissweb","nota da prefeitura","ajuste de cpap","leitura de relatorio",
+      "leitura de relatório","cnae","nota de servico","nota de serviço"],
+    simple: "Resumindo: fez ajuste de CPAP ou emitiu relatório? Além da nota no Sankhya, precisa emitir outra no site da prefeitura, com o CNAE 62.09-1-00 e os dados do cliente. No final, salva em PDF e manda pro representante. (O login é com a coordenação.)",
+    html: `
+      <h3>Emissão de NF na Prefeitura</h3>
+      <p>Sempre que for feito um ajuste de CPAP ou emissão de relatório, além do pedido de serviço no Sankhya, é preciso emitir também uma nota no site da Prefeitura de Volta Redonda.</p>
+      <p><b>Site:</b> <a href="https://voltaredonda.simplissweb.com.br/contrib/Account/Login" target="_blank" rel="noopener">voltaredonda.simplissweb.com.br</a></p>
+      <div class="note">O login (CNPJ e senha) é institucional — solicite com a coordenação, ele não fica registrado aqui por segurança.</div>
+      <h3>Campos a preencher (só os mencionados abaixo)</h3>
+      <ul>
+        <li>Data da emissão</li>
+        <li>CNAE: 62.09-1-00 — Suporte Técnico (sempre na discriminação)</li>
+        <li>Serviço feito: ex. "Ajuste de CPAP" ou "Leitura de relatório"</li>
+        <li>Dados do tomador: CPF, nome, endereço, CEP, e-mail</li>
+        <li>Valor</li>
+      </ul>
+      <p>Depois: conferir → emitir → enviar por e-mail. Ao final, salvar a nota em PDF e enviar ao representante.</p>
+      <div class="note">Exceção: notas de ajuste de CPAP ou relatórios da <b>Pulmonair</b> devem ser emitidas somente pelo Sankhya — a emissão pelo site da Prefeitura ainda está em análise para esses casos.</div>
+    `
+  },
+  {
+    id: "inutilizacao-numeracao",
+    title: "Inutilização de Numeração",
+    keywords: ["inutilizacao","inutilização","inutilizar nota","numeracao","numeração","nf-e","nfe",
+      "numero homologado","número homologado","nota emitida errada"],
+    simple: "Resumindo: entrou uma nota errada no Portal de Vendas, vai na aba NF-E, clica em Inutilização de Numeração, coloca o intervalo de números e o motivo, e confirma. Se aparecer \"número homologado\", deu certo.",
+    html: `
+      <h3>Inutilização de Numeração</h3>
+      <ol>
+        <li>Ir no <b>Portal de Vendas</b>.</li>
+        <li>Procurar a nota pelo parceiro ou pelo número da NF.</li>
+        <li>Depois de encontrada, clicar na nota e selecionar a aba <b>NF-E</b> na parte de cima do portal.</li>
+        <li>Dentro de NF-E, clicar em <b>INUTILIZAÇÃO DE NUMERAÇÃO</b>.</li>
+        <li>Preencher:
+          <ul>
+            <li>Empresa: 1 – Matriz (no caso padrão)</li>
+            <li>Data de movimento: dia que a nota foi emitida</li>
+            <li>Modelo de documento fiscal: sempre 55</li>
+            <li>Série da nota: sempre 1</li>
+            <li>Numeração: o intervalo desejado (ex: 29564 a 29565)</li>
+            <li>Justificativa: descrever o motivo, ex. "notas emitidas erradas" — não existe um padrão fixo de texto</li>
+          </ul>
+        </li>
+        <li>Clicar em OK.</li>
+      </ol>
+      <div class="note">Se aparecer a mensagem "INUTILIZAÇÃO DE NÚMERO HOMOLOGADO", a inutilização foi feita corretamente.</div>
+    `
+  },
+  {
+    id: "venda-oxigenar-pulmonair-consignada",
+    title: "Venda Oxigenar de Equip. Pulmonair",
+    keywords: ["venda consignada","estoque consignado","oxigenar pulmonair","equipamento pulmonair",
+      "venda de equipamento pulmonair"],
+    simple: "Resumindo: se a Oxigenar vende um equipamento que é da Pulmonair, na nota a Empresa é a Pulmonair (dona do estoque), mas o Centro de Resultado e Local de Origem são da unidade Oxigenar que vendeu.",
+    html: `
+      <h3>Venda Oxigenar de um Equipamento Pulmonair — Venda Consignada</h3>
+      <p>Sempre que uma unidade da Oxigenar vender um equipamento da Pulmonair, esse equipamento pertence ao <b>estoque consignado</b> da unidade.</p>
+      <h3>Na nota fiscal</h3>
+      <ul>
+        <li><b>Empresa:</b> a empresa da Pulmonair responsável pela consignação do equipamento.</li>
+        <li><b>Centro de Resultado e Local de Origem:</b> devem corresponder à unidade da Oxigenar que recebeu o equipamento.</li>
+      </ul>
+    `
+  },
+  {
+    id: "bonificacoes",
+    title: "Bonificações (Locação x Venda)",
+    keywords: ["bonificacao","bonificação","bonificacoes","bonificações","item bonificado",
+      "venda mais bonificacao","venda mais bonificação","locacao mais bonificacao"],
+    simple: "Resumindo: bonificação sozinha ou em locação continua em nota separada, sem mudança. Mas se for venda + bonificação junto, agora vira uma nota só — a bonificação é diluída dentro da nota de venda.",
+    html: `
+      <h3>Bonificações — Padrão Atual</h3>
+      <ul>
+        <li>✅ <b>Bonificação em locação ou avulsa:</b> continua sendo feita normalmente, em nota separada.<br>
+          Ex.: locação 1740 + bonificação → pode emitir a bonificação em nota separada, sem mudança.</li>
+        <li>⚠️ <b>Venda + bonificação:</b> a bonificação deve ser diluída na própria nota de venda — <b>não existe mais nota separada</b> de bonificação nesse caso.<br>
+          Ex.: CPAP + filtro bonificado → fazer uma única nota de venda, ajustando os valores.</li>
+      </ul>
+      <div class="note">O valor do item bonificado deve ser o mesmo valor de venda, salvo exceções.</div>
+    `
+  },
+  {
+    id: "cadastro-parceiros-pj",
+    title: "Cadastro de Parceiros PJ",
+    keywords: ["cadastro de parceiros","inscricao estadual","inscrição estadual","sintegra",
+      "revendedor","consumidor final nao contribuinte","consumidor final não contribuinte","aba fiscal"],
+    simple: "Resumindo: antes de emitir nota pra uma PJ, confere no Sintegra se ela tem Inscrição Estadual. Tem IE → marca como Revendedor. Não tem → marca como Consumidor Final Não Contribuinte.",
+    html: `
+      <h3>Emissão de NF para PJs — Cadastro na Tela de Parceiros</h3>
+      <p>Para saber se uma empresa tem Inscrição Estadual (IE) ativa, consultar o CNPJ no site
+        <a href="https://www.sintegrabrasil.com.br" target="_blank" rel="noopener">sintegrabrasil.com.br</a> (colocar o CNPJ e clicar na lupa).</p>
+      <ul>
+        <li><b>Se a empresa possui IE:</b> na aba Fiscal da tela de Parceiros, marcar como <b>Revendedor</b>.</li>
+        <li><b>Se não possui IE:</b> marcar como <b>Consumidor Final Não Contribuinte</b>.</li>
+      </ul>
+    `
+  },
+  {
+    id: "nf-assistencia-tecnica-higienizacao-portal",
+    title: "Notas Assist. Técnica (Higienização)",
+    keywords: ["assistencia tecnica","assistência técnica","emissao completa","emissão completa",
+      "codigo de tributacao","código de tributação","nbs","prestador tomador",
+      "nota assistencia tecnica higienizacao"],
+    simple: "Resumindo: no portal, clica em Emissão completa, preenche Prestador (Oxigenar) e Tomador (cliente), usa sempre o código 14.02.01 (assistência técnica) e o NBS 118032900 pra higienização, e deixa as tributações como Nenhum/Zerado.",
+    html: `
+      <h3>Emissão das Notas da Assistência Técnica — Higienização</h3>
+      <ol>
+        <li>Abrir o portal e clicar em <b>Emissão completa</b>, na barra superior.</li>
+        <li><b>Data de competência:</b> dia em que o serviço foi realizado — preferir sempre emitir a nota no mesmo dia da solicitação.</li>
+        <li><b>Prestador:</b> Oxigenar — conferir sempre os dados do emitente (CNPJ da assistência técnica).</li>
+        <li><b>Tomador:</b> o cliente — selecionar Brasil e preencher telefone, CPF e e-mail do cliente.</li>
+        <li><b>Intermediário do serviço:</b> não existe — deixar em branco.</li>
+        <li>Avançar.</li>
+        <li><b>Código de Tributação Nacional:</b> 14.02.01 – Assistência técnica.</li>
+        <li><b>Código de Tributação Municipal:</b> 14.02.01.001 – Assistência técnica.</li>
+        <li><b>"Serviço prestado é um caso de...?":</b> sempre marcar Não.</li>
+        <li><b>Código NBS:</b> 118032900 (sempre que for higienização).</li>
+        <li><b>Informações complementares:</b> não preencher.</li>
+        <li><b>Tributação Municipal:</b> sempre Não / Nenhum.</li>
+        <li><b>Tributação Federal PIS/COFINS:</b> Nenhum.</li>
+        <li><b>Tributação Federal PIS/COFINS/CSLL:</b> Nenhum.</li>
+      </ol>
+      <div class="note">Valor aproximado dos tributos municipais já aparece na própria página, um pouco acima. Tributos federais e estaduais: preencher zerado (0,00).</div>
+    `
+  }
+];
+
+/* ========================= DETECÇÃO DE INTENÇÃO ========================= */
+const CONFUSION_PATTERNS = [
+  "nao entendi","não entendi","nao entendo","não entendo","nao ficou claro","não ficou claro",
+  "explica de outro jeito","explica diferente","de outra forma","mais simples","nao captei",
+  "não captei","confuso","complicado","nao saquei","não saquei","resume","resumindo",
+  "pode simplificar","fica dificil","fica difícil","nao entendi nada","não entendi nada"
+];
+const GREETING_PATTERNS = ["oi","ola","olá","bom dia","boa tarde","boa noite","opa","eae","e ai","e aí"];
+const THANKS_PATTERNS = ["obrigado","obrigada","valeu","vlw","top obrigado","ajudou","show"];
+const ONLY_THIS_PATTERNS = ["so isso","só isso","e so isso","é só isso","isso mesmo","so isso mesmo",
+  "só isso mesmo","é isso","e isso","era so isso","era só isso","nada mais","so isso ai","só isso aí"];
+
+function normalize(str){
+  return str.toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9\s]/g," ")
+    .replace(/\s+/g," ").trim();
+}
+
+function matchesAny(qNorm, list){
+  return list.some(p => qNorm.includes(normalize(p)));
+}
+
+function scoreEntry(entry, queryNorm){
+  let score = 0;
+  for(const kw of entry.keywords){
+    const kwNorm = normalize(kw);
+    if(!kwNorm) continue;
+    if(queryNorm.includes(kwNorm)){
+      score += kwNorm.split(" ").length * 3;
+    } else {
+      const words = kwNorm.split(" ");
+      const hits = words.filter(w => w.length > 2 && queryNorm.includes(w)).length;
+      score += hits;
+    }
+  }
+  const titleNorm = normalize(entry.title);
+  titleNorm.split(" ").forEach(w=>{
+    if(w.length>3 && queryNorm.includes(w)) score += 1;
+  });
+  return score;
+}
+
+function findAnswer(query){
+  const qNorm = normalize(query);
+  let best = null, bestScore = 0;
+  for(const entry of KNOWLEDGE_BASE){
+    const s = scoreEntry(entry, qNorm);
+    if(s > bestScore){ bestScore = s; best = entry; }
+  }
+  return bestScore >= 2 ? best : null;
+}
+
+/* ========================= ESTADO DA CONVERSA ========================= */
+let lastEntry = null;
+
+/* ========================= INTERFACE ========================= */
+const messagesEl = document.getElementById("messages");
+const formEl = document.getElementById("form");
+const inputEl = document.getElementById("input");
+const topicsInner = document.getElementById("topicsInner");
+const topicsPanel = document.getElementById("topicsPanel");
+const topicsToggle = document.getElementById("topicsToggle");
+
+topicsToggle.addEventListener("click", ()=>{
+  topicsPanel.classList.toggle("open");
+});
+
+function renderTopics(){
+  KNOWLEDGE_BASE.forEach(entry=>{
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "chip";
+    chip.textContent = entry.title;
+    chip.onclick = ()=>{ topicsPanel.classList.remove("open"); ask(entry.title); };
+    topicsInner.appendChild(chip);
+  });
+}
+renderTopics();
+
+function scrollDown(){
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function addUserMsg(text){
+  const row = document.createElement("div");
+  row.className = "row user";
+  row.innerHTML = `<div class="bubble"></div>`;
+  row.querySelector(".bubble").textContent = text;
+  messagesEl.appendChild(row);
+  scrollDown();
+}
+
+function addBotBubble(innerHtml, kind){
+  const row = document.createElement("div");
+  row.className = "row " + (kind || "bot");
+  row.innerHTML = `<div class="mini-avatar">🤖</div><div class="bubble">${innerHtml}</div>`;
+  messagesEl.appendChild(row);
+  scrollDown();
+}
+
+function greetingReply(){
+  addBotBubble("Oi! Pode perguntar sobre transferências no Sankhya, emissão de nota, higienização ou qualquer processo de faturamento. Se eu não souber algo, eu aviso — assim dá pra ir completando a base aos poucos.");
+}
+
+function thanksReply(){
+  addBotBubble("Disponha! Se aparecer outra dúvida sobre os processos, é só chamar.");
+}
+
+function onlyThisReply(){
+  addBotBubble("Sim, é isso mesmo! 😊 Como posso te ajudar hoje?");
+}
+
+function confusionReply(){
+  if(lastEntry){
+    addBotBubble(`<span class="rephrase-tag">Explicando de outro jeito</span><br>${lastEntry.simple}`);
+  } else {
+    addBotBubble("Sem problema! Me diz qual processo você quer entender (ex: transferência, higienização, nota com frete) que eu explico com calma. Também dá pra abrir a lista em \"📋 Processos\" ali em cima.");
+  }
+}
+
+function missReply(query){
+  const row = document.createElement("div");
+  row.className = "row miss";
+  row.innerHTML = `<div class="mini-avatar">🤖</div>
+    <div class="bubble">Ainda não tenho essa informação na base 🙁<br>
+    Pergunta: <i>"${query.replace(/</g,"&lt;")}"</i><br><br>
+    Peça pra incluir esse processo na base de conhecimento (é só adicionar um bloco no arquivo) e eu já respondo da próxima vez.</div>`;
+  messagesEl.appendChild(row);
+  scrollDown();
+}
+
+function showTyping(){
+  const row = document.createElement("div");
+  row.className = "row bot typing-row";
+  row.innerHTML = `<div class="mini-avatar">🤖</div>
+    <div class="bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
+  messagesEl.appendChild(row);
+  scrollDown();
+  return row;
+}
+
+function ask(query){
+  if(!query.trim()) return;
+  addUserMsg(query);
+  inputEl.value = "";
+
+  const qNorm = normalize(query);
+  const typingRow = showTyping();
+
+  setTimeout(()=>{
+    typingRow.remove();
+
+    if(matchesAny(qNorm, GREETING_PATTERNS) && qNorm.split(" ").length <= 4){
+      greetingReply();
+      return;
+    }
+    if(matchesAny(qNorm, THANKS_PATTERNS)){
+      thanksReply();
+      return;
+    }
+    if(matchesAny(qNorm, ONLY_THIS_PATTERNS) && qNorm.split(" ").length <= 5){
+      onlyThisReply();
+      return;
+    }
+    if(matchesAny(qNorm, CONFUSION_PATTERNS)){
+      confusionReply();
+      return;
+    }
+
+    const match = findAnswer(query);
+    if(match){
+      lastEntry = match;
+      addBotBubble(match.html);
+    } else {
+      missReply(query);
+    }
+  }, 400);
+}
+
+formEl.addEventListener("submit", e=>{
+  e.preventDefault();
+  ask(inputEl.value);
+});
+
+greetingReply();
+</script>
+</body>
+</html>
