@@ -112,6 +112,12 @@
     transition:all .15s ease;
   }
   .side-btn:hover{background:var(--teal-soft); color:var(--ink); border-left:2px solid var(--teal);}
+  .side-btn.active{
+    background:var(--teal-soft);
+    color:var(--ink);
+    border-left:2px solid var(--teal);
+    font-weight:600;
+  }
 
   @media (max-width:640px){
     .sidebar{
@@ -378,7 +384,7 @@ const KNOWLEDGE_BASE = [
         <li>Fechar a tela e dar o check.</li>
         <li>Confirmar a nota.</li>
       </ol>
-      <p><b>Se for TOP 700:</b> no cabeçalho, todas as empresas ficam com o código 1 — a diferença entre origem e destino é definida só na aba Itens. O restante do passo a passo segue igual.</p>
+      <p><b>Se for TOP 700:</b> no cabeçalho, todas as empresas ficam com o código 1 <i>(Matriz Oxigenar) ou 10 (Matriz Pulmonair)</i> — a diferença entre origem e destino é definida só na aba Itens. O restante do passo a passo segue igual.</p>
       <div class="note">Sempre que houver transferência de itens de venda da Matriz para o Carro Domiciliar (inclusive Pulmonair), é obrigatório emitir também uma Nota Fiscal adicional pela TOP 2525 — pergunte sobre "remessa para venda domiciliar" para ver esse passo a passo.</div>
     `
   },
@@ -672,7 +678,7 @@ const KNOWLEDGE_BASE = [
         <li>Série: copiada exatamente como está no Sankhya</li>
       </ul>
       <div class="note">Na renovação normalmente não é preciso reanexar documentos pessoais nem comprovante de residência, já que devem estar no sistema — mas cabe ao Representante Comercial confirmar isso e solicitar o reenvio se estiver faltando.</div>
-      <p>Se o cliente continuar com o mesmo equipamento, verifique se a remessa já foi emitida. Se ainda não tiver sido emitida, ou se houver troca de equipamento, solicite ao Faturamento a emissão da nota de remessa.</p>
+      <p>Se o cliente continuar com o mesmo equipamento, verifique se a remessa já foi emitida. Se ainda não tiver sido emitida, ou se houver troca de equipamento, solicite ao Setor Administrativo a emissão da nota de remessa.</p>
       <h3>Finalização</h3>
       <p>Imprimir o contrato, coletar assinatura do cliente (todas as páginas) e do Representante Comercial. Digitalizar de forma legível o contrato completo e o comprovante de pagamento, enviar ao grupo de digitalização para anexação na tela de Contratos. O processo é finalizado quando contrato e remessa estiverem emitidos, assinados e anexados no sistema.</p>
     `
@@ -702,7 +708,7 @@ const KNOWLEDGE_BASE = [
       </ul>
       <p>Depois de preenchidos todos os campos, a nota estará pronta para impressão — colete a assinatura do cliente.</p>
       <h3>Finalização</h3>
-      <p>O Representante Comercial digitaliza de forma legível a nota assinada e envia ao grupo de digitalização, para que o Faturamento anexe na tela de Portal de Vendas do cliente. O processo é considerado finalizado quando a nota estiver assinada, enviada e inserida com o comprovante de pagamento no Portal de Vendas.</p>
+      <p>O Representante Comercial digitaliza de forma legível a nota assinada e envia ao grupo de digitalização, para que o Setor Administrativo anexe na tela de Portal de Vendas do cliente. O processo é considerado finalizado quando a nota estiver assinada, enviada e inserida com o comprovante de pagamento no Portal de Vendas.</p>
     `
   },
   {
@@ -716,12 +722,12 @@ const KNOWLEDGE_BASE = [
       <p>Recolhimento é receber de volta o equipamento devolvido pelo cliente, quando ele o entrega em uma das unidades.</p>
       <h3>Como funciona</h3>
       <ol>
-        <li>Depois dos procedimentos do setor Comercial, é enviada uma solicitação de recolhimento ao Faturamento, informando o equipamento, a série e o motivo da devolução.</li>
-        <li>No Portal de Vendas, o Faturamento pesquisa o nome do cliente, clica no documento "LOCAÇÃO DE EQUIPAMENTOS PRÓPRIOS/TERCEIROS", clica em <b>DEV/EST</b>, preenche o motivo da devolução e confirma a nota.</li>
+        <li>Depois dos procedimentos do setor Comercial, é enviada uma solicitação de recolhimento ao Setor Administrativo, informando o equipamento, a série e o motivo da devolução.</li>
+        <li>No Portal de Vendas, o Setor Administrativo pesquisa o nome do cliente, clica no documento "LOCAÇÃO DE EQUIPAMENTOS PRÓPRIOS/TERCEIROS", clica em <b>DEV/EST</b>, preenche o motivo da devolução e confirma a nota.</li>
         <li>É gerada uma <b>Ficha de Recolhimento</b> e o documento <b>Retorno da Remessa</b> — o Representante extrai, imprime, assina e coleta a assinatura do cliente.</li>
-        <li>O Faturamento vai até a tela de <b>Contratos</b> e desativa todo o contrato.</li>
+        <li>O Setor Administrativo vai até a tela de <b>Contratos</b> e desativa todo o contrato.</li>
         <li>A ficha de recolhimento e o retorno da remessa (assinados) são digitalizados de forma legível e enviados ao grupo de digitalização.</li>
-        <li>O Faturamento baixa esse documento e insere na tela de Contratos, no nome do respectivo cliente.</li>
+        <li>O Setor Administrativo baixa esse documento e insere na tela de Contratos, no nome do respectivo cliente.</li>
       </ol>
       <div class="note">O processo é considerado finalizado quando a ficha de recolhimento e o retorno da remessa estiverem emitidos, devidamente assinados e inseridos no sistema.</div>
     `
@@ -752,7 +758,7 @@ const KNOWLEDGE_BASE = [
       <span class="tag">Faturamento — Serviço</span>
       <h3>Emissão das Notas da Assistência Técnica — Higienização</h3>
       <ol>
-        <li>Abrir o portal e clicar em <b>Emissão completa</b>, na barra superior.</li>
+        <li>Abrir o <a href="https://www.nfse.gov.br/EmissorNacional/Login?ReturnUrl=%2fEmissorNacional" target="_blank" rel="noopener">Portal do Emissor Nacional de NFS-e</a> e clicar em <b>Emissão completa</b>, na barra superior.</li>
         <li><b>Data de competência:</b> dia em que o serviço foi realizado — preferir sempre emitir a nota no mesmo dia da solicitação.</li>
         <li><b>Prestador:</b> Oxigenar — conferir sempre os dados do emitente (CNPJ da assistência técnica).</li>
         <li><b>Tomador:</b> o cliente — selecionar Brasil e preencher telefone, CPF e e-mail do cliente.</li>
@@ -1140,12 +1146,19 @@ function renderTopics(){
       b.type = "button";
       b.className = "side-btn";
       b.textContent = entry.title;
+      b.dataset.id = entry.id;
       b.onclick = ()=>{ sidebar.classList.remove("open"); overlay.classList.remove("show"); ask(entry.title); };
       topicsInner.appendChild(b);
     });
   });
 }
 renderTopics();
+
+function setActiveTopic(entryId){
+  document.querySelectorAll(".side-btn").forEach(btn=>{
+    btn.classList.toggle("active", btn.dataset.id === entryId);
+  });
+}
 
 function scrollDown(){ messagesEl.scrollTop = messagesEl.scrollHeight; }
 
@@ -1230,8 +1243,8 @@ function ask(query){
     if(matchesAny(qNorm, CONFUSION_PATTERNS)){ confusionReply(); return; }
 
     const match = findAnswer(query);
-    if(match){ lastEntry = match; addBotBubble(match.html); }
-    else{ missReply(query); }
+    if(match){ lastEntry = match; setActiveTopic(match.id); addBotBubble(match.html); }
+    else{ setActiveTopic(null); missReply(query); }
   }, 450);
 }
 
