@@ -3,28 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oxibot Adm — Faturamento &amp; Contratos</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%A4%96</text></svg>">
+<title>Oxibot ADM — Faturamento &amp; Contratos</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMGUwZmYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2M1Y2ZmIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iNjAiIHk9IjI4IiB3aWR0aD0iOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiMwYTBlMWEiLz4KPGNpcmNsZSBjeD0iNjQiIGN5PSIyNCIgcj0iNyIgZmlsbD0iIzBhMGUxYSIvPgo8cmVjdCB4PSIzMiIgeT0iNDYiIHdpZHRoPSI2NCIgaGVpZ2h0PSI1MCIgcng9IjE2IiBmaWxsPSIjMGEwZTFhIi8+CjxjaXJjbGUgY3g9IjUyIiBjeT0iNzEiIHI9IjgiIGZpbGw9IiMwMGUwZmYiLz4KPGNpcmNsZSBjeD0iNzYiIGN5PSI3MSIgcj0iOCIgZmlsbD0iIzdjNWNmZiIvPgo8cmVjdCB4PSI0NiIgeT0iODgiIHdpZHRoPSIzNiIgaGVpZ2h0PSI3IiByeD0iMy41IiBmaWxsPSIjMDBlMGZmIiBvcGFjaXR5PSIwLjYiLz4KPHJlY3QgeD0iMjAiIHk9IjYwIiB3aWR0aD0iMTAiIGhlaWdodD0iMjIiIHJ4PSI1IiBmaWxsPSIjMGEwZTFhIi8+CjxyZWN0IHg9Ijk4IiB5PSI2MCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIyIiByeD0iNSIgZmlsbD0iIzBhMGUxYSIvPgo8L3N2Zz4K">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#dbeaf5;
-    --card:#ffffff;
-    --primary:#229ed9;
-    --primary-dark:#1b7fb3;
-    --accent-soft:#e4f2fb;
-    --bot-bubble:#ffffff;
-    --text:#1c2733;
-    --text-soft:#6b7a82;
-    --border:#d9e6f0;
-    --user-bubble:#e1f3fd;
+    --bg:#080b14;
+    --bg-grid:#0d1220;
+    --navy:#101828;
+    --navy-deep:#060a12;
+    --teal:#00e0ff;
+    --teal-soft:rgba(0,224,255,.1);
+    --accent:#7c5cff;
+    --paper:#0a0e1a;
+    --card:#111827;
+    --ink:#e6edf5;
+    --ink-soft:#8b96ab;
+    --line:#1e293f;
+    --warn:#ffb020;
+    --warn-bg:rgba(255,176,32,.1);
   }
   *{box-sizing:border-box;}
-  html,body{height:100%;}
+  html,body{height:100%; overflow:hidden;}
   body{
     margin:0;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
+    font-family:'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(0,224,255,.08), transparent 45%),
+      radial-gradient(circle at 85% 100%, rgba(124,92,255,.08), transparent 45%),
+      var(--bg);
+    color:var(--ink);
     display:flex;
     justify-content:center;
     padding:0;
@@ -34,264 +44,321 @@
     max-width:none;
     height:100vh;
     max-height:none;
-    background:var(--card);
+    background:var(--paper);
     border-radius:0;
     box-shadow:none;
     display:flex;
-    flex-direction:column;
     overflow:hidden;
   }
-  header{
-    background:linear-gradient(135deg,#2aabee,#229ed9);
+
+  /* ===== Sidebar ===== */
+  .sidebar{
+    width:240px;
+    flex-shrink:0;
+    background:var(--navy-deep);
     color:#fff;
-    padding:16px 18px;
+    display:flex;
+    flex-direction:column;
+    padding:22px 0;
+    border-right:1px solid var(--line);
+  }
+  .sidebar-brand{
+    padding:0 18px 18px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:14px;
+  }
+  .sidebar-brand img{
+    width:52px;height:52px;border-radius:50%;
+    display:block; margin-bottom:10px;
+    border:2px solid rgba(0,224,255,.35);
+    box-shadow:0 0 14px rgba(0,224,255,.4);
+  }
+  .sidebar-brand .name{
+    font-family:'Outfit', sans-serif;
+    font-size:.98rem; font-weight:700;
+    background:linear-gradient(90deg,#fff,var(--teal));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .sidebar-brand .role{font-size:.72rem; color:var(--ink-soft); margin-top:2px;}
+  .sidebar h2{
+    font-family:'Outfit', sans-serif;
+    font-size:.68rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--teal);
+    margin:14px 18px 8px;
+    font-weight:600;
+  }
+  .sidebar-list{
+    overflow-y:auto;
+    flex:1;
+    min-height:0;
+    padding:0 10px;
+  }
+  .side-btn{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    border-left:2px solid transparent;
+    color:var(--ink-soft);
+    padding:9px 10px;
+    border-radius:8px;
+    font-size:.79rem;
+    cursor:pointer;
+    margin-bottom:2px;
+    line-height:1.3;
+    transition:all .15s ease;
+  }
+  .side-btn:hover{background:var(--teal-soft); color:var(--ink); border-left:2px solid var(--teal);}
+
+  @media (max-width:640px){
+    .sidebar{
+      position:fixed;
+      left:0; top:0; bottom:0;
+      z-index:20;
+      transform:translateX(-100%);
+      transition:transform .25s ease;
+      box-shadow:10px 0 30px rgba(0,0,0,.5);
+    }
+    .sidebar.open{transform:translateX(0);}
+    .card{max-width:100%; height:100vh; max-height:none; border-radius:0;}
+    body{padding:0;}
+  }
+
+  /* ===== Chat column ===== */
+  .chat-col{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+    background:var(--paper);
+  }
+  header{
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:#fff;
+    padding:14px 18px;
     display:flex;
     align-items:center;
     gap:12px;
+    border-bottom:1px solid var(--teal);
+    box-shadow:0 1px 24px rgba(0,224,255,.25);
+    position:relative;
   }
-  .avatar{
-    width:40px;height:40px;
+  header::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:-1px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--teal), var(--accent), transparent);
+  }
+  .menu-btn{
+    display:none;
+    background:var(--teal-soft);
+    border:1px solid rgba(0,224,255,.3);
+    color:var(--teal);
+    width:34px;height:34px;
+    border-radius:9px;
+    font-size:1rem;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  @media (max-width:640px){ .menu-btn{display:block;} }
+  .avatar-img{
+    width:42px;height:42px;
     border-radius:50%;
-    background:rgba(255,255,255,.18);
-    display:flex;align-items:center;justify-content:center;
-    font-size:20px;
+    border:2px solid rgba(0,224,255,.5);
+    box-shadow:0 0 12px rgba(0,224,255,.5);
     flex-shrink:0;
   }
   .header-text{flex:1; min-width:0;}
   header h1{
     margin:0;
-    font-size:1rem;
+    font-family:'Outfit', sans-serif;
+    font-size:1.2rem;
     font-weight:600;
+    background:linear-gradient(90deg,#fff,var(--teal));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
   }
   .status{
     display:flex;align-items:center;gap:6px;
-    font-size:.76rem;
-    color:#cfe8e5;
+    font-size:.78rem;
+    color:var(--ink-soft);
     margin-top:2px;
   }
-  .status .dot{
-    width:7px;height:7px;border-radius:50%;
-    background:#5fe0a0;
-    display:inline-block;
-  }
-  .topics-toggle{
-    background:rgba(255,255,255,.14);
-    border:none;
-    color:#fff;
-    font-size:.76rem;
-    padding:7px 12px;
-    border-radius:20px;
-    cursor:pointer;
-    white-space:nowrap;
-  }
-  .topics-toggle:hover{background:rgba(255,255,255,.24);}
-
-  .topics-panel{
-    max-height:0;
-    overflow:hidden;
-    background:var(--accent-soft);
-    transition:max-height .25s ease;
-    flex-shrink:0;
-  }
-  .topics-panel.open{max-height:160px; overflow-y:auto;}
-  .topics-inner{
-    padding:12px 16px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-  }
-  .chip{
-    background:#fff;
-    border:1px solid var(--border);
-    color:var(--primary-dark);
-    font-size:.78rem;
-    padding:7px 12px;
-    border-radius:20px;
-    cursor:pointer;
-    line-height:1.2;
-  }
-  .chip:hover{background:var(--primary); color:#fff; border-color:var(--primary);}
+  .status .dot{width:7px;height:7px;border-radius:50%; background:var(--teal); box-shadow:0 0 6px var(--teal); display:inline-block;}
 
   .messages{
     flex:1;
     overflow-y:auto;
-    padding:20px 18px;
+    padding:20px 20px 8px;
     display:flex;
     flex-direction:column;
-    gap:4px;
-    background-color:#d9e9f5;
+    gap:2px;
+    background-color:var(--paper);
     background-image:
-      radial-gradient(circle at 12% 18%, rgba(34,158,217,.08) 0, rgba(34,158,217,.08) 6px, transparent 7px),
-      radial-gradient(circle at 68% 8%, rgba(34,158,217,.07) 0, rgba(34,158,217,.07) 5px, transparent 6px),
-      radial-gradient(circle at 85% 62%, rgba(34,158,217,.08) 0, rgba(34,158,217,.08) 7px, transparent 8px),
-      radial-gradient(circle at 30% 78%, rgba(34,158,217,.06) 0, rgba(34,158,217,.06) 4px, transparent 5px),
-      radial-gradient(circle at 50% 45%, rgba(34,158,217,.05) 0, rgba(34,158,217,.05) 3px, transparent 4px),
-      radial-gradient(circle at 5% 60%, rgba(34,158,217,.06) 0, rgba(34,158,217,.06) 5px, transparent 6px),
-      radial-gradient(circle at 92% 30%, rgba(34,158,217,.06) 0, rgba(34,158,217,.06) 4px, transparent 5px),
-      radial-gradient(circle at 40% 12%, rgba(34,158,217,.05) 0, rgba(34,158,217,.05) 3px, transparent 4px);
-    background-size:160px 160px;
+      radial-gradient(circle at 10% 15%, rgba(0,224,255,.05) 0, rgba(0,224,255,.05) 4px, transparent 5px),
+      radial-gradient(circle at 70% 8%, rgba(124,92,255,.05) 0, rgba(124,92,255,.05) 5px, transparent 6px),
+      radial-gradient(circle at 85% 60%, rgba(0,224,255,.05) 0, rgba(0,224,255,.05) 3px, transparent 4px),
+      radial-gradient(circle at 25% 75%, rgba(124,92,255,.05) 0, rgba(124,92,255,.05) 4px, transparent 5px),
+      radial-gradient(circle at 50% 40%, rgba(0,224,255,.04) 0, rgba(0,224,255,.04) 3px, transparent 4px),
+      radial-gradient(circle at 5% 55%, rgba(124,92,255,.05) 0, rgba(124,92,255,.05) 4px, transparent 5px);
+    background-size:170px 170px;
     background-repeat:repeat;
   }
-  .row{
-    display:flex;
-    align-items:flex-end;
-    gap:8px;
-    margin:6px 0;
-  }
+  .row{display:flex; align-items:flex-end; gap:8px; margin:7px 0;}
   .row.user{justify-content:flex-end;}
   .row .mini-avatar{
-    width:26px;height:26px;
+    width:28px;height:28px;
     border-radius:50%;
-    background:var(--primary);
-    color:#fff;
-    display:flex;align-items:center;justify-content:center;
-    font-size:13px;
     flex-shrink:0;
+    border:1.5px solid var(--navy-deep);
+    box-shadow:0 0 8px rgba(0,224,255,.4);
   }
-  .row.miss .mini-avatar{background:#b5766f;}
+  .row.miss .mini-avatar{filter:saturate(.4) hue-rotate(-25deg);}
+  .bubble-wrap{display:flex; flex-direction:column; max-width:76%;}
+  .row.user .bubble-wrap{align-items:flex-end;}
   .bubble{
-    max-width:78%;
     padding:12px 15px;
-    border-radius:16px;
+    border-radius:17px;
     font-size:.91rem;
     line-height:1.55;
   }
-  .row.bot .bubble{
-    background:var(--bot-bubble);
-    border-bottom-left-radius:4px;
-    box-shadow:0 1px 2px rgba(20,50,70,.12);
-  }
-  .row.miss .bubble{
-    background:#fbeeec;
-    color:#7a3a30;
-    border-bottom-left-radius:4px;
-  }
-  .row.user .bubble{
-    background:var(--user-bubble);
-    color:var(--text);
-    border-bottom-right-radius:4px;
-    box-shadow:0 1px 2px rgba(20,50,70,.1);
-  }
-  .bubble h3{
-    margin:0 0 6px;
-    font-size:.95rem;
-    color:var(--primary-dark);
-  }
+  .row.bot .bubble{background:var(--card); border:1px solid var(--line); border-bottom-left-radius:5px; box-shadow:0 2px 10px rgba(0,0,0,.35);}
+  .row.miss .bubble{background:#1a0f16; border:1px solid #4a1f2c; color:#ff8fa3; border-bottom-left-radius:5px;}
+  .row.user .bubble{background:linear-gradient(135deg, var(--teal), var(--accent)); color:#04101a; font-weight:500; border-bottom-right-radius:5px; box-shadow:0 2px 10px rgba(0,224,255,.25);}
+  .timestamp{font-size:.68rem; color:var(--ink-soft); margin-top:4px; padding:0 4px;}
+
+  .bubble h3{margin:0 0 6px; font-family:'Outfit', sans-serif; font-size:.95rem; font-weight:600; color:var(--teal);}
   .bubble ol, .bubble ul{margin:6px 0; padding-left:20px;}
   .bubble .note{
-    margin-top:8px;
-    padding:8px 10px;
-    background:#fff4e0;
-    color:#8a5a00;
-    border-radius:8px;
-    font-size:.82rem;
+    margin-top:8px; padding:8px 10px;
+    background:var(--warn-bg); color:var(--warn);
+    border-radius:8px; font-size:.82rem;
+    border:1px solid rgba(255,176,32,.25);
   }
-  .bubble .rephrase-tag{
-    display:inline-block;
-    font-size:.72rem;
-    font-weight:700;
-    color:var(--primary);
-    background:var(--accent-soft);
-    padding:2px 9px;
-    border-radius:20px;
-    margin-bottom:8px;
+  .bubble .tag, .bubble .rephrase-tag{
+    display:inline-block; font-size:.72rem; font-weight:700;
+    color:var(--teal); background:var(--teal-soft);
+    padding:2px 9px; border-radius:20px; margin-bottom:8px;
+    border:1px solid rgba(0,224,255,.3);
   }
-  .typing-row .bubble{
-    display:flex;
-    gap:4px;
-    align-items:center;
-    padding:12px 16px;
-  }
-  .typing-dot{
-    width:6px;height:6px;border-radius:50%;
-    background:var(--text-soft);
-    animation:blink 1.2s infinite ease-in-out;
-  }
+  .typing-row .bubble{display:flex; gap:4px; align-items:center; padding:12px 16px;}
+  .typing-dot{width:6px;height:6px;border-radius:50%; background:var(--teal); animation:blink 1.2s infinite ease-in-out;}
   .typing-dot:nth-child(2){animation-delay:.2s;}
   .typing-dot:nth-child(3){animation-delay:.4s;}
   @keyframes blink{0%,80%,100%{opacity:.25;} 40%{opacity:1;}}
 
   form{
-    display:flex;
-    gap:8px;
-    padding:14px 16px;
-    border-top:1px solid var(--border);
-    background:var(--card);
+    display:flex; gap:8px;
+    padding:14px 18px;
+    border-top:1px solid var(--line);
+    background:var(--navy-deep);
   }
   input[type=text]{
-    flex:1;
-    border:1px solid var(--border);
-    background:var(--bg);
-    border-radius:22px;
-    padding:11px 16px;
-    font-size:.9rem;
+    flex:1; border:1px solid var(--line); background:var(--card); color:var(--ink);
+    border-radius:22px; padding:11px 16px; font-size:.9rem; outline:none;
+  }
+  input[type=text]::placeholder{color:var(--ink-soft);}
+  input[type=text]:focus{border-color:var(--teal); box-shadow:0 0 0 3px rgba(0,224,255,.15);}
+  button.send{
+    width:42px; height:42px; background:linear-gradient(135deg, var(--teal), var(--accent)); color:#04101a;
+    border:none; border-radius:50%; font-size:1.05rem; cursor:pointer; flex-shrink:0;
+    box-shadow:0 4px 14px rgba(0,224,255,.25);
+  }
+  button.send:hover{filter:brightness(1.1);}
+
+  .mini-calc{
+    margin-top:10px;
+    padding:12px;
+    background:var(--navy-deep);
+    border:1px solid var(--line);
+    border-radius:10px;
+  }
+  .mini-calc label{
+    display:block;
+    font-size:.78rem;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .mini-calc label:last-of-type{margin-bottom:12px;}
+  .mini-calc input{
+    display:block;
+    width:100%;
+    margin-top:4px;
+    background:var(--card);
+    border:1px solid var(--line);
+    color:var(--ink);
+    border-radius:8px;
+    padding:8px 10px;
+    font-size:.85rem;
     outline:none;
   }
-  input[type=text]:focus{border-color:var(--primary);}
-  button.send{
-    width:42px; height:42px;
-    background:var(--primary);
-    color:#fff;
+  .mini-calc input:focus{border-color:var(--teal); box-shadow:0 0 0 3px rgba(0,224,255,.15);}
+  .mini-calc .calc-btn{
+    background:linear-gradient(135deg, var(--teal), var(--accent));
+    color:#04101a;
     border:none;
-    border-radius:50%;
-    font-size:1.05rem;
+    border-radius:8px;
+    padding:9px 16px;
+    font-size:.83rem;
+    font-weight:700;
     cursor:pointer;
-    flex-shrink:0;
   }
-  button.send:hover{background:var(--primary-dark);}
-
-  @media (max-width:480px){
-    body{padding:0;}
-    .card{border-radius:0; height:100vh; max-height:none;}
+  .mini-calc .calc-btn:hover{filter:brightness(1.1);}
+  .mini-calc .calc-error{
+    margin-top:8px;
+    color:#ff8fa3;
+    font-size:.82rem;
   }
+  .overlay{
+    display:none;
+    position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:15;
+  }
+  .overlay.show{display:block;}
 </style>
 </head>
 <body>
 <div class="card">
-  <header>
-    <div class="avatar">🤖</div>
-    <div class="header-text">
-      <h1>Oxibot Adm</h1>
-      <div class="status"><span class="dot"></span> Setor de Solicitações · sempre disponível</div>
+  <div class="overlay" id="overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMGUwZmYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2M1Y2ZmIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iNjAiIHk9IjI4IiB3aWR0aD0iOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiMwYTBlMWEiLz4KPGNpcmNsZSBjeD0iNjQiIGN5PSIyNCIgcj0iNyIgZmlsbD0iIzBhMGUxYSIvPgo8cmVjdCB4PSIzMiIgeT0iNDYiIHdpZHRoPSI2NCIgaGVpZ2h0PSI1MCIgcng9IjE2IiBmaWxsPSIjMGEwZTFhIi8+CjxjaXJjbGUgY3g9IjUyIiBjeT0iNzEiIHI9IjgiIGZpbGw9IiMwMGUwZmYiLz4KPGNpcmNsZSBjeD0iNzYiIGN5PSI3MSIgcj0iOCIgZmlsbD0iIzdjNWNmZiIvPgo8cmVjdCB4PSI0NiIgeT0iODgiIHdpZHRoPSIzNiIgaGVpZ2h0PSI3IiByeD0iMy41IiBmaWxsPSIjMDBlMGZmIiBvcGFjaXR5PSIwLjYiLz4KPHJlY3QgeD0iMjAiIHk9IjYwIiB3aWR0aD0iMTAiIGhlaWdodD0iMjIiIHJ4PSI1IiBmaWxsPSIjMGEwZTFhIi8+CjxyZWN0IHg9Ijk4IiB5PSI2MCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIyIiByeD0iNSIgZmlsbD0iIzBhMGUxYSIvPgo8L3N2Zz4K" alt="Oxibot ADM">
+      <div class="name">Oxibot ADM</div>
+      <div class="role">Faturamento &amp; Contratos</div>
     </div>
-    <button class="topics-toggle" id="topicsToggle" type="button">📋 Processos</button>
-  </header>
+    <div class="sidebar-list" id="topicsInner"></div>
+  </aside>
 
-  <div class="topics-panel" id="topicsPanel">
-    <div class="topics-inner" id="topicsInner"></div>
+  <div class="chat-col">
+    <header>
+      <button class="menu-btn" id="menuBtn" type="button">☰</button>
+      <img class="avatar-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMGUwZmYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2M1Y2ZmIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iNjAiIHk9IjI4IiB3aWR0aD0iOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiMwYTBlMWEiLz4KPGNpcmNsZSBjeD0iNjQiIGN5PSIyNCIgcj0iNyIgZmlsbD0iIzBhMGUxYSIvPgo8cmVjdCB4PSIzMiIgeT0iNDYiIHdpZHRoPSI2NCIgaGVpZ2h0PSI1MCIgcng9IjE2IiBmaWxsPSIjMGEwZTFhIi8+CjxjaXJjbGUgY3g9IjUyIiBjeT0iNzEiIHI9IjgiIGZpbGw9IiMwMGUwZmYiLz4KPGNpcmNsZSBjeD0iNzYiIGN5PSI3MSIgcj0iOCIgZmlsbD0iIzdjNWNmZiIvPgo8cmVjdCB4PSI0NiIgeT0iODgiIHdpZHRoPSIzNiIgaGVpZ2h0PSI3IiByeD0iMy41IiBmaWxsPSIjMDBlMGZmIiBvcGFjaXR5PSIwLjYiLz4KPHJlY3QgeD0iMjAiIHk9IjYwIiB3aWR0aD0iMTAiIGhlaWdodD0iMjIiIHJ4PSI1IiBmaWxsPSIjMGEwZTFhIi8+CjxyZWN0IHg9Ijk4IiB5PSI2MCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIyIiByeD0iNSIgZmlsbD0iIzBhMGUxYSIvPgo8L3N2Zz4K" alt="Oxibot ADM">
+      <div class="header-text">
+        <h1>Oxibot ADM</h1>
+        <div class="status"><span class="dot"></span> online · Faturamento, contratos e movimentações no Sankhya</div>
+      </div>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <form id="form">
+      <input type="text" id="input" placeholder="Digite sua dúvida..." autocomplete="off">
+      <button class="send" type="submit" aria-label="Enviar">➤</button>
+    </form>
   </div>
-
-  <div class="messages" id="messages"></div>
-
-  <form id="form">
-    <input type="text" id="input" placeholder="Digite sua dúvida..." autocomplete="off">
-    <button class="send" type="submit" aria-label="Enviar">➤</button>
-  </form>
 </div>
 
 <script>
-/* =========================================================================
-   BASE DE CONHECIMENTO
-   -------------------------------------------------------------------------
-   Para adicionar um novo processo, copie um bloco { ... } abaixo e edite:
-     id        -> identificador único, sem espaço (ex: "novo-processo")
-     title     -> título mostrado no chip do menu e na resposta
-     keywords  -> palavras/expressões que o representante pode digitar
-     html      -> resposta detalhada, em HTML (<ol>, <ul>, <b>, a classe
-                  "note" destaca avisos importantes)
-     simple    -> uma versão curta, em linguagem simples, usada quando a
-                  pessoa diz que não entendeu a explicação detalhada
-   Depois de editar, salve o arquivo e recarregue no navegador. Não precisa
-   de mais nada — não há servidor nem banco de dados externo.
-   ========================================================================= */
 const KNOWLEDGE_BASE = [
   {
     id: "transferencias-700-701",
-    title: "Transferências (TOP 700 x 701)",
+    title: "Transferências no Sankhya (TOP 700 x TOP 701)",
     keywords: ["transferencia","transferência","top 700","top 701","transferir equipamento",
       "movimentacao interna","movimentação interna","entre unidades","entre locais","matriz domiciliar"],
-    simple: "Resumindo: TOP 700 é quando os dois locais contam como a mesma unidade no sistema (ex: Matriz VR e Domiciliar VR/RJ). TOP 701 é quando são unidades realmente diferentes (ex: Matriz SP e Domiciliar SP). Na prática: abre o Portal de Movimentações Internas, clica em \"+\", escolhe 700 ou 701, preenche empresa origem/destino e o produto, e confirma.",
     html: `
+      <span class="tag">Transferências — Sankhya</span>
       <h3>TOP 700 x TOP 701</h3>
       <p>Existem duas TOPs para transferência de equipamentos:</p>
       <ul>
@@ -317,11 +384,11 @@ const KNOWLEDGE_BASE = [
   },
   {
     id: "remessa-venda-domiciliar-2525",
-    title: "Remessa Venda Domiciliar (2525)",
+    title: "Remessa para Venda Domiciliar (TOP 2525)",
     keywords: ["top 2525","remessa","venda domiciliar","nota fiscal adicional","carro domiciliar",
       "representante domiciliar","nota para o representante"],
-    simple: "Resumindo: toda vez que um item de venda sai da Matriz pro Carro Domiciliar, precisa emitir uma nota extra (TOP 2525), além da transferência normal. Essa nota vai pro representante e serve de comprovante numa fiscalização.",
     html: `
+      <span class="tag">Faturamento</span>
       <h3>Remessa para Venda Domiciliar — TOP 2525</h3>
       <p>Obrigatória sempre que um item de venda for transferido da Matriz para o Carro Domiciliar (vale também para Domiciliares da Pulmonair).</p>
       <h3>Aba Cabeçalho</h3>
@@ -345,10 +412,10 @@ const KNOWLEDGE_BASE = [
   },
   {
     id: "venda-scooters-cadeiras-11011",
-    title: "Venda Scooters/Cadeiras (11011)",
+    title: "Venda de Scooters/Cadeiras (TOP 11011)",
     keywords: ["scooter","cadeira de rodas","top 11011","isencao","isenção pis cofins","venda de cadeira"],
-    simple: "Resumindo: vendeu scooter ou cadeira de rodas, usa sempre a TOP 11011. Preenche os dados normais de venda (cliente, forma de pagamento, vendedor) e confirma.",
     html: `
+      <span class="tag">Faturamento</span>
       <h3>Venda de Scooters e Cadeiras — TOP 11011</h3>
       <p>Toda venda desse tipo de equipamento usa a <b>TOP 11011 – Venda com isenção de PIS e COFINS</b>.</p>
       <h3>Aba Cabeçalho</h3>
@@ -369,10 +436,10 @@ const KNOWLEDGE_BASE = [
   },
   {
     id: "nota-fiscal-frete",
-    title: "Nota Fiscal com Frete",
+    title: "Nota Fiscal com Frete Incluso",
     keywords: ["frete","transportadora","cif","fob","peso bruto","volumes","correios","uber","braspress"],
-    simple: "Resumindo: quando tem frete, escolhe a transportadora, informa quantos volumes e se quem paga é a empresa (CIF) ou o cliente (FOB). Depois confirma a nota.",
     html: `
+      <span class="tag">Faturamento</span>
       <h3>Nota Fiscal com Frete Incluso</h3>
       <ul>
         <li><b>Parceiro Transportadora:</b> Correios ES, Uber, Braspress etc. — solicitar essa informação ao Representante.</li>
@@ -388,8 +455,8 @@ const KNOWLEDGE_BASE = [
     id: "pagamento-misto-desdobramento",
     title: "Pagamento Misto (Desdobramento)",
     keywords: ["pagamento misto","desdobramento","parcelar","varios titulos","vários títulos","aba financeiro"],
-    simple: "Resumindo: quando o cliente paga de duas formas diferentes (ex: parte no PIX, parte no cartão), vai na aba Financeiro, clica em parcelar com vários tipos de título, e lança cada forma separadamente.",
     html: `
+      <span class="tag">Faturamento</span>
       <h3>Pagamento Misto — Desdobramento</h3>
       <p>Depois de preencher Cabeçalho e Itens normalmente:</p>
       <ol>
@@ -410,12 +477,12 @@ const KNOWLEDGE_BASE = [
   },
   {
     id: "higienizacao",
-    title: "Higienização (processo completo)",
+    title: "Processo de Higienização",
     keywords: ["higienizacao","higienização","limpeza do equipamento","top 1004","top 2515",
       "pedido de venda servico","pedido de venda serviço","pedido de assistencia","pedido de assistência",
       "portal de compras"],
-    simple: "Resumindo, são 4 passos: 1) emite uma nota de serviço de higienização pro cliente assinar; 2) inclui o equipamento do cliente no sistema (portal de compras); 3) faz o pedido de assistência; 4) transfere o equipamento pra assistência técnica.",
     html: `
+      <span class="tag">Processo completo</span>
       <h3>Higienização</h3>
       <p>Processo de limpeza do equipamento do cliente. Durante o período, o cliente pode ou não locar um equipamento da empresa até o dele ficar pronto.</p>
       <h3>1. Pedido de Venda-Serviço (Portal de Vendas, TOP 1004)</h3>
@@ -427,7 +494,7 @@ const KNOWLEDGE_BASE = [
         <li>Vendedor: representante comercial responsável</li>
         <li>Produto: Higienização — preencher quantidade e valor</li>
       </ul>
-      <p>Dar o check e confirmar a nota. <b>Essa nota deve ser assinada pelo cliente</b>, digitalizada e enviada no grupo de digitalização do representante.</p>
+      <p>Salvar no check e confirmar a nota. <b>Essa nota deve ser assinada pelo cliente</b>, digitalizada e enviada no grupo de digitalização do representante.</p>
       <h3>2. Portal de Compras (TOP 2515)</h3>
       <p>Inclui o equipamento do cliente no sistema para depois transferir para a assistência técnica.</p>
       <ul>
@@ -449,8 +516,8 @@ const KNOWLEDGE_BASE = [
     id: "nf-venda-pj",
     title: "NF de Venda para PJ",
     keywords: ["venda para pj","nf pj","pessoa juridica","pessoa jurídica","emissao pj","emissão pj"],
-    simple: "Resumindo: primeiro transfere o equipamento pro local \"EMISSÃO PJ – VR\", depois emite a nota normal escolhendo esse local como estoque.",
     html: `
+      <span class="tag">Faturamento</span>
       <h3>NF de Venda para PJ</h3>
       <ol>
         <li>Transferir o equipamento para o local <b>EMISSÃO PJ – VR</b> (vinculado à matriz): na tela de Itens, colocar o produto desejado e finalizar a transferência.</li>
@@ -461,11 +528,11 @@ const KNOWLEDGE_BASE = [
   },
   {
     id: "nf-prefeitura",
-    title: "NF na Prefeitura (Volta Redonda)",
+    title: "Emissão de NF na Prefeitura (Volta Redonda)",
     keywords: ["prefeitura","simplissweb","nota da prefeitura","ajuste de cpap","leitura de relatorio",
       "leitura de relatório","cnae","nota de servico","nota de serviço"],
-    simple: "Resumindo: fez ajuste de CPAP ou emitiu relatório? Além da nota no Sankhya, precisa emitir outra no site da prefeitura, com o CNAE 62.09-1-00 e os dados do cliente. No final, salva em PDF e manda pro representante. (O login é com a coordenação.)",
     html: `
+      <span class="tag">Faturamento — Serviço</span>
       <h3>Emissão de NF na Prefeitura</h3>
       <p>Sempre que for feito um ajuste de CPAP ou emissão de relatório, além do pedido de serviço no Sankhya, é preciso emitir também uma nota no site da Prefeitura de Volta Redonda.</p>
       <p><b>Site:</b> <a href="https://voltaredonda.simplissweb.com.br/contrib/Account/Login" target="_blank" rel="noopener">voltaredonda.simplissweb.com.br</a></p>
@@ -487,8 +554,8 @@ const KNOWLEDGE_BASE = [
     title: "Inutilização de Numeração",
     keywords: ["inutilizacao","inutilização","inutilizar nota","numeracao","numeração","nf-e","nfe",
       "numero homologado","número homologado","nota emitida errada"],
-    simple: "Resumindo: entrou uma nota errada no Portal de Vendas, vai na aba NF-E, clica em Inutilização de Numeração, coloca o intervalo de números e o motivo, e confirma. Se aparecer \"número homologado\", deu certo.",
     html: `
+      <span class="tag">Faturamento</span>
       <h3>Inutilização de Numeração</h3>
       <ol>
         <li>Ir no <b>Portal de Vendas</b>.</li>
@@ -512,11 +579,11 @@ const KNOWLEDGE_BASE = [
   },
   {
     id: "venda-oxigenar-pulmonair-consignada",
-    title: "Venda Oxigenar de Equip. Pulmonair",
+    title: "Venda Oxigenar de Equipamento Pulmonair (Consignada)",
     keywords: ["venda consignada","estoque consignado","oxigenar pulmonair","equipamento pulmonair",
       "venda de equipamento pulmonair"],
-    simple: "Resumindo: se a Oxigenar vende um equipamento que é da Pulmonair, na nota a Empresa é a Pulmonair (dona do estoque), mas o Centro de Resultado e Local de Origem são da unidade Oxigenar que vendeu.",
     html: `
+      <span class="tag">Faturamento</span>
       <h3>Venda Oxigenar de um Equipamento Pulmonair — Venda Consignada</h3>
       <p>Sempre que uma unidade da Oxigenar vender um equipamento da Pulmonair, esse equipamento pertence ao <b>estoque consignado</b> da unidade.</p>
       <h3>Na nota fiscal</h3>
@@ -531,8 +598,8 @@ const KNOWLEDGE_BASE = [
     title: "Bonificações (Locação x Venda)",
     keywords: ["bonificacao","bonificação","bonificacoes","bonificações","item bonificado",
       "venda mais bonificacao","venda mais bonificação","locacao mais bonificacao"],
-    simple: "Resumindo: bonificação sozinha ou em locação continua em nota separada, sem mudança. Mas se for venda + bonificação junto, agora vira uma nota só — a bonificação é diluída dentro da nota de venda.",
     html: `
+      <span class="tag">Faturamento</span>
       <h3>Bonificações — Padrão Atual</h3>
       <ul>
         <li>✅ <b>Bonificação em locação ou avulsa:</b> continua sendo feita normalmente, em nota separada.<br>
@@ -544,12 +611,128 @@ const KNOWLEDGE_BASE = [
     `
   },
   {
+    id: "locacao-equipamentos-pop",
+    title: "Locação de Equipamentos no Sankhya (Contrato + Remessa)",
+    keywords: ["locacao de equipamentos","locação de equipamentos","emitir contrato de locacao",
+      "emitir contrato de locação","tela de contratos sankhya","remessa de locacao","remessa de locação",
+      "top 1120","top 1125","top 1118","documentos para locacao","documentos para locação","iniciar locacao","iniciar locação"],
+    html: `
+      <span class="tag">Faturamento — Locação</span>
+      <h3>Antes de iniciar</h3>
+      <p>Confira se já foram recebidos: documento de identidade com foto do cliente, comprovante de residência, comprovante de pagamento (via Google Forms) e o cadastro completo na tela de <b>Parceiros</b> (feito pelo Representante Comercial).</p>
+      <h3>Emissão do Contrato (Tela de Contratos)</h3>
+      <ul>
+        <li>Nome do cliente (<b>conferir CPF</b> antes de selecionar)</li>
+        <li>Empresa (unidade que está locando)</li>
+        <li>Data do pagamento (usar como data de início da locação)</li>
+        <li>Natureza: <b>Receita de locação</b> ou <b>Renovação de locação</b></li>
+        <li>Centro de Resultado, forma de pagamento, tipo de negociação, tipo de financeiro, tipo de pagamento e forma de contratação</li>
+        <li>Mês de Referência (ex: 01 / Mês de Aplicação) e data de término (se aplicável)</li>
+        <li>Produto locado — a descrição deve sempre começar com a palavra <b>"ATIVO"</b></li>
+        <li>TOP para faturamento: <b>1120</b></li>
+        <li>Preço: preencher primeiro o valor <b>mensal</b> para imprimir o contrato. Em planos trimestrais, semestrais, anuais ou CLUBS, depois de imprimir, voltar no campo e trocar pelo <b>valor total</b> do plano</li>
+        <li>Série: copiar exatamente como está registrada no Sankhya, com todos os caracteres e espaçamentos</li>
+      </ul>
+      <p>Depois de preencher tudo, imprimir o contrato e coletar assinatura do <b>cliente</b> (em todas as páginas) e do <b>Representante Comercial</b>.</p>
+      <h3>Emissão da Remessa (exceto contratos com cilindros)</h3>
+      <p>A remessa comprova a posse e a circulação legal do equipamento locado:</p>
+      <ul>
+        <li>Série da nota: sempre 1 · Número da nota: sempre 0</li>
+        <li>Parceiro: nome do cliente · Empresa: unidade responsável</li>
+        <li>Tipo de operação: <b>TOP 1125</b> para ativos da empresa, ou <b>TOP 1118</b> para equipamentos de terceiros</li>
+        <li>Tipo de negociação: sempre <b>47 – Sem financeiro</b></li>
+        <li>Natureza: Produto para locação</li>
+        <li>Centro de Resultado e Vendedor: conforme a locação</li>
+        <li>Produto e Série do produto</li>
+      </ul>
+      <p>Imprimir a remessa e coletar a assinatura do cliente.</p>
+      <h3>Digitalização e finalização</h3>
+      <p>O Representante Comercial digitaliza (de forma legível) todas as páginas do contrato, a remessa (se aplicável), os documentos pessoais do cliente e o comprovante de pagamento, e envia ao grupo de digitalização. O processo é considerado finalizado quando contrato e remessa estiverem emitidos, assinados e devidamente anexados no Sankhya.</p>
+    `
+  },
+  {
+    id: "renovacao-locacao",
+    title: "Renovação de Locação no Sankhya",
+    keywords: ["renovacao","renovação","renovar locacao","renovar locação","renovar contrato",
+      "novo prazo de locacao","novo prazo de locação","contrato de renovacao","contrato de renovação"],
+    html: `
+      <span class="tag">Faturamento — Locação</span>
+      <h3>O que é</h3>
+      <p>Renovação é uma nova locação do mesmo equipamento após o término do prazo do contrato anterior, com um novo prazo combinado entre as partes. O processo começa depois de receber e conferir o comprovante de pagamento via Google Forms.</p>
+      <h3>Emissão do contrato de renovação (Tela de Contratos)</h3>
+      <ul>
+        <li>Nome do cliente (conferir CPF)</li>
+        <li>Empresa (unidade que está locando)</li>
+        <li>Data do pagamento (data de início da locação)</li>
+        <li>Natureza: Receita de locação ou Renovação de locação</li>
+        <li>Centro de Resultado, forma de pagamento, tipo de negociação, tipo de pagamento, forma de contratação</li>
+        <li>Mês de Referência (ex: 01 / Mês de Aplicação) e data de término (se aplicável)</li>
+        <li>Produto locado — descrição sempre precedida da palavra <b>"ATIVO"</b></li>
+        <li>Preço: primeiro o valor mensal para impressão; em planos trimestrais/semestrais/anuais/CLUBS, voltar depois e ajustar para o valor total</li>
+        <li>Série: copiada exatamente como está no Sankhya</li>
+      </ul>
+      <div class="note">Na renovação normalmente não é preciso reanexar documentos pessoais nem comprovante de residência, já que devem estar no sistema — mas cabe ao Representante Comercial confirmar isso e solicitar o reenvio se estiver faltando.</div>
+      <p>Se o cliente continuar com o mesmo equipamento, verifique se a remessa já foi emitida. Se ainda não tiver sido emitida, ou se houver troca de equipamento, solicite ao Faturamento a emissão da nota de remessa.</p>
+      <h3>Finalização</h3>
+      <p>Imprimir o contrato, coletar assinatura do cliente (todas as páginas) e do Representante Comercial. Digitalizar de forma legível o contrato completo e o comprovante de pagamento, enviar ao grupo de digitalização para anexação na tela de Contratos. O processo é finalizado quando contrato e remessa estiverem emitidos, assinados e anexados no sistema.</p>
+    `
+  },
+  {
+    id: "processo-emissao-bonificacao",
+    title: "Emissão da Nota Fiscal de Bonificação",
+    keywords: ["nota de bonificacao","nota de bonificação","emitir bonificacao","emitir bonificação",
+      "top 1117","bonificar acessorio","bonificar acessório","bonificacao plano semestral","bonificação plano semestral",
+      "processo de bonificacao","processo de bonificação"],
+    html: `
+      <span class="tag">Faturamento — Bonificação</span>
+      <h3>O que é</h3>
+      <p>Bonificação é o produto disponibilizado gratuitamente ao cliente após a aquisição de Planos Semestrais*, Clubs ou Planos Mensais em que falte algum acessório, em avaliações no Google, ou em qualquer outra situação aprovada pela Supervisão/Gerência.</p>
+      <p><i>*Em Planos Semestrais só é bonificado quando há campanha aberta e autorização informada nos canais de comunicação.</i></p>
+      <h3>Como iniciar</h3>
+      <p>Enviar: foto do acessório a ser bonificado, nome do cliente, motivo da bonificação e a autorização (se aplicável). Depois da análise, inicia-se a emissão da nota fiscal de bonificação.</p>
+      <h3>Emissão da nota (Portal de Vendas — TOP 1117 – Venda-Bonificação)</h3>
+      <ul>
+        <li>Série da nota: sempre 1 · Número da nota: sempre 0</li>
+        <li>Parceiro: nome do cliente</li>
+        <li>Empresa: unidade que está realizando a bonificação</li>
+        <li>Tipo de negociação: 47 – Sem financeiro</li>
+        <li>Natureza: já vem selecionada (Receita de vendas)</li>
+        <li>Centro de Resultado: unidade que está realizando a bonificação</li>
+        <li>Vendedor: responsável pela venda</li>
+      </ul>
+      <p>Depois de preenchidos todos os campos, a nota estará pronta para impressão — colete a assinatura do cliente.</p>
+      <h3>Finalização</h3>
+      <p>O Representante Comercial digitaliza de forma legível a nota assinada e envia ao grupo de digitalização, para que o Faturamento anexe na tela de Portal de Vendas do cliente. O processo é considerado finalizado quando a nota estiver assinada, enviada e inserida com o comprovante de pagamento no Portal de Vendas.</p>
+    `
+  },
+  {
+    id: "recolhimento-equipamento",
+    title: "Recolhimento de Equipamento",
+    keywords: ["recolhimento","recolher equipamento","devolucao de equipamento","devolução de equipamento",
+      "ficha de recolhimento","retorno da remessa","desativar contrato","cliente devolveu equipamento"],
+    html: `
+      <span class="tag">Faturamento — Locação</span>
+      <h3>O que é</h3>
+      <p>Recolhimento é receber de volta o equipamento devolvido pelo cliente, quando ele o entrega em uma das unidades.</p>
+      <h3>Como funciona</h3>
+      <ol>
+        <li>Depois dos procedimentos do setor Comercial, é enviada uma solicitação de recolhimento ao Faturamento, informando o equipamento, a série e o motivo da devolução.</li>
+        <li>No Portal de Vendas, o Faturamento pesquisa o nome do cliente, clica no documento "LOCAÇÃO DE EQUIPAMENTOS PRÓPRIOS/TERCEIROS", clica em <b>DEV/EST</b>, preenche o motivo da devolução e confirma a nota.</li>
+        <li>É gerada uma <b>Ficha de Recolhimento</b> e o documento <b>Retorno da Remessa</b> — o Representante extrai, imprime, assina e coleta a assinatura do cliente.</li>
+        <li>O Faturamento vai até a tela de <b>Contratos</b> e desativa todo o contrato.</li>
+        <li>A ficha de recolhimento e o retorno da remessa (assinados) são digitalizados de forma legível e enviados ao grupo de digitalização.</li>
+        <li>O Faturamento baixa esse documento e insere na tela de Contratos, no nome do respectivo cliente.</li>
+      </ol>
+      <div class="note">O processo é considerado finalizado quando a ficha de recolhimento e o retorno da remessa estiverem emitidos, devidamente assinados e inseridos no sistema.</div>
+    `
+  },
+  {
     id: "cadastro-parceiros-pj",
-    title: "Cadastro de Parceiros PJ",
+    title: "Emissão NF PJs — Cadastro na Tela de Parceiros",
     keywords: ["cadastro de parceiros","inscricao estadual","inscrição estadual","sintegra",
       "revendedor","consumidor final nao contribuinte","consumidor final não contribuinte","aba fiscal"],
-    simple: "Resumindo: antes de emitir nota pra uma PJ, confere no Sintegra se ela tem Inscrição Estadual. Tem IE → marca como Revendedor. Não tem → marca como Consumidor Final Não Contribuinte.",
     html: `
+      <span class="tag">Faturamento — PJ</span>
       <h3>Emissão de NF para PJs — Cadastro na Tela de Parceiros</h3>
       <p>Para saber se uma empresa tem Inscrição Estadual (IE) ativa, consultar o CNPJ no site
         <a href="https://www.sintegrabrasil.com.br" target="_blank" rel="noopener">sintegrabrasil.com.br</a> (colocar o CNPJ e clicar na lupa).</p>
@@ -561,12 +744,12 @@ const KNOWLEDGE_BASE = [
   },
   {
     id: "nf-assistencia-tecnica-higienizacao-portal",
-    title: "Notas Assist. Técnica (Higienização)",
+    title: "Emissão de Notas da Assistência Técnica (Higienização)",
     keywords: ["assistencia tecnica","assistência técnica","emissao completa","emissão completa",
-      "codigo de tributacao","código de tributação","nbs","prestador tomador",
+      "codigo de tributacao","código de tributação","cnbs","nbs","prestador tomador",
       "nota assistencia tecnica higienizacao"],
-    simple: "Resumindo: no portal, clica em Emissão completa, preenche Prestador (Oxigenar) e Tomador (cliente), usa sempre o código 14.02.01 (assistência técnica) e o NBS 118032900 pra higienização, e deixa as tributações como Nenhum/Zerado.",
     html: `
+      <span class="tag">Faturamento — Serviço</span>
       <h3>Emissão das Notas da Assistência Técnica — Higienização</h3>
       <ol>
         <li>Abrir o portal e clicar em <b>Emissão completa</b>, na barra superior.</li>
@@ -586,8 +769,275 @@ const KNOWLEDGE_BASE = [
       </ol>
       <div class="note">Valor aproximado dos tributos municipais já aparece na própria página, um pouco acima. Tributos federais e estaduais: preencher zerado (0,00).</div>
     `
+  },
+  {
+    id: "emissao-nf-b2b",
+    title: "Emissão de Notas Fiscais — B2B",
+    keywords: ["b2b","nota fiscal b2b","faturamento b2b","pedido separado","planilha de separacao",
+      "planilha de separação","frete incluso","fob","cif","revendedor b2b","grupo faturamento pj",
+      "separacao e faturamento b2b","separação e faturamento b2b","nf emitida"],
+    html: `
+      <span class="tag">Faturamento — B2B</span>
+      <h3>Emissão de Notas Fiscais — B2B</h3>
+      <ol>
+        <li><b>Recebimento do pedido:</b> os pedidos chegam pelo grupo "Separação e Faturamento B2B". Depois da separação dos produtos, o responsável encaminha a mensagem no grupo "Pedido Separado", respondendo ao arquivo do pedido.</li>
+        <li><b>Conferência das informações:</b> localize o pedido na Planilha de Separação e confira o que será necessário para a emissão: número(s) de série e/ou lote, transportadora, quantidade de volumes, peso e valor do frete.</li>
+        <li><b>Configuração do frete:</b> se o valor do frete for cobrado do cliente, selecione a opção <b>"Frete Incluso"</b> na emissão da nota fiscal. Atenção ao selecionar corretamente entre FOB e CIF:
+          <ul>
+            <li><b>FOB:</b> o comprador é responsável por solicitar o frete.</li>
+            <li><b>CIF:</b> a Oxigenar é responsável por solicitar o frete.</li>
+          </ul>
+        </li>
+        <li><b>Conferência do pagamento:</b> quando a forma de pagamento for PIX ou Link de Pagamento, confirme que o pagamento foi aprovado antes de emitir a nota fiscal.</li>
+        <li><b>Cadastro do cliente</b> (clientes novos no B2B): verifique se o cliente possui Inscrição Estadual. Caso possua, selecione a opção <b>Revendedor</b> no cadastro, antes da emissão.</li>
+        <li><b>Emissão da nota fiscal e do contrato:</b> depois de conferir todas as informações, emita a nota fiscal e o contrato. No preenchimento da nota fiscal, a Empresa deve ser sempre <b>1 – Matriz</b>, o Centro de Resultado deve ser <b>Vendas para PJ</b>, e a saída dos produtos sempre pelo <b>Estoque Central</b> (confirme essa informação na planilha).</li>
+        <li><b>Envio da documentação:</b> depois de emitida, envie a nota fiscal no grupo "Faturamento PJ".</li>
+        <li><b>Atualização da planilha:</b> atualize a Planilha de Separação, alterando o status para <b>"NF Emitida"</b> e registrando o número da nota fiscal.</li>
+      </ol>
+      <div class="note">Se a venda for por boleto, ao enviar a nota no grupo "Faturamento PJ", marque a Flávia (ou a Vanessa, durante o período de férias da Flávia) e solicite a emissão do boleto, informando a quantidade de parcelas.</div>
+      <div class="note">Se a planilha não apresentar o valor unitário dos produtos, consulte o preço correspondente e preencha o campo antes de prosseguir com a emissão da nota fiscal.</div>
+    `
+  },
+  {
+    id: "calculadora-rompimento-plano",
+    title: "Calculadora de Cancelamento de Plano (Multa)",
+    keywords: ["calcular multa","calculadora de cancelamento","calculadora de rompimento",
+      "rompimento de plano","cancelamento de plano","multa de cancelamento","multa de rompimento",
+      "calcular rompimento","valor a devolver","estorno multa 30","quanto devolver ao cliente",
+      "calcular cancelamento"],
+    html: `
+      <span class="tag">Faturamento — Cancelamento</span>
+      <h3>Calculadora de Cancelamento de Plano</h3>
+      <p>Preencha os dados abaixo — os meses utilizados são calculados automaticamente a partir das datas de início e finalização do plano.</p>
+      <div class="note">Como contamos os meses: cada mês do plano "fecha" sempre no mesmo dia do mês de início. Exemplo: se o plano começou em 15/01, o 1º mês fecha em 15/02, o 2º em 15/03, e assim por diante. Se a data de finalização já alcançou esse dia no mês, o mês conta inteiro; se for antes, esse último mês não entra na contagem.</div>
+      <div class="mini-calc">
+        <label>Plano de quantos meses?
+          <input type="number" class="c-meses-plano" min="1" placeholder="Ex: 12">
+        </label>
+        <label>Valor total do plano (R$)
+          <input type="text" class="c-valor-total" placeholder="Ex: 1200,00">
+        </label>
+        <label>O plano iniciou em qual data?
+          <input type="date" class="c-data-inicio">
+        </label>
+        <label>Está finalizando (cancelando) em qual data?
+          <input type="date" class="c-data-fim">
+        </label>
+        <button type="button" class="calc-btn" onclick="calcularRompimento(this)">Calcular</button>
+      </div>
+    `
+  },
+  {
+    id: "faturamento-diario-contratos",
+    title: "Faturamento Diário de Contratos",
+    keywords: ["faturamento diario","faturamento diário","faturar contratos","faturamento de contratos",
+      "tela de contratos faturamento","recorrencia oxigenar","recorrência oxigenar","recorrencia pulmonair",
+      "recorrência pulmonair","boleto oxigenar","boleto pulmonair","atualizar local de origem",
+      "portal de vendas 1120","conferencia financeira","conferência financeira","planos de fidelizacao",
+      "planos de fidelização","tipo de negociacao 79","tipo de negociacao 40","tipo de negociacao 43",
+      "movimentacao financeira","movimentação financeira","recibo de locacao","recibo de locação"],
+    html: `
+      <span class="tag">Faturamento — Contratos</span>
+      <h3>1. Tela de Contratos — Preparação</h3>
+      <ol>
+        <li>Filtrar somente os contratos <b>ativos</b>.</li>
+        <li>Na descrição (tipo de título), deixar selecionadas apenas as opções <b>"Cartão de crédito, débito e PIX chave"</b> e clicar em <b>Aplicar</b>.</li>
+        <li>Marcar os contratos das datas anteriores, com exceção do dia de hoje.</li>
+      </ol>
+      <div class="note">Atentar para a quantidade que aparece na caixinha de seleção.</div>
+      <p>Na coluna de referência do último faturamento, ordenar para visualizar todos os registros agrupados e, em seguida, <b>excluir o faturamento</b>.</p>
+
+      <h3>2. Exclusão do Faturamento Anterior (Portal de Vendas)</h3>
+      <ol>
+        <li>No campo <b>Data da negociação</b>, selecionar um período de 2 meses retroativos até a data atual (ex.: de 12/03/2026 até 12/05/2026).</li>
+        <li>Acessar o filtro e pesquisar apenas os nomes exibidos na tela de Contratos.</li>
+        <li>Excluir somente os registros do <b>mês vigente</b>.</li>
+        <li>Após selecionar, clicar no ícone da lixeira para excluir.</li>
+      </ol>
+
+      <h3>3. Ajustes na Tela de Contratos (antes de faturar)</h3>
+      <ul>
+        <li>Ordenar pela forma de contratação.</li>
+        <li>Inserir o valor total em todos os contratos dos planos de fidelidade aplicáveis.</li>
+        <li>Garantir que todos os contratos estejam com o valor integral.</li>
+        <li>Ordenar pelo tipo de negociação, seguindo a sequência: primeiro <b>OX</b>, depois <b>Pulmonair</b>.</li>
+        <li>Realizar uma conferência rápida das informações.</li>
+      </ul>
+
+      <h3>4. Sequência de Faturamento por Forma de Pagamento</h3>
+      <p>Faturar seguindo a ordem das formas de pagamento: cartão de crédito → cartão de crédito em 2x → cartão de crédito em 3x → e assim sucessivamente.</p>
+
+      <h3>5. Tela de Faturamento de Contratos — Parâmetros Obrigatórios</h3>
+      <p>Manter ativos os filtros de <b>Empresa: Oxigenar</b> e <b>Tipo de negociação</b>. Preencher:</p>
+      <ul>
+        <li>Tipo de operação: <b>1120 – Recibo de locação</b></li>
+        <li>Forma de pagamento: <b>14 – Cartão de crédito</b></li>
+        <li>Tipo de negociação: <b>79 – Oxigenar – Cartão de crédito</b></li>
+        <li>Tipo de cobrança: <b>9 – Equipamento em locação</b></li>
+        <li>Data para faturamento: <b>sempre a data atual</b></li>
+        <li>Mês de referência: <b>01 do mês vigente</b></li>
+        <li>Série: <b>0</b></li>
+      </ul>
+
+      <h3>6. Tela de Parâmetros</h3>
+      <ul>
+        <li>Data do contrato: início do mês vigente até o dia anterior ao faturamento.</li>
+        <li>Tipo de negociação: usar o mesmo código informado antes (ex.: 79 – Oxigenar – Cartão de crédito).</li>
+      </ul>
+      <p>Depois de preencher, clicar em <b>Aplicar</b>.</p>
+
+      <h3>7. Conferência e Faturamento</h3>
+      <p>Os contratos serão exibidos conforme os parâmetros definidos. Antes de faturar, fazer uma conferência rápida com a tela de Contratos e validar as informações. Estando tudo correto, clicar em <b>Faturar</b>. Repetir o processo sucessivamente para os demais tipos de pagamento.</p>
+
+      <h3>8. Ajuste dos Planos de Fidelização (pós-faturamento)</h3>
+      <p>Retornar à tela de Contratos, ordenar pelos planos, acessar cada plano de fidelização e inserir novamente o valor mensal correspondente de cada plano.</p>
+
+      <h3>9. Padronização dos Contratos para Boleto</h3>
+      <p>Ordenar os contratos pelo tipo de negociação, agrupando por empresa (Oxigenar / Pulmonair).</p>
+      <p><b>Alteração em massa — Oxigenar:</b> selecionar todos os contratos da Oxigenar, acessar <b>Edição múltipla</b> e preencher:</p>
+      <ul>
+        <li>Forma de pagamento: <b>4 – Boleto</b></li>
+        <li>Tipo de negociação: <b>40 – Oxigenar – Boleto</b></li>
+        <li>Periodicidade do faturamento: <b>Mensal</b></li>
+      </ul>
+      <p><b>Alteração em massa — Pulmonair:</b> repetir o mesmo procedimento, alterando apenas o tipo de negociação:</p>
+      <ul>
+        <li>Forma de pagamento: <b>4 – Boleto</b></li>
+        <li>Tipo de negociação: <b>48 – Pulmonair – Boleto 30</b></li>
+        <li>Periodicidade do faturamento: <b>Mensal</b></li>
+      </ul>
+      <div class="note">Depois de preencher os 3 campos de cada alteração em massa, salvar clicando no ícone de confirmação (check).</div>
+
+      <h3>10. Recorrência</h3>
+      <p><b>Oxigenar:</b> na tela de Faturamento de Contratos, manter ativo o filtro da Oxigenar e preencher:</p>
+      <ul>
+        <li>Tipo de operação: <b>1120 – Recibo de locação</b></li>
+        <li>Forma de pagamento: <b>24 – Recorrência</b></li>
+        <li>Tipo de negociação: <b>43 – Oxigenar – Recorrência</b></li>
+        <li>Tipo de cobrança: <b>9 – Cobrança de equipamento</b></li>
+      </ul>
+      <p><b>Pulmonair:</b> repetir na mesma tela (mantendo o filtro da Oxigenar) e preencher:</p>
+      <ul>
+        <li>Tipo de operação: <b>1120 – Recibo de locação</b></li>
+        <li>Forma de pagamento: <b>24 – Recorrência</b></li>
+        <li>Tipo de negociação: <b>63 – Pulmonair – Recorrência</b></li>
+        <li>Tipo de cobrança: <b>9 – Cobrança de equipamento</b></li>
+      </ul>
+
+      <h3>11. Etapa Final — Conferência Financeira</h3>
+      <p>Na tela de Movimentação Financeira:</p>
+      <ul>
+        <li>Alterar a visualização para o modo grade.</li>
+        <li>Remover os três filtros inferiores.</li>
+        <li>No campo Data da negociação, informar a data do faturamento.</li>
+        <li>Aplicar o filtro.</li>
+      </ul>
+      <p>Conferir se o valor total faturado corresponde ao total processado no faturamento. Em seguida, exportar os dados para planilha Excel, salvar o arquivo e encaminhar para o responsável pela atualização da planilha financeira.</p>
+
+      <h3>12. Portal de Vendas — Atualização Final dos Registros</h3>
+      <ol>
+        <li>Acessar o Portal de Vendas.</li>
+        <li>No campo Data de Negociação, informar a data do dia vigente.</li>
+        <li>Clicar nos três pontos (...) e selecionar a opção <b>1120 – Recibo de Locação</b>.</li>
+        <li>O sistema exibirá todos os faturamentos realizados na data informada.</li>
+        <li>Selecionar todos os registros exibidos na listagem <i>(caso tenha havido faturamento por boleto, retirar esses registros da lista)</i>.</li>
+        <li>Clicar no ícone do raio (Ações).</li>
+        <li>Selecionar a opção <b>Atualizar Local de Origem</b> para concluir a atualização dos registros selecionados.</li>
+        <li>Aguardar a mensagem de confirmação informando que os registros foram atualizados com sucesso.</li>
+        <li>Selecionar novamente todos os registros da listagem.</li>
+        <li>Clicar na seta para baixo, ao lado do ícone de três pontos (...), e selecionar a opção <b>Confirmar</b>.</li>
+      </ol>
+    `
   }
 ];
+
+/* ========================= CALCULADORA DE CANCELAMENTO DE PLANO ========================= */
+function formatarMoeda(valor){
+  return "R$ " + valor.toLocaleString("pt-BR", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+
+function parseValorMonetario(str){
+  // Aceita "1200,00", "1200.00", "1.200,00" — sempre tratando vírgula como decimal quando presente
+  const limpo = str.trim().replace(/\s/g,"");
+  if(limpo.includes(",")){
+    return parseFloat(limpo.replace(/\./g,"").replace(",", "."));
+  }
+  return parseFloat(limpo);
+}
+
+function mesesEntreDatas(inicio, fim){
+  let meses = (fim.getFullYear() - inicio.getFullYear()) * 12 + (fim.getMonth() - inicio.getMonth());
+  if(fim.getDate() < inicio.getDate()) meses -= 1;
+  return Math.max(0, meses);
+}
+
+function explicarContagemMeses(inicio, fim, mesesUsados){
+  const fmt = d => d.toLocaleDateString("pt-BR");
+  const diaInicio = inicio.getDate();
+  const diaFim = fim.getDate();
+  const mesesCalendario = (fim.getFullYear() - inicio.getFullYear()) * 12 + (fim.getMonth() - inicio.getMonth());
+  const plural = n => n === 1 ? "mês" : "meses";
+  const viradas = n => n === 1 ? "1 virada de mês" : `${n} viradas de mês`;
+
+  if(diaFim >= diaInicio){
+    return `Contamos <b>${mesesUsados} ${plural(mesesUsados)}</b> porque cada mês do plano "fecha" sempre no dia <b>${diaInicio}</b> (o mesmo dia do início, ${fmt(inicio)}). Entre ${fmt(inicio)} e ${fmt(fim)} houve ${viradas(mesesCalendario)}, e como o dia final (${diaFim}) já alcançou o dia ${diaInicio}, esse último mês também fechou completo — por isso o total é ${mesesUsados}.`;
+  }
+  return `Contamos <b>${mesesUsados} ${plural(mesesUsados)}</b> porque cada mês do plano "fecha" sempre no dia <b>${diaInicio}</b> (o mesmo dia do início, ${fmt(inicio)}). Entre ${fmt(inicio)} e ${fmt(fim)} houve ${viradas(mesesCalendario)}, mas o dia final (${diaFim}) ainda não chegou no dia ${diaInicio} desse último mês — ou seja, esse último mês começou mas não fechou um ciclo completo, então ele não entra na contagem. Por isso o total é ${mesesUsados}.`;
+}
+
+function calcularRompimento(btn){
+  const wrap = btn.closest(".mini-calc");
+  const mesesPlano = parseInt(wrap.querySelector(".c-meses-plano").value, 10);
+  const valorTotal = parseValorMonetario(wrap.querySelector(".c-valor-total").value || "");
+  const dataInicioStr = wrap.querySelector(".c-data-inicio").value;
+  const dataFimStr = wrap.querySelector(".c-data-fim").value;
+
+  let erroEl = wrap.querySelector(".calc-error");
+  if(erroEl) erroEl.remove();
+
+  function mostrarErro(msg){
+    const e = document.createElement("div");
+    e.className = "calc-error";
+    e.textContent = msg;
+    wrap.appendChild(e);
+  }
+
+  if(!mesesPlano || mesesPlano <= 0){ mostrarErro("Informe quantos meses tem o plano."); return; }
+  if(!valorTotal || isNaN(valorTotal) || valorTotal <= 0){ mostrarErro("Informe o valor total do plano."); return; }
+  if(!dataInicioStr || !dataFimStr){ mostrarErro("Informe as duas datas (início e finalização)."); return; }
+
+  const dataInicio = new Date(dataInicioStr + "T00:00:00");
+  const dataFim = new Date(dataFimStr + "T00:00:00");
+  if(dataFim < dataInicio){ mostrarErro("A data de finalização não pode ser anterior à data de início."); return; }
+
+  const mesesUsados = mesesEntreDatas(dataInicio, dataFim);
+
+  if(mesesUsados > mesesPlano){
+    addBotBubble(`<span class="tag">Cálculo de Multa</span><br>Erro: os meses utilizados (${mesesUsados}) não podem ser maiores que o total do plano (${mesesPlano}).`);
+    return;
+  }
+
+  const valorMensal = valorTotal / mesesPlano;
+  const mensalidadesUtilizadas = valorMensal * mesesUsados;
+  const mensalidadesRestantes = valorTotal - mensalidadesUtilizadas;
+  const multa = mensalidadesRestantes * 0.3;
+  const valorDevolvido = valorTotal - multa - mensalidadesUtilizadas;
+
+  addBotBubble(`
+    <span class="tag">Cálculo de Multa</span>
+    <h3>Resultado do Cancelamento</h3>
+    <p>Meses utilizados (calculado pelas datas): <b>${mesesUsados}</b> de <b>${mesesPlano}</b> meses do plano.</p>
+    <div class="note">${explicarContagemMeses(dataInicio, dataFim, mesesUsados)}</div>
+    <ul>
+      <li>Mensalidades utilizadas = <b>${formatarMoeda(mensalidadesUtilizadas)}</b></li>
+      <li>Mensalidades restantes = <b>${formatarMoeda(mensalidadesRestantes)}</b></li>
+      <li>Multa (30% em cima do restante) = <b>${formatarMoeda(multa)}</b></li>
+      <li>Valor pago: <b>${formatarMoeda(valorTotal)}</b></li>
+    </ul>
+    <div class="note">Valor a ser devolvido = valor pago − multa − mensalidades utilizadas<br>
+      <b>Valor a ser devolvido = ${formatarMoeda(valorDevolvido)}</b></div>
+  `);
+}
 
 /* ========================= DETECÇÃO DE INTENÇÃO ========================= */
 const CONFUSION_PATTERNS = [
@@ -601,17 +1051,34 @@ const THANKS_PATTERNS = ["obrigado","obrigada","valeu","vlw","top obrigado","aju
 const ONLY_THIS_PATTERNS = ["so isso","só isso","e so isso","é só isso","isso mesmo","so isso mesmo",
   "só isso mesmo","é isso","e isso","era so isso","era só isso","nada mais","so isso ai","só isso aí"];
 
+/* Variações de resposta, pra soar mais natural e menos repetitivo */
+const GREETING_REPLIES = [
+  "Oi! Eu sou o Oxibot ADM 🤖 Pode perguntar sobre qualquer processo de faturamento, contratos ou movimentações no Sankhya.",
+  "Olá! Fico por aqui pra ajudar com os processos do Faturamento. Pode perguntar à vontade.",
+  "Oi, tudo bem? Me conta qual processo você precisa (locação, venda, transferência, bonificação...) que eu te explico o passo a passo."
+];
+const THANKS_REPLIES = [
+  "Disponha! Qualquer outra dúvida, é só chamar.",
+  "Fico feliz em ajudar! Se precisar de mais alguma coisa, estou por aqui.",
+  "Por nada! Sempre que precisar, é só perguntar."
+];
+const ONLY_THIS_REPLIES = [
+  "Sim, é isso mesmo! 😊 Posso ajudar com mais alguma coisa?",
+  "Isso aí, era só isso mesmo! Precisa de algo mais?",
+  "Exatamente! Se surgir outra dúvida, é só chamar."
+];
+
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
 function normalize(str){
   return str.toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
     .replace(/[^a-z0-9\s]/g," ")
     .replace(/\s+/g," ").trim();
 }
-
 function matchesAny(qNorm, list){
   return list.some(p => qNorm.includes(normalize(p)));
 }
-
 function scoreEntry(entry, queryNorm){
   let score = 0;
   for(const kw of entry.keywords){
@@ -626,12 +1093,9 @@ function scoreEntry(entry, queryNorm){
     }
   }
   const titleNorm = normalize(entry.title);
-  titleNorm.split(" ").forEach(w=>{
-    if(w.length>3 && queryNorm.includes(w)) score += 1;
-  });
+  titleNorm.split(" ").forEach(w=>{ if(w.length>3 && queryNorm.includes(w)) score += 1; });
   return score;
 }
-
 function findAnswer(query){
   const qNorm = normalize(query);
   let best = null, bestScore = 0;
@@ -642,41 +1106,61 @@ function findAnswer(query){
   return bestScore >= 2 ? best : null;
 }
 
-/* ========================= ESTADO DA CONVERSA ========================= */
+/* ========================= ESTADO ========================= */
 let lastEntry = null;
+const AVATAR_DATA = document.querySelector(".avatar-img").src;
 
 /* ========================= INTERFACE ========================= */
 const messagesEl = document.getElementById("messages");
 const formEl = document.getElementById("form");
 const inputEl = document.getElementById("input");
 const topicsInner = document.getElementById("topicsInner");
-const topicsPanel = document.getElementById("topicsPanel");
-const topicsToggle = document.getElementById("topicsToggle");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const menuBtn = document.getElementById("menuBtn");
 
-topicsToggle.addEventListener("click", ()=>{
-  topicsPanel.classList.toggle("open");
-});
+menuBtn.addEventListener("click", ()=>{ sidebar.classList.add("open"); overlay.classList.add("show"); });
+overlay.addEventListener("click", ()=>{ sidebar.classList.remove("open"); overlay.classList.remove("show"); });
 
 function renderTopics(){
+  const categories = new Map();
   KNOWLEDGE_BASE.forEach(entry=>{
-    const chip = document.createElement("button");
-    chip.type = "button";
-    chip.className = "chip";
-    chip.textContent = entry.title;
-    chip.onclick = ()=>{ topicsPanel.classList.remove("open"); ask(entry.title); };
-    topicsInner.appendChild(chip);
+    const cat = entry.category || "Processos no Sankhya";
+    if(!categories.has(cat)) categories.set(cat, []);
+    categories.get(cat).push(entry);
+  });
+
+  categories.forEach((entries, cat)=>{
+    const h = document.createElement("h2");
+    h.textContent = cat;
+    topicsInner.appendChild(h);
+
+    entries.forEach(entry=>{
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "side-btn";
+      b.textContent = entry.title;
+      b.onclick = ()=>{ sidebar.classList.remove("open"); overlay.classList.remove("show"); ask(entry.title); };
+      topicsInner.appendChild(b);
+    });
   });
 }
 renderTopics();
 
-function scrollDown(){
-  messagesEl.scrollTop = messagesEl.scrollHeight;
+function scrollDown(){ messagesEl.scrollTop = messagesEl.scrollHeight; }
+
+function timeNow(){
+  const d = new Date();
+  return d.getHours().toString().padStart(2,"0") + ":" + d.getMinutes().toString().padStart(2,"0");
 }
 
 function addUserMsg(text){
   const row = document.createElement("div");
   row.className = "row user";
-  row.innerHTML = `<div class="bubble"></div>`;
+  row.innerHTML = `<div class="bubble-wrap">
+      <div class="bubble"></div>
+      <div class="timestamp">${timeNow()}</div>
+    </div>`;
   row.querySelector(".bubble").textContent = text;
   messagesEl.appendChild(row);
   scrollDown();
@@ -685,38 +1169,37 @@ function addUserMsg(text){
 function addBotBubble(innerHtml, kind){
   const row = document.createElement("div");
   row.className = "row " + (kind || "bot");
-  row.innerHTML = `<div class="mini-avatar">🤖</div><div class="bubble">${innerHtml}</div>`;
+  row.innerHTML = `<img class="mini-avatar" src="${AVATAR_DATA}" alt="Oxibot ADM">
+    <div class="bubble-wrap">
+      <div class="bubble">${innerHtml}</div>
+      <div class="timestamp">Oxibot ADM · ${timeNow()}</div>
+    </div>`;
   messagesEl.appendChild(row);
   scrollDown();
 }
 
-function greetingReply(){
-  addBotBubble("Oi! Pode perguntar sobre transferências no Sankhya, emissão de nota, higienização ou qualquer processo de faturamento. Se eu não souber algo, eu aviso — assim dá pra ir completando a base aos poucos.");
-}
-
-function thanksReply(){
-  addBotBubble("Disponha! Se aparecer outra dúvida sobre os processos, é só chamar.");
-}
-
-function onlyThisReply(){
-  addBotBubble("Sim, é isso mesmo! 😊 Como posso te ajudar hoje?");
-}
+function greetingReply(){ addBotBubble(pick(GREETING_REPLIES)); }
+function thanksReply(){ addBotBubble(pick(THANKS_REPLIES)); }
+function onlyThisReply(){ addBotBubble(pick(ONLY_THIS_REPLIES)); }
 
 function confusionReply(){
   if(lastEntry){
-    addBotBubble(`<span class="rephrase-tag">Explicando de outro jeito</span><br>${lastEntry.simple}`);
+    const content = lastEntry.simple ? lastEntry.simple : lastEntry.html;
+    addBotBubble(`<span class="rephrase-tag">Explicando de outro jeito</span><br>${content}`);
   } else {
-    addBotBubble("Sem problema! Me diz qual processo você quer entender (ex: transferência, higienização, nota com frete) que eu explico com calma. Também dá pra abrir a lista em \"📋 Processos\" ali em cima.");
+    addBotBubble("Sem problema! Me diz qual processo você quer entender (ex: locação, venda, transferência, bonificação) que eu explico com calma. Também dá pra abrir a lista de processos no menu ☰.");
   }
 }
 
 function missReply(query){
   const row = document.createElement("div");
   row.className = "row miss";
-  row.innerHTML = `<div class="mini-avatar">🤖</div>
-    <div class="bubble">Ainda não tenho essa informação na base 🙁<br>
-    Pergunta: <i>"${query.replace(/</g,"&lt;")}"</i><br><br>
-    Peça pra incluir esse processo na base de conhecimento (é só adicionar um bloco no arquivo) e eu já respondo da próxima vez.</div>`;
+  row.innerHTML = `<img class="mini-avatar" src="${AVATAR_DATA}" alt="Oxibot ADM">
+    <div class="bubble-wrap">
+      <div class="bubble">Hmm, ainda não sei responder essa pergunta. :(<br>
+        Peça a Polly para incluir na minha base de dados essa informação.</div>
+      <div class="timestamp">Oxibot ADM · ${timeNow()}</div>
+    </div>`;
   messagesEl.appendChild(row);
   scrollDown();
 }
@@ -724,8 +1207,8 @@ function missReply(query){
 function showTyping(){
   const row = document.createElement("div");
   row.className = "row bot typing-row";
-  row.innerHTML = `<div class="mini-avatar">🤖</div>
-    <div class="bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
+  row.innerHTML = `<img class="mini-avatar" src="${AVATAR_DATA}" alt="Oxibot ADM">
+    <div class="bubble-wrap"><div class="bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div></div>`;
   messagesEl.appendChild(row);
   scrollDown();
   return row;
@@ -741,38 +1224,18 @@ function ask(query){
 
   setTimeout(()=>{
     typingRow.remove();
-
-    if(matchesAny(qNorm, GREETING_PATTERNS) && qNorm.split(" ").length <= 4){
-      greetingReply();
-      return;
-    }
-    if(matchesAny(qNorm, THANKS_PATTERNS)){
-      thanksReply();
-      return;
-    }
-    if(matchesAny(qNorm, ONLY_THIS_PATTERNS) && qNorm.split(" ").length <= 5){
-      onlyThisReply();
-      return;
-    }
-    if(matchesAny(qNorm, CONFUSION_PATTERNS)){
-      confusionReply();
-      return;
-    }
+    if(matchesAny(qNorm, GREETING_PATTERNS) && qNorm.split(" ").length <= 4){ greetingReply(); return; }
+    if(matchesAny(qNorm, THANKS_PATTERNS)){ thanksReply(); return; }
+    if(matchesAny(qNorm, ONLY_THIS_PATTERNS) && qNorm.split(" ").length <= 5){ onlyThisReply(); return; }
+    if(matchesAny(qNorm, CONFUSION_PATTERNS)){ confusionReply(); return; }
 
     const match = findAnswer(query);
-    if(match){
-      lastEntry = match;
-      addBotBubble(match.html);
-    } else {
-      missReply(query);
-    }
-  }, 400);
+    if(match){ lastEntry = match; addBotBubble(match.html); }
+    else{ missReply(query); }
+  }, 450);
 }
 
-formEl.addEventListener("submit", e=>{
-  e.preventDefault();
-  ask(inputEl.value);
-});
+formEl.addEventListener("submit", e=>{ e.preventDefault(); ask(inputEl.value); });
 
 greetingReply();
 </script>
