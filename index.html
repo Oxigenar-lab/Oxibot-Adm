@@ -315,6 +315,30 @@
     cursor:pointer;
   }
   .mini-calc .calc-btn:hover{filter:brightness(1.1);}
+  .mini-calc .calc-btn-secondary{
+    background:transparent;
+    color:var(--teal);
+    border:1px solid rgba(0,224,255,.3);
+    border-radius:8px;
+    padding:8px 14px;
+    font-size:.8rem;
+    font-weight:600;
+    cursor:pointer;
+    margin-right:8px;
+  }
+  .mini-calc .calc-btn-secondary:hover{background:var(--teal-soft);}
+  .mini-calc .vt-assinatura-pad{
+    display:block;
+    width:100%;
+    max-width:300px;
+    height:120px;
+    background:#ffffff;
+    border:1px solid var(--line);
+    border-radius:8px;
+    margin-top:4px;
+    cursor:crosshair;
+    touch-action:none;
+  }
   .mini-calc .calc-error{
     margin-top:8px;
     color:#ff8fa3;
@@ -966,7 +990,7 @@ const KNOWLEDGE_BASE = [
     html: `
       <span class="tag">Recursos Humanos — VT</span>
       <h3>Gerador de Recibo de Vale-Transporte (Oxigenar)</h3>
-      <p>Preencha os dados abaixo — o valor total é calculado automaticamente (dias úteis × 2 passagens × valor da passagem) e já sai por extenso no recibo. Ao clicar em Gerar, o PDF é baixado no modelo oficial da Oxigenar.</p>
+      <p>Preencha os dados abaixo — o valor total é calculado automaticamente (dias úteis × valor diário informado) e já sai por extenso no recibo. Ao clicar em Gerar, o PDF é baixado no modelo oficial da Oxigenar.</p>
       <div class="mini-calc">
         <label>Nome completo do funcionário
           <input type="text" class="vt-nome" placeholder="Ex: João da Silva">
@@ -980,8 +1004,8 @@ const KNOWLEDGE_BASE = [
         <label>Quantos dias úteis o funcionário trabalhou no mês?
           <input type="number" class="vt-dias" min="1" placeholder="Ex: 25">
         </label>
-        <label>Valor da passagem (R$)
-          <input type="text" class="vt-valor" placeholder="Ex: 5,90">
+        <label>Valor diário gasto com transporte (R$)
+          <input type="text" class="vt-valor-diario" placeholder="Ex: 11,80">
         </label>
         <label>Cidade
           <input type="text" class="vt-cidade" value="Volta Redonda">
@@ -989,6 +1013,10 @@ const KNOWLEDGE_BASE = [
         <label>Data do recibo (assinatura)
           <input type="date" class="vt-data-recibo">
         </label>
+        <label>Assinatura (desenhe abaixo com o mouse ou o dedo)
+          <canvas class="vt-assinatura-pad" width="300" height="120"></canvas>
+        </label>
+        <button type="button" class="calc-btn-secondary" onclick="limparAssinatura(this)">Limpar assinatura</button>
         <button type="button" class="calc-btn" onclick="gerarReciboVT(this)">Gerar Recibo em PDF</button>
       </div>
     `
@@ -1147,15 +1175,77 @@ function formatarDataPorExtenso(dataStr){
   return `${d.getDate()} de ${MESES_PT[d.getMonth()]} de ${d.getFullYear()}`;
 }
 
+/* ---- Assinatura desenhada à mão (canvas) ---- */
+function initSignaturePads(container){
+  container.querySelectorAll(".vt-assinatura-pad").forEach(canvas=>{
+    if(canvas.dataset.initialized) return;
+    canvas.dataset.initialized = "1";
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = "#111827";
+    ctx.lineWidth = 2.2;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    let desenhando = false, ultimoX = 0, ultimoY = 0;
+
+    function posicao(e){
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: (clientX - rect.left) * (canvas.width / rect.width),
+        y: (clientY - rect.top) * (canvas.height / rect.height)
+      };
+    }
+    function iniciar(e){
+      desenhando = true;
+      canvas.dataset.hasSignature = "1";
+      const p = posicao(e);
+      ultimoX = p.x; ultimoY = p.y;
+      e.preventDefault();
+    }
+    function desenhar(e){
+      if(!desenhando) return;
+      const p = posicao(e);
+      ctx.beginPath();
+      ctx.moveTo(ultimoX, ultimoY);
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();
+      ultimoX = p.x; ultimoY = p.y;
+      e.preventDefault();
+    }
+    function parar(){ desenhando = false; }
+
+    canvas.addEventListener("mousedown", iniciar);
+    canvas.addEventListener("mousemove", desenhar);
+    window.addEventListener("mouseup", parar);
+    canvas.addEventListener("touchstart", iniciar, { passive: false });
+    canvas.addEventListener("touchmove", desenhar, { passive: false });
+    canvas.addEventListener("touchend", parar);
+  });
+}
+
+function limparAssinatura(btn){
+  const canvas = btn.closest(".mini-calc").querySelector(".vt-assinatura-pad");
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  canvas.dataset.hasSignature = "";
+}
+
 function gerarReciboVT(btn){
   const wrap = btn.closest(".mini-calc");
   const nome = wrap.querySelector(".vt-nome").value.trim();
   const cpf = wrap.querySelector(".vt-cpf").value.trim();
   const mesStr = wrap.querySelector(".vt-mes").value;
   const dias = parseInt(wrap.querySelector(".vt-dias").value, 10);
-  const valorPassagem = parseValorMonetario(wrap.querySelector(".vt-valor").value || "");
+  const valorDiario = parseValorMonetario(wrap.querySelector(".vt-valor-diario").value || "");
   const cidade = wrap.querySelector(".vt-cidade").value.trim() || "Volta Redonda";
   const dataReciboStr = wrap.querySelector(".vt-data-recibo").value;
+  const canvasAssinatura = wrap.querySelector(".vt-assinatura-pad");
+  const temAssinatura = canvasAssinatura && canvasAssinatura.dataset.hasSignature === "1";
 
   let erroEl = wrap.querySelector(".calc-error");
   if(erroEl) erroEl.remove();
@@ -1170,12 +1260,10 @@ function gerarReciboVT(btn){
   if(!cpf){ mostrarErro("Informe o CPF do funcionário."); return; }
   if(!mesStr){ mostrarErro("Informe o mês de referência."); return; }
   if(!dias || dias <= 0){ mostrarErro("Informe quantos dias úteis foram trabalhados."); return; }
-  if(!valorPassagem || isNaN(valorPassagem) || valorPassagem <= 0){ mostrarErro("Informe o valor da passagem."); return; }
+  if(!valorDiario || isNaN(valorDiario) || valorDiario <= 0){ mostrarErro("Informe o valor diário gasto com transporte."); return; }
   if(!dataReciboStr){ mostrarErro("Informe a data do recibo."); return; }
 
-  const passagensPorDia = 2;
-  const quantidadePassagens = dias * passagensPorDia;
-  const valorTotal = quantidadePassagens * valorPassagem;
+  const valorTotal = dias * valorDiario;
   const [anoMes, mesNumStr] = mesStr.split("-");
   const mesNome = MESES_PT[parseInt(mesNumStr, 10) - 1];
   const valorExtenso = valorPorExtenso(valorTotal);
@@ -1223,7 +1311,16 @@ function gerarReciboVT(btn){
     // Data e assinatura
     const yData = tituloY + 20 + (linhas.length * 6) + 25;
     doc.text(`${cidade}, ${dataFormatada}.`, pageWidth/2, yData, { align: "center" });
-    doc.text("_____________________________________________", 20, yData + 25);
+
+    const yLinhaAssinatura = yData + 25;
+    if(temAssinatura){
+      const assinaturaDataUrl = canvasAssinatura.toDataURL("image/png");
+      const imgAssW = 60, imgAssH = imgAssW * (canvasAssinatura.height / canvasAssinatura.width);
+      doc.addImage(assinaturaDataUrl, "PNG", 20, yLinhaAssinatura - imgAssH - 2, imgAssW, imgAssH);
+    }
+    doc.text("_____________________________________________", 20, yLinhaAssinatura);
+    doc.setFontSize(9);
+    doc.text("Assinatura do funcionário", 20, yLinhaAssinatura + 5);
 
     const nomeArquivo = "Recibo_VT_" + nome.replace(/\s+/g, "_") + "_" + mesStr + ".pdf";
     doc.save(nomeArquivo);
@@ -1235,11 +1332,10 @@ function gerarReciboVT(btn){
     <p>Oxigenar · CPF ${cpf} · Referente a transporte de <b>${mesNome}</b></p>
     <ul>
       <li>Dias úteis trabalhados: <b>${dias}</b></li>
-      <li>Passagens por dia (ida e volta): <b>${passagensPorDia}</b> — total de <b>${quantidadePassagens}</b> passagens</li>
-      <li>Valor unitário da passagem: <b>${formatarMoeda(valorPassagem)}</b></li>
+      <li>Valor diário gasto: <b>${formatarMoeda(valorDiario)}</b></li>
     </ul>
     <div class="note"><b>Valor total = ${formatarMoeda(valorTotal)}</b> (${valorExtenso})</div>
-    ${window.jspdf ? '<div class="note">O PDF do recibo foi baixado automaticamente, no modelo oficial da Oxigenar — confira sua pasta de downloads.</div>' : ''}
+    ${window.jspdf ? `<div class="note">O PDF do recibo foi baixado automaticamente, no modelo oficial da Oxigenar${temAssinatura ? ' — já com a assinatura incluída' : ''} — confira sua pasta de downloads.</div>` : ''}
   `);
 }
 
@@ -1386,6 +1482,7 @@ function addBotBubble(innerHtml, kind){
       <div class="timestamp">Oxibot ADM · ${timeNow()}</div>
     </div>`;
   messagesEl.appendChild(row);
+  initSignaturePads(row);
   scrollDown();
 }
 
