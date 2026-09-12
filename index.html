@@ -251,6 +251,30 @@
     padding:2px 9px; border-radius:20px; margin-bottom:8px;
     border:1px solid rgba(0,224,255,.3);
   }
+  .bubble .fuzzy-note{
+    margin:0 0 8px;
+    font-size:.8rem;
+    font-style:italic;
+    color:var(--ink-soft);
+  }
+  .suggest-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+  }
+  .suggest-btn{
+    background:var(--teal-soft);
+    color:var(--teal);
+    border:1px solid rgba(0,224,255,.3);
+    border-radius:20px;
+    padding:7px 14px;
+    font-size:.8rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .suggest-btn:hover{background:rgba(0,224,255,.2);}
   .typing-row .bubble{display:flex; gap:4px; align-items:center; padding:12px 16px;}
   .typing-dot{width:6px;height:6px;border-radius:50%; background:var(--teal); animation:blink 1.2s infinite ease-in-out;}
   .typing-dot:nth-child(2){animation-delay:.2s;}
@@ -467,6 +491,104 @@ const KNOWLEDGE_BASE = [
     `
   },
   {
+    id: "venda-por-encomenda",
+    title: "Venda por Encomenda",
+    keywords: ["venda por encomenda","encomenda","pedido de venda encomenda","equipamento sem estoque",
+      "cliente sem estoque","faturar encomenda","numero de serie encomenda","número de série encomenda",
+      "produto encomendado","sem estoque na loja"],
+    html: `
+      <span class="tag">Faturamento — Venda</span>
+      <h3>O que é</h3>
+      <p>Recebemos essa solicitação quando o cliente vem à loja e não temos o equipamento em estoque para fornecer no momento.</p>
+      <p>Antes de iniciar, confira: o comprovante de pagamento e a descrição do item vendido.</p>
+      <h3>1. Registrar o pedido (no momento da venda)</h3>
+      <p>No Portal de Vendas, acessar o documento <b>Pedido de Venda por Encomenda</b>.</p>
+      <ul>
+        <li>Preencher todos os campos do cabeçalho: nome do cliente, unidade responsável pela solicitação, forma de pagamento e nome do representante.</li>
+        <li>Do lado direito, informar qual produto foi comprado e salvar — <b>sem número de série</b>, já que essa numeração só será definida quando o equipamento chegar.</li>
+      </ul>
+      <p>Depois, o Representante Comercial deve imprimir o documento, coletar a assinatura do cliente, digitalizar de forma legível, enviar ao grupo de digitalização e anexar no Sankhya.</p>
+      <h3>2. Faturar quando o equipamento chegar</h3>
+      <p>Quando o equipamento chegar, a venda será emitida normalmente:</p>
+      <ol>
+        <li>Acessar o Portal de Vendas e localizar o pedido de venda, informando o nome do cliente no campo <b>Parceiro</b>.</li>
+        <li>Clicar sobre a nota e em <b>Faturar</b>.</li>
+        <li>O cabeçalho da nota já virá preenchido com as informações inseridas no pedido de venda, e o equipamento aparecerá na aba de produtos — faltando apenas informar o número de série.</li>
+        <li>Inserir o número de série, conferir os dados e confirmar a nota.</li>
+      </ol>
+      <div class="note">Caso o cliente fique com um equipamento provisório enquanto aguarda a chegada do encomendado, é necessário emitir contrato e remessa para esse equipamento provisório. Para o passo a passo completo, consulte o processo de Locação de Equipamentos.</div>
+    `
+  },
+  {
+    id: "solicitacao-white-martins-armazem",
+    title: "Qual Empresa Solicitar: White Martins ou Armazém",
+    keywords: ["white martins","armazem","armazém","qual empresa solicitar","cilindro domiciliar",
+      "cilindro portatil","cilindro portátil","concentrador","backup de oxigenio","backup de oxigênio",
+      "termo de responsabilidade","residencia com escadas","residência com escadas","prazo de entrega cilindro",
+      "72 horas uteis","72 horas úteis","solicitar cilindro","solicitar concentrador"],
+    html: `
+      <span class="tag">Operacional — Cilindros e Concentrador</span>
+      <h3>Qual empresa solicitar?</h3>
+      <p><b>White Martins:</b></p>
+      <ul>
+        <li>Cilindro domiciliar + concentrador</li>
+        <li>Cilindro domiciliar + cilindro portátil + concentrador</li>
+        <li>Cilindro domiciliar + concentrador + outros equipamentos</li>
+        <li>Equipamentos para BASE (lojas Oxigenar)</li>
+      </ul>
+      <p><b>Armazém:</b></p>
+      <ul>
+        <li>Somente cilindro domiciliar</li>
+        <li>Somente cilindro portátil</li>
+      </ul>
+      <div class="note">Caso o paciente retire o concentrador na loja, solicite o cilindro para o Armazém.</div>
+
+      <h3>Como identificar de qual empresa é o paciente</h3>
+      <p>Na aba Contrato do Sankhya, acesse o campo Produto — o nome do equipamento especifica a empresa:</p>
+      <ul>
+        <li>Exemplo White Martins: <b>WM CONCENTRADOR YUWELL</b></li>
+        <li>Exemplo Armazém: <b>ARMAZÉM CILINDRO DOMICILIAR</b></li>
+      </ul>
+
+      <h3>Regras importantes</h3>
+      <ul>
+        <li><b>Locação somente de cilindro, sem concentrador:</b> informar ao cliente a importância de ter um backup por segurança. Se o paciente quiser apenas 1 cilindro domiciliar ou 1 cilindro portátil, ele deve assinar o termo de responsabilidade, e a solicitação deve ser feita para o Armazém.</li>
+        <li><b>Padrão:</b> cilindro domiciliar + concentrador, garantindo o backup de oxigênio.</li>
+        <li><b>Residência com escadas:</b> solicitar cilindro de 4 m³. Se necessário, solicitar 2 cilindros (2 locações + 2 cargas).</li>
+        <li><b>Prazo de entrega:</b> informar sempre até 72 horas úteis.</li>
+        <li><b>Recebimento:</b> orientar o cliente a conferir se o cilindro está cheio no momento da entrega.</li>
+      </ul>
+
+      <h3>Atendimento fora do padrão</h3>
+      <p>É obrigatória a autorização da Liderança antes de prosseguir. No campo Observação do pedido, informar quem autorizou, o que foi autorizado e demais informações relevantes.</p>
+      <div class="note">Preencha todas as informações corretamente — dados incompletos podem atrasar o atendimento.</div>
+      <p>Dúvidas: <b>Vanessa</b>, <b>Bianca</b> ou <b>Vicent</b>.</p>
+    `
+  },
+  {
+    id: "troca-equipamento-locacao",
+    title: "Troca de Equipamento de Locação — Assistência",
+    keywords: ["troca de equipamento","troca de equipamento de locacao","troca de equipamento de locação",
+      "ocorrencia de assistencia 42","ocorrência de assistência 42","ocorrencia de entrega 46",
+      "ocorrência de entrega 46","trocou de equipamento","retorno de remessa troca","trocar equipamento cliente"],
+    html: `
+      <span class="tag">Faturamento — Assistência Técnica</span>
+      <h3>Troca de Equipamento de Locação — Assistência</h3>
+      <p><b>Documentos necessários:</b> fotos dos dois equipamentos — o que está sendo trocado e o que ficará no lugar.</p>
+      <h3>1. Troca no contrato (Tela de Contratos)</h3>
+      <p>Realizar a troca do equipamento diretamente no contrato correspondente.</p>
+      <ul>
+        <li><b>Mesmo modelo:</b> na aba Produtos/Serviços, basta desativar a série antiga, inserir a nova série e ativá-la.</li>
+        <li><b>Modelos diferentes:</b> criar uma ocorrência de <b>Assistência (42)</b> para o equipamento que está sendo devolvido; inserir o novo produto abaixo do produto desativado, com seu respectivo número de série, e criar para ele uma ocorrência de <b>Entrega (46)</b>.</li>
+      </ul>
+      <h3>2. Remessas (Portal de Vendas)</h3>
+      <ol>
+        <li>Dar o retorno da remessa do equipamento devolvido, informando o motivo <b>TROCOU DE EQUIPAMENTO</b> e, no campo Observações, registrar: <i>"Trocou pelo equipamento [nome/série do novo equipamento]."</i></li>
+        <li>Em seguida, emitir a remessa do novo equipamento.</li>
+      </ol>
+    `
+  },
+  {
     id: "nota-fiscal-frete",
     title: "Nota Fiscal com Frete Incluso",
     keywords: ["frete","transportadora","cif","fob","peso bruto","volumes","correios","uber","braspress"],
@@ -512,12 +634,14 @@ const KNOWLEDGE_BASE = [
     title: "Processo de Higienização",
     keywords: ["higienizacao","higienização","limpeza do equipamento","top 1004","top 2515",
       "pedido de venda servico","pedido de venda serviço","pedido de assistencia","pedido de assistência",
-      "portal de compras"],
+      "portal de compras","ativar fornecedor","tela de parceiros higienizacao","tela de parceiros higienização"],
     html: `
       <span class="tag">Processo completo</span>
       <h3>Higienização</h3>
       <p>Processo de limpeza do equipamento do cliente. Durante o período, o cliente pode ou não locar um equipamento da empresa até o dele ficar pronto.</p>
-      <h3>1. Pedido de Venda-Serviço (Portal de Vendas, TOP 1004)</h3>
+      <h3>1. Tela de Parceiros</h3>
+      <p>Pesquisar o nome do cliente e, onde já está selecionado <b>CLIENTE</b>, ativar também a opção <b>FORNECEDOR</b>.</p>
+      <h3>2. Pedido de Venda-Serviço (Portal de Vendas, TOP 1004)</h3>
       <ul>
         <li>Série da nota: 1</li>
         <li>Parceiro: nome do cliente</li>
@@ -527,7 +651,7 @@ const KNOWLEDGE_BASE = [
         <li>Produto: Higienização — preencher quantidade e valor</li>
       </ul>
       <p>Salvar no check e confirmar a nota. <b>Essa nota deve ser assinada pelo cliente</b>, digitalizada e enviada no grupo de digitalização do representante.</p>
-      <h3>2. Portal de Compras (TOP 2515)</h3>
+      <h3>3. Portal de Compras (TOP 2515)</h3>
       <p>Inclui o equipamento do cliente no sistema para depois transferir para a assistência técnica.</p>
       <ul>
         <li>Parceiro: nome do cliente</li>
@@ -537,9 +661,9 @@ const KNOWLEDGE_BASE = [
         <li>Comprador: Anderson / sem vendedor</li>
         <li>Produto: nome do produto inserido</li>
       </ul>
-      <h3>3. Pedido de Assistência</h3>
+      <h3>4. Pedido de Assistência</h3>
       <p>Produto: CLIENTE + equipamento informado. Quantidade conforme informado. No campo valor, informar o valor de venda do equipamento. Confirmar a nota.</p>
-      <h3>4. Transferência para a Assistência Técnica</h3>
+      <h3>5. Transferência para a Assistência Técnica</h3>
       <p>Finaliza o processo transferindo o equipamento da unidade para a assistência técnica.</p>
       <div class="note">Se o cliente ficar com algum equipamento enquanto o dele está em higienização, fazer contrato e remessa normalmente.</div>
     `
@@ -1312,15 +1436,15 @@ function gerarReciboVT(btn){
     const yData = tituloY + 20 + (linhas.length * 6) + 25;
     doc.text(`${cidade}, ${dataFormatada}.`, pageWidth/2, yData, { align: "center" });
 
-    const yLinhaAssinatura = yData + 25;
+    const yLinhaAssinatura = yData + 40;
     if(temAssinatura){
       const assinaturaDataUrl = canvasAssinatura.toDataURL("image/png");
-      const imgAssW = 60, imgAssH = imgAssW * (canvasAssinatura.height / canvasAssinatura.width);
-      doc.addImage(assinaturaDataUrl, "PNG", 20, yLinhaAssinatura - imgAssH - 2, imgAssW, imgAssH);
+      const imgAssW = 55, imgAssH = imgAssW * (canvasAssinatura.height / canvasAssinatura.width);
+      doc.addImage(assinaturaDataUrl, "PNG", 20, yLinhaAssinatura - imgAssH - 4, imgAssW, imgAssH);
     }
     doc.text("_____________________________________________", 20, yLinhaAssinatura);
     doc.setFontSize(9);
-    doc.text("Assinatura do funcionário", 20, yLinhaAssinatura + 5);
+    doc.text(nome, 20, yLinhaAssinatura + 5);
 
     const nomeArquivo = "Recibo_VT_" + nome.replace(/\s+/g, "_") + "_" + mesStr + ".pdf";
     doc.save(nomeArquivo);
@@ -1379,31 +1503,119 @@ function normalize(str){
 function matchesAny(qNorm, list){
   return list.some(p => qNorm.includes(normalize(p)));
 }
-function scoreEntry(entry, queryNorm){
-  let score = 0;
-  for(const kw of entry.keywords){
-    const kwNorm = normalize(kw);
-    if(!kwNorm) continue;
-    if(queryNorm.includes(kwNorm)){
-      score += kwNorm.split(" ").length * 3;
-    } else {
-      const words = kwNorm.split(" ");
-      const hits = words.filter(w => w.length > 2 && queryNorm.includes(w)).length;
-      score += hits;
+function escapeHtml(str){
+  return str.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+}
+
+/* ---- Distância de edição (Levenshtein), para tolerar erros de digitação ---- */
+function levenshtein(a, b){
+  if(a === b) return 0;
+  const al = a.length, bl = b.length;
+  if(al === 0) return bl;
+  if(bl === 0) return al;
+  let prev = Array.from({ length: bl + 1 }, (_, i) => i);
+  for(let i = 1; i <= al; i++){
+    const curr = [i];
+    for(let j = 1; j <= bl; j++){
+      const custo = a[i-1] === b[j-1] ? 0 : 1;
+      curr[j] = Math.min(curr[j-1] + 1, prev[j] + 1, prev[j-1] + custo);
+    }
+    prev = curr;
+  }
+  return prev[bl];
+}
+function limiteErroDigitacao(len){
+  if(len <= 3) return 0;
+  if(len <= 5) return 1;
+  if(len <= 9) return 2;
+  return 3;
+}
+function palavraAproximada(palavrasDaBusca, palavraAlvo){
+  const limite = limiteErroDigitacao(palavraAlvo.length);
+  for(const w of palavrasDaBusca){
+    if(Math.abs(w.length - palavraAlvo.length) <= limite && levenshtein(w, palavraAlvo) <= limite){
+      return true;
     }
   }
-  const titleNorm = normalize(entry.title);
-  titleNorm.split(" ").forEach(w=>{ if(w.length>3 && queryNorm.includes(w)) score += 1; });
-  return score;
+  return false;
 }
+
+/* ---- Pontuação de cada entrada da base, com correção de digitação ----
+   exactScore: correspondências exatas (substring), pesam mais.
+   fuzzyScore: correspondências aproximadas (com erro de digitação), pesam menos. */
+/* Palavras muito comuns do português (artigos, pronomes, interrogativos) que nunca devem
+   contar ponto — senão qualquer frase com "qual", "como", "para" etc. bateria com algo */
+const STOPWORDS = new Set([
+  "qual","quais","como","onde","quando","porque","por","que","para","com","sem",
+  "uma","um","dos","das","este","esta","isso","aquilo","voce","você","tem","fazer",
+  "quero","preciso","favor","pode","poderia","sobre","desse","dessa","deste","desta",
+  "nao","não","sim","aqui","ali","meu","minha","seu","sua","muito","pouco","mais","menos"
+]);
+
+/* Palavras muito genéricas, que aparecem em vários processos diferentes — contam menos,
+   pra não fazer um processo "roubar" a resposta de outro só por compartilhar um termo comum */
+const PALAVRAS_GENERICAS = new Set([
+  "equipamento","equipamentos","cliente","processo","sistema","unidade","nota","venda","vendas",
+  "portal","tela","produto","produtos","contrato","servico","serviço","assistencia","assistência",
+  "empresa","valor","numero","número","forma","documento","documentos","pagamento"
+]);
+function pesoPalavra(w){ return PALAVRAS_GENERICAS.has(w) ? 0.4 : 1; }
+
+function scoreEntry(entry, queryNorm){
+  const queryWords = queryNorm.split(" ").filter(Boolean);
+  let exactScore = 0, fuzzyScore = 0;
+
+  // Bônus por frase-chave inteira encontrada (mantém peso maior para frases completas)
+  for(const kw of entry.keywords){
+    const kwNorm = normalize(kw);
+    if(kwNorm && queryNorm.includes(kwNorm)){
+      exactScore += kwNorm.split(" ").length * 3;
+    }
+  }
+
+  // Palavras relevantes únicas (evita contar a mesma palavra várias vezes só porque
+  // ela aparece repetida em diferentes frases-chave da mesma entrada, e ignora stopwords)
+  const palavrasRelevantes = new Set();
+  entry.keywords.forEach(kw => {
+    normalize(kw).split(" ").forEach(w => { if(w.length > 2 && !STOPWORDS.has(w)) palavrasRelevantes.add(w); });
+  });
+  normalize(entry.title).split(" ").forEach(w => { if(w.length > 3 && !STOPWORDS.has(w)) palavrasRelevantes.add(w); });
+
+  palavrasRelevantes.forEach(w => {
+    const peso = pesoPalavra(w);
+    if(queryNorm.includes(w)) exactScore += 1 * peso;
+    else if(palavraAproximada(queryWords, w)) fuzzyScore += 1 * peso;
+  });
+
+  return { entry, exactScore, fuzzyScore, total: exactScore + fuzzyScore };
+}
+
+/* Retorna a lista de candidatos ordenada por pontuação (do mais provável ao menos provável) */
 function findAnswer(query){
   const qNorm = normalize(query);
-  let best = null, bestScore = 0;
-  for(const entry of KNOWLEDGE_BASE){
-    const s = scoreEntry(entry, qNorm);
-    if(s > bestScore){ bestScore = s; best = entry; }
+  return KNOWLEDGE_BASE
+    .map(entry => scoreEntry(entry, qNorm))
+    .filter(x => x.total >= 1)
+    .sort((a, b) => b.total - a.total);
+}
+
+/* ---- Explicação "de outro jeito", gerada a partir do próprio conteúdo (resumo + tópicos) ---- */
+function explicarDeOutroJeito(entry){
+  const temp = document.createElement("div");
+  temp.innerHTML = entry.html;
+  const paragrafos = [...temp.querySelectorAll("p")].map(p => p.textContent.trim()).filter(Boolean);
+  const itens = [...temp.querySelectorAll("li")].map(li => li.textContent.trim()).filter(Boolean);
+  const notas = [...temp.querySelectorAll(".note")].map(n => n.textContent.trim()).filter(Boolean);
+
+  const partes = [];
+  if(paragrafos[0]) partes.push(paragrafos[0]);
+  if(itens.length){
+    partes.push(itens.slice(0, 6).map(i => "• " + i).join("<br>"));
+  } else if(paragrafos.length > 1){
+    partes.push(paragrafos.slice(1, 3).join(" "));
   }
-  return bestScore >= 2 ? best : null;
+  if(notas[0]) partes.push("⚠️ " + notas[0]);
+  return partes.join("<br><br>") || entry.html;
 }
 
 /* ========================= ESTADO ========================= */
@@ -1483,7 +1695,19 @@ function addBotBubble(innerHtml, kind){
     </div>`;
   messagesEl.appendChild(row);
   initSignaturePads(row);
+  initSuggestButtons(row);
   scrollDown();
+}
+
+function initSuggestButtons(container){
+  container.querySelectorAll(".suggest-btn").forEach(btn=>{
+    if(btn.dataset.bound) return;
+    btn.dataset.bound = "1";
+    btn.addEventListener("click", ()=>{
+      const entry = KNOWLEDGE_BASE.find(e => e.id === btn.dataset.id);
+      if(entry) ask(entry.title);
+    });
+  });
 }
 
 function greetingReply(){ addBotBubble(pick(GREETING_REPLIES)); }
@@ -1492,11 +1716,18 @@ function onlyThisReply(){ addBotBubble(pick(ONLY_THIS_REPLIES)); }
 
 function confusionReply(){
   if(lastEntry){
-    const content = lastEntry.simple ? lastEntry.simple : lastEntry.html;
+    const content = explicarDeOutroJeito(lastEntry);
     addBotBubble(`<span class="rephrase-tag">Explicando de outro jeito</span><br>${content}`);
   } else {
     addBotBubble("Sem problema! Me diz qual processo você quer entender (ex: locação, venda, transferência, bonificação) que eu explico com calma. Também dá pra abrir a lista de processos no menu ☰.");
   }
+}
+
+function suggestOptions(candidatos, query){
+  const botoes = candidatos.map(c =>
+    `<button type="button" class="suggest-btn" data-id="${c.entry.id}">${escapeHtml(c.entry.title)}</button>`
+  ).join("");
+  addBotBubble(`Não encontrei uma resposta exata pra "<i>${escapeHtml(query)}</i>". Você quis dizer:<br><div class="suggest-list">${botoes}</div>`);
 }
 
 function missReply(query){
@@ -1537,9 +1768,30 @@ function ask(query){
     if(matchesAny(qNorm, ONLY_THIS_PATTERNS) && qNorm.split(" ").length <= 5){ onlyThisReply(); return; }
     if(matchesAny(qNorm, CONFUSION_PATTERNS)){ confusionReply(); return; }
 
-    const match = findAnswer(query);
-    if(match){ lastEntry = match; setActiveTopic(match.id); addBotBubble(match.html); }
-    else{ setActiveTopic(null); missReply(query); }
+    const candidatos = findAnswer(query);
+    if(candidatos.length === 0){ setActiveTopic(null); missReply(query); return; }
+
+    const top = candidatos[0];
+    const segundo = candidatos[1];
+    // Ambíguo: existe um segundo candidato com pontuação relativamente próxima da do primeiro
+    const ambiguo = segundo && segundo.total >= top.total * 0.6 && (top.total - segundo.total) <= 1;
+    // Confiante: só quando não há concorrente próximo e a pontuação é minimamente relevante
+    const confiante = !ambiguo && top.total >= 0.8;
+
+    if(confiante){
+      lastEntry = top.entry;
+      setActiveTopic(top.entry.id);
+      const avisoCorrecao = top.exactScore === 0
+        ? `<p class="fuzzy-note">Entendi como <b>"${escapeHtml(top.entry.title)}"</b> — se não for isso, me diga.</p>`
+        : "";
+      addBotBubble(avisoCorrecao + top.entry.html);
+    } else if(top.total >= 0.6){
+      setActiveTopic(null);
+      suggestOptions(candidatos.slice(0, 3), query);
+    } else {
+      setActiveTopic(null);
+      missReply(query);
+    }
   }, 450);
 }
 
