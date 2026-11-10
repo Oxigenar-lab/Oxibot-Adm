@@ -3,404 +3,304 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oxibot ADM — Faturamento &amp; Contratos</title>
+<title>OXIBOT ADM — Faturamento &amp; Contratos</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMGUwZmYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2M1Y2ZmIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iNjAiIHk9IjI4IiB3aWR0aD0iOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiMwYTBlMWEiLz4KPGNpcmNsZSBjeD0iNjQiIGN5PSIyNCIgcj0iNyIgZmlsbD0iIzBhMGUxYSIvPgo8cmVjdCB4PSIzMiIgeT0iNDYiIHdpZHRoPSI2NCIgaGVpZ2h0PSI1MCIgcng9IjE2IiBmaWxsPSIjMGEwZTFhIi8+CjxjaXJjbGUgY3g9IjUyIiBjeT0iNzEiIHI9IjgiIGZpbGw9IiMwMGUwZmYiLz4KPGNpcmNsZSBjeD0iNzYiIGN5PSI3MSIgcj0iOCIgZmlsbD0iIzdjNWNmZiIvPgo8cmVjdCB4PSI0NiIgeT0iODgiIHdpZHRoPSIzNiIgaGVpZ2h0PSI3IiByeD0iMy41IiBmaWxsPSIjMDBlMGZmIiBvcGFjaXR5PSIwLjYiLz4KPHJlY3QgeD0iMjAiIHk9IjYwIiB3aWR0aD0iMTAiIGhlaWdodD0iMjIiIHJ4PSI1IiBmaWxsPSIjMGEwZTFhIi8+CjxyZWN0IHg9Ijk4IiB5PSI2MCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIyIiByeD0iNSIgZmlsbD0iIzBhMGUxYSIvPgo8L3N2Zz4K">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Sora:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   :root{
-    --bg:#080b14;
-    --bg-grid:#0d1220;
-    --navy:#101828;
-    --navy-deep:#060a12;
-    --teal:#00e0ff;
-    --teal-soft:rgba(0,224,255,.1);
-    --accent:#7c5cff;
-    --paper:#0a0e1a;
-    --card:#111827;
-    --ink:#e6edf5;
-    --ink-soft:#8b96ab;
-    --line:#1e293f;
-    --warn:#ffb020;
-    --warn-bg:rgba(255,176,32,.1);
+    --bg:#f4f7fb;
+    --paper:#f9fbfd;
+    --sidebar:#ffffff;
+    --card:#ffffff;
+    --ink:#1e293b;
+    --ink-soft:#6b778c;
+    --line:#e5eaf1;
+    --teal:#0c9bb8;
+    --teal-soft:rgba(12,155,184,.09);
+    --teal-line:rgba(12,155,184,.28);
+    --accent:#6d5de8;
+    --warn:#8a5a00;
+    --warn-bg:#fff8e8;
+    --warn-line:#f3e0b0;
+    --miss-bg:#fff5f6;
+    --miss-line:#f6d3d8;
+    --miss-ink:#a33a4d;
+    --shadow:0 1px 2px rgba(30,41,59,.05), 0 4px 14px rgba(30,41,59,.04);
+    --user-ink:#ffffff;
+    --canvas-bg:#ffffff;
+    --grid:rgba(12,155,184,.06);
+    --glow-a:rgba(109,93,232,.07);
+    --glow-b:rgba(12,155,184,.07);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1220;
+    --paper:#0f1526;
+    --sidebar:#0b101d;
+    --card:#151c30;
+    --ink:#e6ecf5;
+    --ink-soft:#8d99b0;
+    --line:#222c45;
+    --teal:#35d0ec;
+    --teal-soft:rgba(53,208,236,.1);
+    --teal-line:rgba(53,208,236,.3);
+    --accent:#8a79ff;
+    --warn:#f1bd5a;
+    --warn-bg:rgba(241,189,90,.09);
+    --warn-line:rgba(241,189,90,.25);
+    --miss-bg:#201320;
+    --miss-line:#4a2430;
+    --miss-ink:#ff9aae;
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+    --user-ink:#06121a;
+    --grid:rgba(53,208,236,.055);
+    --glow-a:rgba(138,121,255,.09);
+    --glow-b:rgba(53,208,236,.08);
   }
   *{box-sizing:border-box;}
   html,body{height:100%; overflow:hidden;}
   body{
     margin:0;
-    font-family:'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background:
-      radial-gradient(circle at 15% 0%, rgba(0,224,255,.08), transparent 45%),
-      radial-gradient(circle at 85% 100%, rgba(124,92,255,.08), transparent 45%),
-      var(--bg);
+    font-family:'DM Sans','Segoe UI',system-ui,-apple-system,sans-serif;
+    background:var(--bg);
     color:var(--ink);
-    display:flex;
-    justify-content:center;
-    padding:0;
+    -webkit-font-smoothing:antialiased;
   }
-  .card{
-    width:100%;
-    max-width:none;
-    height:100vh;
-    max-height:none;
-    background:var(--paper);
-    border-radius:0;
-    box-shadow:none;
-    display:flex;
-    overflow:hidden;
-  }
+  .card{width:100%; height:100vh; display:flex; overflow:hidden; background:var(--paper);}
 
   /* ===== Sidebar ===== */
   .sidebar{
-    width:240px;
-    flex-shrink:0;
-    background:var(--navy-deep);
-    color:#fff;
-    display:flex;
-    flex-direction:column;
-    padding:22px 0;
+    width:268px; flex-shrink:0; background:var(--sidebar);
+    display:flex; flex-direction:column;
     border-right:1px solid var(--line);
   }
-  .sidebar-brand{
-    padding:0 18px 18px;
-    border-bottom:1px solid var(--line);
-    margin-bottom:14px;
+  .sidebar-brand{padding:26px 22px 18px; display:flex; align-items:center; gap:12px;}
+  .sidebar-brand img{width:42px;height:42px;border-radius:50%; border:1px solid var(--teal-line); box-shadow:0 0 0 4px var(--teal-soft);}
+  .sidebar-brand .name{font-family:'Sora','DM Sans',sans-serif; font-size:1.02rem; font-weight:700; letter-spacing:.09em; line-height:1.1;
+    background:linear-gradient(90deg,var(--ink) 30%,var(--teal)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+  .sidebar-brand .role{font-size:.72rem; color:var(--ink-soft); margin-top:3px;}
+  .side-search{padding:4px 18px 14px;}
+  .side-search input{
+    width:100%; border:1px solid var(--line); background:var(--paper); color:var(--ink);
+    border-radius:10px; padding:9px 12px; font-size:.82rem; outline:none; font-family:inherit;
   }
-  .sidebar-brand img{
-    width:52px;height:52px;border-radius:50%;
-    display:block; margin-bottom:10px;
-    border:2px solid rgba(0,224,255,.35);
-    box-shadow:0 0 14px rgba(0,224,255,.4);
-  }
-  .sidebar-brand .name{
-    font-family:'Outfit', sans-serif;
-    font-size:.98rem; font-weight:700;
-    background:linear-gradient(90deg,#fff,var(--teal));
-    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
-  }
-  .sidebar-brand .role{font-size:.72rem; color:var(--ink-soft); margin-top:2px;}
+  .side-search input:focus{border-color:var(--teal); box-shadow:0 0 0 3px var(--teal-soft);}
   .sidebar h2{
-    font-family:'Outfit', sans-serif;
-    font-size:.68rem;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    color:var(--teal);
-    margin:14px 18px 8px;
-    font-weight:600;
+    font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.64rem; text-transform:uppercase; letter-spacing:.14em;
+    color:var(--ink-soft); margin:20px 22px 10px; font-weight:600;
   }
-  .sidebar-list{
-    overflow-y:auto;
-    flex:1;
-    min-height:0;
-    padding:0 10px;
-  }
+  .sidebar-list{overflow-y:auto; flex:1; min-height:0; padding:0 12px 14px;}
+  .sidebar-list::-webkit-scrollbar, .messages::-webkit-scrollbar{width:8px;}
+  .sidebar-list::-webkit-scrollbar-thumb, .messages::-webkit-scrollbar-thumb{background:var(--line); border-radius:8px;}
   .side-btn{
-    display:block;
-    width:100%;
-    text-align:left;
-    background:none;
-    border:none;
-    border-left:2px solid transparent;
-    color:var(--ink-soft);
-    padding:9px 10px;
-    border-radius:8px;
-    font-size:.79rem;
-    cursor:pointer;
-    margin-bottom:2px;
-    line-height:1.3;
-    transition:all .15s ease;
+    display:block; width:100%; text-align:left; background:none; border:none;
+    color:var(--ink-soft); padding:10px 14px; border-radius:10px;
+    font-size:.84rem; cursor:pointer; margin-bottom:3px; line-height:1.45; font-family:inherit;
+    transition:background .15s ease,color .15s ease;
   }
-  .side-btn:hover{background:var(--teal-soft); color:var(--ink); border-left:2px solid var(--teal);}
-  .side-btn.active{
-    background:var(--teal-soft);
-    color:var(--ink);
-    border-left:2px solid var(--teal);
-    font-weight:600;
-  }
+  .side-btn:hover{background:var(--teal-soft); color:var(--ink);}
+  .side-btn{position:relative;}
+  .side-btn.active{background:var(--teal-soft); color:var(--teal); font-weight:600;}
+  .side-btn.active::before{content:""; position:absolute; left:0; top:20%; bottom:20%; width:3px; border-radius:3px; background:linear-gradient(180deg,var(--teal),var(--accent));}
+  .side-empty{padding:10px 12px; font-size:.8rem; color:var(--ink-soft);}
+  .side-foot{padding:14px 22px; border-top:1px solid var(--line); font-size:.72rem; color:var(--ink-soft);}
 
-  @media (max-width:640px){
-    .sidebar{
-      position:fixed;
-      left:0; top:0; bottom:0;
-      z-index:20;
-      transform:translateX(-100%);
-      transition:transform .25s ease;
-      box-shadow:10px 0 30px rgba(0,0,0,.5);
-    }
-    .sidebar.open{transform:translateX(0);}
-    .card{max-width:100%; height:100vh; max-height:none; border-radius:0;}
-    body{padding:0;}
+  @media (max-width:760px){
+    .sidebar{position:fixed; left:0; top:0; bottom:0; z-index:20; transform:translateX(-100%);
+      transition:transform .25s ease; box-shadow:none;}
+    .sidebar.open{transform:translateX(0); box-shadow:10px 0 30px rgba(0,0,0,.18);}
   }
 
   /* ===== Chat column ===== */
-  .chat-col{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    min-width:0;
-    background:var(--paper);
-  }
+  .chat-col{flex:1; display:flex; flex-direction:column; min-width:0; background:var(--paper);}
   header{
-    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-    color:#fff;
-    padding:14px 18px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    border-bottom:1px solid var(--teal);
-    box-shadow:0 1px 24px rgba(0,224,255,.25);
     position:relative;
-  }
-  header::after{
-    content:"";
-    position:absolute;
-    left:0; right:0; bottom:-1px;
-    height:1px;
-    background:linear-gradient(90deg, transparent, var(--teal), var(--accent), transparent);
+    background:var(--sidebar); padding:16px 26px; display:flex; align-items:center; gap:14px;
+    border-bottom:1px solid var(--line);
   }
   .menu-btn{
-    display:none;
-    background:var(--teal-soft);
-    border:1px solid rgba(0,224,255,.3);
-    color:var(--teal);
-    width:34px;height:34px;
-    border-radius:9px;
-    font-size:1rem;
-    cursor:pointer;
-    flex-shrink:0;
+    display:none; background:var(--teal-soft); border:1px solid var(--teal-line); color:var(--teal);
+    width:36px;height:36px;border-radius:10px;font-size:1rem;cursor:pointer;flex-shrink:0;
   }
-  @media (max-width:640px){ .menu-btn{display:block;} }
-  .avatar-img{
-    width:42px;height:42px;
-    border-radius:50%;
-    border:2px solid rgba(0,224,255,.5);
-    box-shadow:0 0 12px rgba(0,224,255,.5);
-    flex-shrink:0;
-  }
+  
+  .avatar-img{width:42px;height:42px;border-radius:50%;border:1px solid var(--teal-line);flex-shrink:0; box-shadow:0 0 0 4px var(--teal-soft);}
+  header::after{content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:linear-gradient(90deg,transparent,var(--teal),var(--accent),transparent); opacity:.7;}
   .header-text{flex:1; min-width:0;}
-  header h1{
-    margin:0;
-    font-family:'Outfit', sans-serif;
-    font-size:1.2rem;
-    font-weight:600;
-    background:linear-gradient(90deg,#fff,var(--teal));
-    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  header h1{margin:0; font-family:'Sora','DM Sans',sans-serif; font-size:1.15rem; font-weight:700; letter-spacing:.1em;
+    background:linear-gradient(90deg,var(--ink) 35%,var(--teal) 75%,var(--accent)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+  .status{display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--ink-soft);margin-top:2px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .status .dot{width:7px;height:7px;border-radius:50%; background:#2fbf71; display:inline-block; flex-shrink:0; animation:pulso 2.4s ease-in-out infinite;}
+  @keyframes pulso{0%{box-shadow:0 0 0 0 rgba(47,191,113,.5);} 70%{box-shadow:0 0 0 6px rgba(47,191,113,0);} 100%{box-shadow:0 0 0 0 rgba(47,191,113,0);}}
+  .updated{
+    display:inline-flex; align-items:center; gap:5px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.66rem; letter-spacing:.02em; color:var(--ink-soft);
+    background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:3px 10px; margin-top:5px;
   }
-  .status{
-    display:flex;align-items:center;gap:6px;
-    font-size:.78rem;
-    color:var(--ink-soft);
-    margin-top:2px;
+  .head-actions{display:flex; gap:8px; flex-shrink:0;}
+  .icon-btn{
+    background:var(--paper); border:1px solid var(--line); color:var(--ink-soft);
+    height:36px; min-width:36px; padding:0 11px; border-radius:10px; cursor:pointer; font-size:.85rem; font-family:inherit;
+    transition:all .15s ease;
   }
-  .updated{font-size:.7rem;color:var(--ink-soft);opacity:.75;margin-top:2px;letter-spacing:.2px;}
-  .status .dot{width:7px;height:7px;border-radius:50%; background:var(--teal); box-shadow:0 0 6px var(--teal); display:inline-block;}
+  .icon-btn:hover{color:var(--teal); border-color:var(--teal-line); background:var(--teal-soft);}
+  @media (max-width:760px){ .icon-btn .lbl{display:none;} }
 
   .messages{
-    flex:1;
-    overflow-y:auto;
-    padding:20px 20px 8px;
-    display:flex;
-    flex-direction:column;
-    gap:2px;
     background-color:var(--paper);
     background-image:
-      radial-gradient(circle at 10% 15%, rgba(0,224,255,.05) 0, rgba(0,224,255,.05) 4px, transparent 5px),
-      radial-gradient(circle at 70% 8%, rgba(124,92,255,.05) 0, rgba(124,92,255,.05) 5px, transparent 6px),
-      radial-gradient(circle at 85% 60%, rgba(0,224,255,.05) 0, rgba(0,224,255,.05) 3px, transparent 4px),
-      radial-gradient(circle at 25% 75%, rgba(124,92,255,.05) 0, rgba(124,92,255,.05) 4px, transparent 5px),
-      radial-gradient(circle at 50% 40%, rgba(0,224,255,.04) 0, rgba(0,224,255,.04) 3px, transparent 4px),
-      radial-gradient(circle at 5% 55%, rgba(124,92,255,.05) 0, rgba(124,92,255,.05) 4px, transparent 5px);
-    background-size:170px 170px;
-    background-repeat:repeat;
-  }
-  .row{display:flex; align-items:flex-end; gap:8px; margin:7px 0;}
+      radial-gradient(900px 420px at 100% 0%, var(--glow-a), transparent 65%),
+      radial-gradient(800px 420px at 0% 100%, var(--glow-b), transparent 65%),
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:auto, auto, 44px 44px, 44px 44px;
+    background-attachment:local, local, local, local;
+    flex:1; overflow-y:auto; padding:30px 32px 16px; display:flex; flex-direction:column; gap:4px; scroll-behavior:smooth;}
+  .row{display:flex; align-items:flex-end; gap:12px; margin:12px 0; animation:surge .25s ease both;}
+  @keyframes surge{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
   .row.user{justify-content:flex-end;}
-  .row .mini-avatar{
-    width:28px;height:28px;
-    border-radius:50%;
-    flex-shrink:0;
-    border:1.5px solid var(--navy-deep);
-    box-shadow:0 0 8px rgba(0,224,255,.4);
-  }
-  .row.miss .mini-avatar{filter:saturate(.4) hue-rotate(-25deg);}
-  .bubble-wrap{display:flex; flex-direction:column; max-width:76%;}
+  .row .mini-avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;border:1px solid var(--line);}
+  .row.miss .mini-avatar{filter:grayscale(.5);}
+  .bubble-wrap{display:flex; flex-direction:column; max-width:min(78%,820px);}
   .row.user .bubble-wrap{align-items:flex-end;}
-  .bubble{
-    padding:12px 15px;
-    border-radius:17px;
-    font-size:.91rem;
-    line-height:1.55;
-  }
-  .row.bot .bubble{background:var(--card); border:1px solid var(--line); border-bottom-left-radius:5px; box-shadow:0 2px 10px rgba(0,0,0,.35);}
-  .row.miss .bubble{background:#1a0f16; border:1px solid #4a1f2c; color:#ff8fa3; border-bottom-left-radius:5px;}
-  .row.user .bubble{background:linear-gradient(135deg, var(--teal), var(--accent)); color:#04101a; font-weight:500; border-bottom-right-radius:5px; box-shadow:0 2px 10px rgba(0,224,255,.25);}
-  .timestamp{font-size:.68rem; color:var(--ink-soft); margin-top:4px; padding:0 4px;}
+  .bubble{padding:18px 22px; border-radius:18px; font-size:.95rem; line-height:1.75;}
+  .row.bot .bubble{background:var(--card); border:1px solid var(--line); border-bottom-left-radius:6px; box-shadow:var(--shadow);}
+  .row.miss .bubble{background:var(--miss-bg); border:1px solid var(--miss-line); color:var(--miss-ink); border-bottom-left-radius:6px;}
+  .row.user .bubble{background:linear-gradient(135deg,var(--teal),var(--accent)); color:var(--user-ink); font-weight:500; border-bottom-right-radius:6px;}
+  .timestamp{font-size:.7rem; color:var(--ink-soft); margin-top:6px; padding:0 8px;}
 
-  .bubble h3{margin:0 0 6px; font-family:'Outfit', sans-serif; font-size:.95rem; font-weight:600; color:var(--teal);}
-  .bubble ol, .bubble ul{margin:6px 0; padding-left:20px;}
+  .bubble h3{margin:22px 0 8px; font-family:'Sora','DM Sans',sans-serif; font-size:.98rem; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:9px;}
+  .bubble h3::before{content:""; width:4px; height:16px; border-radius:3px; flex-shrink:0; background:linear-gradient(180deg,var(--teal),var(--accent));}
+  .bubble h3:first-child, .bubble .tag + h3{margin-top:2px;}
+  .bubble p{margin:10px 0;}
+  .bubble ol, .bubble ul{margin:10px 0; padding-left:24px;}
+  .bubble li{margin:7px 0; padding-left:2px;}
+  .bubble li > ul, .bubble li > ol{margin:6px 0 4px;}
+  .bubble > :first-child{margin-top:0;}
+  .bubble > :last-child{margin-bottom:0;}
+  .bubble a{color:var(--teal);}
   .bubble .note{
-    margin-top:8px; padding:8px 10px;
-    background:var(--warn-bg); color:var(--warn);
-    border-radius:8px; font-size:.82rem;
-    border:1px solid rgba(255,176,32,.25);
+    margin-top:16px; padding:13px 16px; background:var(--warn-bg); color:var(--warn);
+    border-radius:12px; font-size:.88rem; line-height:1.65; border:1px solid var(--warn-line);
   }
   .bubble .tag, .bubble .rephrase-tag{
-    display:inline-block; font-size:.72rem; font-weight:700;
-    color:var(--teal); background:var(--teal-soft);
-    padding:2px 9px; border-radius:20px; margin-bottom:8px;
-    border:1px solid rgba(0,224,255,.3);
+    display:inline-block; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:.66rem; font-weight:500; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--teal); background:var(--teal-soft); padding:4px 12px; border-radius:20px; margin-bottom:10px;
+    border:1px solid var(--teal-line);
   }
-  .bubble .fuzzy-note{
-    margin:0 0 8px;
-    font-size:.8rem;
-    font-style:italic;
-    color:var(--ink-soft);
+  .bubble .fuzzy-note{margin:0 0 8px; font-size:.8rem; font-style:italic; color:var(--ink-soft);}
+  .suggest-list{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+  .suggest-btn, .action-chip{
+    background:var(--card); color:var(--teal); border:1px solid var(--teal-line); border-radius:20px;
+    padding:8px 16px; font-size:.82rem; font-weight:500; cursor:pointer; font-family:inherit;
+    transition:all .15s ease;
   }
-  .suggest-list{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-top:10px;
-  }
-  .suggest-btn{
-    background:var(--teal-soft);
-    color:var(--teal);
-    border:1px solid rgba(0,224,255,.3);
-    border-radius:20px;
-    padding:7px 14px;
-    font-size:.8rem;
-    font-weight:600;
-    cursor:pointer;
-    font-family:inherit;
-  }
-  .suggest-btn:hover{background:rgba(0,224,255,.2);}
-  .typing-row .bubble{display:flex; gap:4px; align-items:center; padding:12px 16px;}
+  .suggest-btn:hover, .action-chip:hover{background:var(--teal-soft); transform:translateY(-1px);}
+  .followup{display:flex; flex-wrap:wrap; gap:9px; margin:12px 0 0 8px; align-items:center;}
+  .followup .lbl{font-size:.72rem; color:var(--ink-soft); margin-right:2px;}
+  .followup .action-chip{padding:5px 12px; font-size:.77rem; color:var(--ink-soft); border-color:var(--line);}
+  .followup .action-chip:hover{color:var(--teal); border-color:var(--teal-line);}
+  .typing-row .bubble{display:flex; gap:4px; align-items:center; padding:13px 16px;}
   .typing-dot{width:6px;height:6px;border-radius:50%; background:var(--teal); animation:blink 1.2s infinite ease-in-out;}
   .typing-dot:nth-child(2){animation-delay:.2s;}
   .typing-dot:nth-child(3){animation-delay:.4s;}
   @keyframes blink{0%,80%,100%{opacity:.25;} 40%{opacity:1;}}
 
-  form{
-    display:flex; gap:8px;
-    padding:14px 18px;
-    border-top:1px solid var(--line);
-    background:var(--navy-deep);
-  }
+  .live-suggest{display:none; flex-wrap:wrap; gap:8px; padding:12px 26px 0; background:var(--sidebar); align-items:center;}
+  .live-suggest.show{display:flex;}
+  .live-suggest .lbl{font-size:.72rem; color:var(--ink-soft);}
+  form{display:flex; gap:12px; padding:16px 26px 22px; background:var(--sidebar);}
+  .live-suggest.show + form{padding-top:10px;}
   input[type=text]{
-    flex:1; border:1px solid var(--line); background:var(--card); color:var(--ink);
-    border-radius:22px; padding:11px 16px; font-size:.9rem; outline:none;
+    flex:1; border:1px solid var(--line); background:var(--paper); color:var(--ink);
+    border-radius:26px; padding:14px 20px; font-size:.95rem; outline:none; font-family:inherit;
   }
   input[type=text]::placeholder{color:var(--ink-soft);}
-  input[type=text]:focus{border-color:var(--teal); box-shadow:0 0 0 3px rgba(0,224,255,.15);}
+  input[type=text]:focus{border-color:var(--teal); box-shadow:0 0 0 3px var(--teal-soft);}
   button.send{
-    width:42px; height:42px; background:linear-gradient(135deg, var(--teal), var(--accent)); color:#04101a;
-    border:none; border-radius:50%; font-size:1.05rem; cursor:pointer; flex-shrink:0;
-    box-shadow:0 4px 14px rgba(0,224,255,.25);
+    width:48px; height:48px; background:linear-gradient(135deg,var(--teal),var(--accent)); color:#fff;
+    border:none; border-radius:50%; font-size:1rem; cursor:pointer; flex-shrink:0;
+    transition:transform .15s ease, filter .15s ease;
   }
-  button.send:hover{filter:brightness(1.1);}
+  button.send:hover{filter:brightness(1.08); transform:scale(1.05);}
 
-  .mini-calc{
-    margin-top:10px;
-    padding:12px;
-    background:var(--navy-deep);
-    border:1px solid var(--line);
-    border-radius:10px;
-  }
-  .mini-calc label{
-    display:block;
-    font-size:.78rem;
-    color:var(--ink-soft);
-    margin-bottom:10px;
-  }
+  .mini-calc{margin-top:16px; padding:18px; background:var(--paper); border:1px solid var(--line); border-radius:12px;}
+  .mini-calc label{display:block; font-size:.84rem; color:var(--ink-soft); margin-bottom:16px;}
   .mini-calc label:last-of-type{margin-bottom:12px;}
   .mini-calc input, .mini-calc select{
-    display:block;
-    width:100%;
-    margin-top:4px;
-    background:var(--card);
-    border:1px solid var(--line);
-    color:var(--ink);
-    border-radius:8px;
-    padding:8px 10px;
-    font-size:.85rem;
-    outline:none;
-    font-family:inherit;
+    display:block; width:100%; margin-top:4px; background:var(--card); border:1px solid var(--line); color:var(--ink);
+    border-radius:10px; padding:11px 13px; font-size:.9rem; outline:none; font-family:inherit;
   }
-  .mini-calc input:focus, .mini-calc select:focus{border-color:var(--teal); box-shadow:0 0 0 3px rgba(0,224,255,.15);}
+  .mini-calc input:focus, .mini-calc select:focus{border-color:var(--teal); box-shadow:0 0 0 3px var(--teal-soft);}
+  .mini-calc .calc-btn, .mini-calc .calc-btn-secondary{margin-top:4px;}
   .mini-calc .calc-btn{
-    background:linear-gradient(135deg, var(--teal), var(--accent));
-    color:#04101a;
-    border:none;
-    border-radius:8px;
-    padding:9px 16px;
-    font-size:.83rem;
-    font-weight:700;
-    cursor:pointer;
+    background:linear-gradient(135deg,var(--teal),var(--accent)); color:#fff; border:none; border-radius:9px;
+    padding:9px 18px; font-size:.84rem; font-weight:600; cursor:pointer; font-family:inherit;
   }
-  .mini-calc .calc-btn:hover{filter:brightness(1.1);}
+  .mini-calc .calc-btn:hover{filter:brightness(1.08);}
   .mini-calc .calc-btn-secondary{
-    background:transparent;
-    color:var(--teal);
-    border:1px solid rgba(0,224,255,.3);
-    border-radius:8px;
-    padding:8px 14px;
-    font-size:.8rem;
-    font-weight:600;
-    cursor:pointer;
-    margin-right:8px;
+    background:transparent; color:var(--teal); border:1px solid var(--teal-line); border-radius:9px;
+    padding:8px 14px; font-size:.82rem; font-weight:500; cursor:pointer; margin-right:8px; font-family:inherit;
   }
   .mini-calc .calc-btn-secondary:hover{background:var(--teal-soft);}
   .mini-calc .vt-assinatura-pad{
-    display:block;
-    width:100%;
-    max-width:300px;
-    height:120px;
-    background:#ffffff;
-    border:1px solid var(--line);
-    border-radius:8px;
-    margin-top:4px;
-    cursor:crosshair;
-    touch-action:none;
+    display:block; width:100%; max-width:300px; height:120px; background:#ffffff;
+    border:1px solid var(--line); border-radius:9px; margin-top:4px; cursor:crosshair; touch-action:none;
   }
-  .mini-calc .calc-error{
-    margin-top:8px;
-    color:#ff8fa3;
-    font-size:.82rem;
-  }
-  .overlay{
-    display:none;
-    position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:15;
-  }
+  .mini-calc .calc-error{margin-top:8px; color:var(--miss-ink); font-size:.82rem;}
+  .overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.35); z-index:15;}
   .overlay.show{display:block;}
+
+  /* ===== Celular (fica por último para valer sobre as regras acima) ===== */
+  @media (max-width:760px){
+    .menu-btn{display:block;}
+    .messages{padding:20px 14px 10px;}
+    .bubble{padding:15px 17px;}
+    .row.bot .mini-avatar, .row.miss .mini-avatar{display:none;}
+    .bubble-wrap{max-width:100%;}
+    .row.bot .bubble-wrap, .row.miss .bubble-wrap{width:100%;}
+    .row.user .bubble-wrap{max-width:88%;}
+    .status{display:none;}
+    .followup{margin-left:0;}
+    header{padding:14px 16px;}
+    form{padding:12px 14px 16px;}
+  }
 </style>
+
 </head>
 <body>
 <div class="card">
   <div class="overlay" id="overlay"></div>
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMGUwZmYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2M1Y2ZmIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iNjAiIHk9IjI4IiB3aWR0aD0iOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiMwYTBlMWEiLz4KPGNpcmNsZSBjeD0iNjQiIGN5PSIyNCIgcj0iNyIgZmlsbD0iIzBhMGUxYSIvPgo8cmVjdCB4PSIzMiIgeT0iNDYiIHdpZHRoPSI2NCIgaGVpZ2h0PSI1MCIgcng9IjE2IiBmaWxsPSIjMGEwZTFhIi8+CjxjaXJjbGUgY3g9IjUyIiBjeT0iNzEiIHI9IjgiIGZpbGw9IiMwMGUwZmYiLz4KPGNpcmNsZSBjeD0iNzYiIGN5PSI3MSIgcj0iOCIgZmlsbD0iIzdjNWNmZiIvPgo8cmVjdCB4PSI0NiIgeT0iODgiIHdpZHRoPSIzNiIgaGVpZ2h0PSI3IiByeD0iMy41IiBmaWxsPSIjMDBlMGZmIiBvcGFjaXR5PSIwLjYiLz4KPHJlY3QgeD0iMjAiIHk9IjYwIiB3aWR0aD0iMTAiIGhlaWdodD0iMjIiIHJ4PSI1IiBmaWxsPSIjMGEwZTFhIi8+CjxyZWN0IHg9Ijk4IiB5PSI2MCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIyIiByeD0iNSIgZmlsbD0iIzBhMGUxYSIvPgo8L3N2Zz4K" alt="Oxibot ADM">
-      <div class="name">Oxibot ADM</div>
-      <div class="role">Faturamento &amp; Contratos</div>
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMGUwZmYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2M1Y2ZmIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iNjAiIHk9IjI4IiB3aWR0aD0iOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiMwYTBlMWEiLz4KPGNpcmNsZSBjeD0iNjQiIGN5PSIyNCIgcj0iNyIgZmlsbD0iIzBhMGUxYSIvPgo8cmVjdCB4PSIzMiIgeT0iNDYiIHdpZHRoPSI2NCIgaGVpZ2h0PSI1MCIgcng9IjE2IiBmaWxsPSIjMGEwZTFhIi8+CjxjaXJjbGUgY3g9IjUyIiBjeT0iNzEiIHI9IjgiIGZpbGw9IiMwMGUwZmYiLz4KPGNpcmNsZSBjeD0iNzYiIGN5PSI3MSIgcj0iOCIgZmlsbD0iIzdjNWNmZiIvPgo8cmVjdCB4PSI0NiIgeT0iODgiIHdpZHRoPSIzNiIgaGVpZ2h0PSI3IiByeD0iMy41IiBmaWxsPSIjMDBlMGZmIiBvcGFjaXR5PSIwLjYiLz4KPHJlY3QgeD0iMjAiIHk9IjYwIiB3aWR0aD0iMTAiIGhlaWdodD0iMjIiIHJ4PSI1IiBmaWxsPSIjMGEwZTFhIi8+CjxyZWN0IHg9Ijk4IiB5PSI2MCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIyIiByeD0iNSIgZmlsbD0iIzBhMGUxYSIvPgo8L3N2Zz4K" alt="OXIBOT ADM">
+      <div><div class="name">OXIBOT ADM</div>
+      <div class="role">Faturamento &amp; Contratos</div></div>
     </div>
+    <div class="side-search"><input type="text" id="topicSearch" placeholder="Buscar nos temas..." autocomplete="off"></div>
     <div class="sidebar-list" id="topicsInner"></div>
+    <div class="side-foot">Última atualização: <b id="lastUpdateSide"></b></div>
   </aside>
 
   <div class="chat-col">
     <header>
       <button class="menu-btn" id="menuBtn" type="button">☰</button>
-      <img class="avatar-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMGUwZmYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2M1Y2ZmIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iNjAiIHk9IjI4IiB3aWR0aD0iOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiMwYTBlMWEiLz4KPGNpcmNsZSBjeD0iNjQiIGN5PSIyNCIgcj0iNyIgZmlsbD0iIzBhMGUxYSIvPgo8cmVjdCB4PSIzMiIgeT0iNDYiIHdpZHRoPSI2NCIgaGVpZ2h0PSI1MCIgcng9IjE2IiBmaWxsPSIjMGEwZTFhIi8+CjxjaXJjbGUgY3g9IjUyIiBjeT0iNzEiIHI9IjgiIGZpbGw9IiMwMGUwZmYiLz4KPGNpcmNsZSBjeD0iNzYiIGN5PSI3MSIgcj0iOCIgZmlsbD0iIzdjNWNmZiIvPgo8cmVjdCB4PSI0NiIgeT0iODgiIHdpZHRoPSIzNiIgaGVpZ2h0PSI3IiByeD0iMy41IiBmaWxsPSIjMDBlMGZmIiBvcGFjaXR5PSIwLjYiLz4KPHJlY3QgeD0iMjAiIHk9IjYwIiB3aWR0aD0iMTAiIGhlaWdodD0iMjIiIHJ4PSI1IiBmaWxsPSIjMGEwZTFhIi8+CjxyZWN0IHg9Ijk4IiB5PSI2MCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIyIiByeD0iNSIgZmlsbD0iIzBhMGUxYSIvPgo8L3N2Zz4K" alt="Oxibot ADM">
+      <img class="avatar-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMGUwZmYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2M1Y2ZmIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iNjAiIHk9IjI4IiB3aWR0aD0iOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiMwYTBlMWEiLz4KPGNpcmNsZSBjeD0iNjQiIGN5PSIyNCIgcj0iNyIgZmlsbD0iIzBhMGUxYSIvPgo8cmVjdCB4PSIzMiIgeT0iNDYiIHdpZHRoPSI2NCIgaGVpZ2h0PSI1MCIgcng9IjE2IiBmaWxsPSIjMGEwZTFhIi8+CjxjaXJjbGUgY3g9IjUyIiBjeT0iNzEiIHI9IjgiIGZpbGw9IiMwMGUwZmYiLz4KPGNpcmNsZSBjeD0iNzYiIGN5PSI3MSIgcj0iOCIgZmlsbD0iIzdjNWNmZiIvPgo8cmVjdCB4PSI0NiIgeT0iODgiIHdpZHRoPSIzNiIgaGVpZ2h0PSI3IiByeD0iMy41IiBmaWxsPSIjMDBlMGZmIiBvcGFjaXR5PSIwLjYiLz4KPHJlY3QgeD0iMjAiIHk9IjYwIiB3aWR0aD0iMTAiIGhlaWdodD0iMjIiIHJ4PSI1IiBmaWxsPSIjMGEwZTFhIi8+CjxyZWN0IHg9Ijk4IiB5PSI2MCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIyIiByeD0iNSIgZmlsbD0iIzBhMGUxYSIvPgo8L3N2Zz4K" alt="OXIBOT ADM">
       <div class="header-text">
-        <h1>Oxibot ADM</h1>
+        <h1>OXIBOT ADM</h1>
         <div class="status"><span class="dot"></span> online · Faturamento, contratos e movimentações no Sankhya</div>
-        <div class="updated" id="lastUpdate"></div>
+        <div class="updated">🗓 <span id="lastUpdate"></span></div>
+      </div>
+      <div class="head-actions">
+        <button class="icon-btn" id="themeBtn" type="button" title="Alternar tema claro/escuro">🌙</button>
+        <button class="icon-btn" id="clearBtn" type="button" title="Limpar a conversa">↺ <span class="lbl">Nova conversa</span></button>
       </div>
     </header>
 
     <div class="messages" id="messages"></div>
 
+    <div class="live-suggest" id="liveSuggest"></div>
     <form id="form">
       <input type="text" id="input" placeholder="Digite sua dúvida..." autocomplete="off">
       <button class="send" type="submit" aria-label="Enviar">➤</button>
@@ -465,7 +365,7 @@ const KNOWLEDGE_BASE = [
         <li>Informar número de série/lote e confirmar a Nota Fiscal.</li>
         <li>Salvar a NF em PDF e enviar ao representante que solicitou.</li>
       </ol>
-      <div class="note">O representante só pode transitar com os equipamentos/acessórios de posse dessa NF — em caso de fiscalização (blitz), ela comprova a autorização de transporte.</div>
+      <div class="note">O representante só pode transportar os equipamentos e acessórios com essa NF em mãos — em caso de fiscalização (blitz), ela comprova a autorização de transporte.</div>
     `
   },
   {
@@ -519,7 +419,7 @@ const KNOWLEDGE_BASE = [
         <li>Inserir o número de série, conferir os dados e confirmar a nota.</li>
       </ol>
       <div class="note">⚠️ <b>Atenção na retirada:</b> confira se o documento apresentado corresponde ao da pessoa que realizou o pagamento. Se forem pessoas diferentes, solicite um documento que comprove o parentesco entre elas. Em caso de divergência, não prossiga: sinalize e peça orientação. Veja também <b>Conferência de Vendas via Link e por Encomenda</b>.</div>
-      <div class="note">Caso o cliente fique com um equipamento provisório enquanto aguarda a chegada do encomendado, é necessário emitir contrato e remessa para esse equipamento provisório. Para o passo a passo completo, consulte o processo de Locação de Equipamentos.</div>
+      <div class="note">Caso o cliente fique com um equipamento provisório enquanto aguarda a chegada do equipamento encomendado, é necessário emitir contrato e remessa para esse equipamento provisório. Para o passo a passo completo, consulte o processo de Locação de Equipamentos.</div>
     `
   },
   {
@@ -634,7 +534,7 @@ const KNOWLEDGE_BASE = [
       <h3>Pagamento Misto — Desdobramento</h3>
       <p>Depois de preencher Cabeçalho e Itens normalmente:</p>
       <ol>
-        <li>Ir na aba <b>Financeiro</b> → "Parcelar com vários tipos de título".</li>
+        <li>Acessar a aba <b>Financeiro</b> → "Parcelar com vários tipos de título".</li>
         <li>Clicar em "+" e preencher:
           <ul>
             <li>Tipo de título: conforme a forma de pagamento.</li>
@@ -744,17 +644,93 @@ const KNOWLEDGE_BASE = [
     `
   },
   {
+    id: "devolucao-equipamento-higienizado-consertado",
+    title: "Devolução de Equipamento Higienizado/Consertado ao Cliente",
+    keywords: ["devolucao de equipamento","devolução de equipamento","devolver equipamento ao cliente","devolucao higienizado","devolução higienizado",
+      "devolucao consertado","devolução consertado","equipamento higienizado","equipamento consertado","dev estorn","dev./estorn","devolucao estorno",
+      "devolução estorno","retorno do equipamento ao cliente","entregar equipamento ao cliente","2515 devolucao","top 2515 devolução",
+      "equipamento pronto","volta do conserto","volta da higienizacao","volta da higienização"],
+    html: `
+      <span class="tag">Assistência Técnica</span>
+      <h3>Devolução de Equipamento Higienizado/Consertado ao Cliente</h3>
+      <p>É a devolução, ao cliente, do equipamento que pertence a ele, depois de concluído o serviço de <b>higienização</b> ou de <b>conserto</b>.</p>
+      <h3>Passo a passo</h3>
+      <ol>
+        <li>Acesse o <b>Portal de Compras</b>.</li>
+        <li>No campo <b>Parceiro</b>, informe o nome do cliente.</li>
+        <li>Localize e selecione a nota <b>2515 – Entrada de Equipamento para Conserto</b>.</li>
+        <li>Clique em <b>Dev./Estorn</b>.</li>
+        <li>Confirme a operação.</li>
+        <li>Salve a nota em PDF e envie ao representante responsável.</li>
+      </ol>
+      <div class="note">⚠️ Oriente o representante a coletar a assinatura do cliente, digitalizar a nota, enviá-la ao grupo de digitalização e anexá-la no sistema.</div>
+    `
+  },
+  {
     id: "nf-venda-pj",
-    title: "NF de Venda para PJ",
-    keywords: ["venda para pj","nf pj","pessoa juridica","pessoa jurídica","emissao pj","emissão pj"],
+    title: "Emissão de Notas PJ",
+    keywords: ["venda para pj","nf pj","nota pj","notas pj","pessoa juridica","pessoa jurídica","emissao pj","emissão pj",
+      "emissao pj vr","emissão pj vr","local de estoque emissao pj","local de estoque emissão pj","procedimento emissao de notas pj",
+      "procedimento emissão de notas pj","transferencia do equipamento pj","transferência do equipamento pj"],
     html: `
       <span class="tag">Faturamento</span>
-      <h3>NF de Venda para PJ</h3>
+      <h3>Procedimento — Emissão de Notas PJ</h3>
+      <h3>1º passo — Transferência do equipamento</h3>
+      <ul>
+        <li>Transferir o equipamento para o local de estoque <b>EMISSÃO PJ – VR</b> (vinculado à Matriz).</li>
+        <li>Na tela de Itens, informar o produto desejado e finalizar a transferência.</li>
+      </ul>
+      <h3>2º passo — Emissão da nota fiscal</h3>
+      <ul>
+        <li>Realizar a emissão normalmente, seguindo o mesmo fluxo do faturamento padrão.</li>
+        <li>No preenchimento, selecionar as seguintes opções:
+          <ul>
+            <li><b>Empresa:</b> 1</li>
+            <li><b>Centro de Resultado:</b> unidade que realizou a solicitação</li>
+            <li><b>Local de Estoque:</b> EMISSÃO PJ – VR</li>
+          </ul>
+        </li>
+      </ul>
+      <h3>3º passo — Confirmação</h3>
+      <ul>
+        <li>Depois de conferir todas as informações, confirmar a nota fiscal.</li>
+      </ul>
+      <div class="note">Algumas PJs são faturadas fora do Sankhya. Antes de emitir, veja <b>PJs Faturadas Fora do Sankhya</b>.</div>
+    `
+  },
+  {
+    id: "pj-faturadas-fora-sankhya",
+    title: "PJs Faturadas Fora do Sankhya",
+    keywords: ["pj fora do sankhya","faturadas fora do sankhya","faturamento fora do sankhya","empresas pj","forms pj",
+      "aapvr","mlx","placis","placis barra","placis botafogo","placis niteroi","placis niterói","unimed rio","funcional health","plethora",
+      "ame rio","jockey club","jockey","j badim","badim","unimed vr","unimed bm","unimed resende","pronep","attendance care","attendance",
+      "remessa pj","retorno de remessa pj","faturamento financeiro pj","faturado pelo financeiro"],
+    html: `
+      <span class="tag">Faturamento — Orientação</span>
+      <h3>Orientação — PJs faturadas fora do Sankhya</h3>
+      <p>Para as empresas relacionadas abaixo, o faturamento é realizado <b>fora do Sankhya</b>.</p>
+      <h3>Como proceder ao receber um Forms dessas empresas?</h3>
+      <ul>
+        <li><b>Locações:</b> realizar somente a <b>remessa</b> ou o <b>retorno de remessa</b> dos equipamentos, conforme a solicitação.</li>
+        <li><b>Vendas, contratos, bonificações e demais operações:</b> não realizar nenhum procedimento no Sankhya, pois essas movimentações já são feitas pelo respectivo responsável no início de cada mês.</li>
+      </ul>
+      <h3>Empresas contempladas</h3>
       <ol>
-        <li>Transferir o equipamento para o local <b>EMISSÃO PJ – VR</b> (vinculado à matriz): na tela de Itens, colocar o produto desejado e finalizar a transferência.</li>
-        <li>Emitir a nota normalmente (mesmo fluxo de faturamento padrão), selecionando: Empresa 1, Centro de Resultado Matriz e local de estoque EMISSÃO PJ – VR.</li>
-        <li>Confirmar a nota.</li>
+        <li>AAPVR</li>
+        <li>MLX</li>
+        <li>Placis – Barra, Botafogo e Niterói</li>
+        <li>Unimed Rio</li>
+        <li>Funcional Health (antiga Plethora)</li>
+        <li>Ame Rio</li>
+        <li>Jockey Club</li>
+        <li>J Badim</li>
+        <li>Unimed VR</li>
+        <li>Unimed BM</li>
+        <li>Unimed Resende</li>
+        <li>Pronep</li>
+        <li>Attendance Care</li>
       </ol>
+      <div class="note">⚠️ <b>Atenção:</b> ao receber solicitações dessas empresas, verifique se há necessidade de remessa ou retorno de equipamentos de locação. Para as demais movimentações, não é necessário realizar nenhuma ação, pois o faturamento já está sob a responsabilidade do financeiro.</div>
     `
   },
   {
@@ -772,7 +748,7 @@ const KNOWLEDGE_BASE = [
       <ul>
         <li>Data da emissão</li>
         <li>CNAE: 62.09-1-00 — Suporte Técnico (sempre na discriminação)</li>
-        <li>Serviço feito: ex. "Ajuste de CPAP" ou "Leitura de relatório"</li>
+        <li>Serviço feito: ex.: "Ajuste de CPAP" ou "Leitura de relatório"</li>
         <li>Dados do tomador: CPF, nome, endereço, CEP, e-mail</li>
         <li>Valor</li>
       </ul>
@@ -785,7 +761,7 @@ const KNOWLEDGE_BASE = [
         <li><b>Indicador de operação:</b> 050101</li>
         <li><b>Valor da base de cálculo:</b> preenchido automaticamente com o valor da nota (campo bloqueado, não precisa digitar)</li>
       </ul>
-      <p>As alíquotas aparecem sozinhas na tabela abaixo: CBS 0,90%, IBS Estadual 0,10% e IBS Municipal 0,00%, todas com redução de 0,00%. Só confira se estão iguais.</p>
+      <p>As alíquotas aparecem sozinhas na tabela abaixo: CBS 0,90%, IBS Estadual 0,10% e IBS Municipal 0,00%, todas com redução de 0,00%. Apenas confira se estão iguais.</p>
       <p>Depois: conferir → emitir → enviar por e-mail. Ao final, salvar a nota em PDF e enviar ao representante.</p>
       <div class="note">Exceção: notas de ajuste de CPAP ou relatórios da <b>Pulmonair</b> devem ser emitidas somente pelo Sankhya — a emissão pelo site da Prefeitura ainda está em análise para esses casos.</div>
     `
@@ -799,7 +775,7 @@ const KNOWLEDGE_BASE = [
       <span class="tag">Faturamento</span>
       <h3>Inutilização de Numeração</h3>
       <ol>
-        <li>Ir no <b>Portal de Vendas</b>.</li>
+        <li>Acessar o <b>Portal de Vendas</b>.</li>
         <li>Procurar a nota pelo parceiro ou pelo número da NF.</li>
         <li>Depois de encontrada, clicar na nota e selecionar a aba <b>NF-E</b> na parte de cima do portal.</li>
         <li>Dentro de NF-E, clicar em <b>INUTILIZAÇÃO DE NUMERAÇÃO</b>.</li>
@@ -809,8 +785,8 @@ const KNOWLEDGE_BASE = [
             <li>Data de movimento: dia que a nota foi emitida</li>
             <li>Modelo de documento fiscal: sempre 55</li>
             <li>Série da nota: sempre 1</li>
-            <li>Numeração: o intervalo desejado (ex: 29564 a 29565)</li>
-            <li>Justificativa: descrever o motivo, ex. "notas emitidas erradas" — não existe um padrão fixo de texto</li>
+            <li>Numeração: o intervalo desejado (ex.: 29564 a 29565)</li>
+            <li>Justificativa: descrever o motivo, ex.: "notas emitidas erradas" — não existe um padrão fixo de texto</li>
           </ul>
         </li>
         <li>Clicar em OK.</li>
@@ -869,10 +845,10 @@ const KNOWLEDGE_BASE = [
         <li>Data do pagamento (usar como data de início da locação)</li>
         <li>Natureza: <b>Receita de locação</b> ou <b>Renovação de locação</b></li>
         <li>Centro de Resultado, forma de pagamento, tipo de negociação, tipo de financeiro, tipo de pagamento e forma de contratação</li>
-        <li>Mês de Referência (ex: 01 / Mês de Aplicação) e data de término (se aplicável)</li>
+        <li>Mês de Referência (ex.: 01 / Mês de Aplicação) e data de término (se aplicável)</li>
         <li>Produto locado — a descrição deve sempre começar com a palavra <b>"ATIVO"</b></li>
         <li>TOP para faturamento: <b>1120</b></li>
-        <li>Preço: preencher primeiro o valor <b>mensal</b> para imprimir o contrato. Em planos trimestrais, semestrais, anuais ou CLUBS, depois de imprimir, voltar no campo e trocar pelo <b>valor total</b> do plano</li>
+        <li>Preço: preencher primeiro o valor <b>mensal</b> para imprimir o contrato. Em planos trimestrais, semestrais, anuais ou CLUBS, depois de imprimir, voltar ao campo e trocar pelo <b>valor total</b> do plano</li>
         <li>Série: copiar exatamente como está registrada no Sankhya, com todos os caracteres e espaçamentos</li>
       </ul>
       <p>Depois de preencher tudo, imprimir o contrato e coletar assinatura do <b>cliente</b> (em todas as páginas) e do <b>Representante Comercial</b>.</p>
@@ -908,12 +884,12 @@ const KNOWLEDGE_BASE = [
         <li>Data do pagamento (data de início da locação)</li>
         <li>Natureza: Receita de locação ou Renovação de locação</li>
         <li>Centro de Resultado, forma de pagamento, tipo de negociação, tipo de pagamento, forma de contratação</li>
-        <li>Mês de Referência (ex: 01 / Mês de Aplicação) e data de término (se aplicável)</li>
+        <li>Mês de Referência (ex.: 01 / Mês de Aplicação) e data de término (se aplicável)</li>
         <li>Produto locado — descrição sempre precedida da palavra <b>"ATIVO"</b></li>
         <li>Preço: primeiro o valor mensal para impressão; em planos trimestrais/semestrais/anuais/CLUBS, voltar depois e ajustar para o valor total</li>
         <li>Série: copiada exatamente como está no Sankhya</li>
       </ul>
-      <div class="note">Na renovação normalmente não é preciso reanexar documentos pessoais nem comprovante de residência, já que devem estar no sistema — mas cabe ao Representante Comercial confirmar isso e solicitar o reenvio se estiver faltando.</div>
+      <div class="note">Na renovação, normalmente não é preciso reanexar documentos pessoais nem comprovante de residência, já que devem estar no sistema — mas cabe ao Representante Comercial confirmar isso e solicitar o reenvio se estiver faltando.</div>
       <p>Se o cliente continuar com o mesmo equipamento, verifique se a remessa já foi emitida. Se ainda não tiver sido emitida, ou se houver troca de equipamento, solicite ao Setor Administrativo a emissão da nota de remessa.</p>
       <h3>Finalização</h3>
       <p>Imprimir o contrato, coletar assinatura do cliente (todas as páginas) e do Representante Comercial. Digitalizar de forma legível o contrato completo e o comprovante de pagamento, enviar ao grupo de digitalização para anexação na tela de Contratos. O processo é finalizado quando contrato e remessa estiverem emitidos, assinados e anexados no sistema.</p>
@@ -1010,41 +986,41 @@ const KNOWLEDGE_BASE = [
     keywords: ["assistencia tecnica","assistência técnica","emissao completa","emissão completa",
       "codigo de tributacao","código de tributação","cnbs","nbs","prestador tomador",
       "nota assistencia tecnica higienizacao","nota assistencia tecnica mao de obra","mao de obra","mão de obra",
-      "nota de higienizacao","nota de higienização","120018200","118032900","nbs resmed","codigo nbs","compra governamental","indicador da operacao","indicador da operação","050101","destinatario adquirente","destinatário adquirente","apuracao ibs cbs","apuração ibs cbs","código nbs","mao de obra resmed","mão de obra resmed","emissor nacional","nfse","nfs-e","data de competencia","data de competência",
+      "nota de higienizacao","nota de higienização","120018200","118032900","nbs resmed","codigo nbs","compra governamental","codigo da situacao tributaria","código da situação tributária","classificacao tributaria","classificação tributária","000001","tributacao integral","tributação integral","indicador da operacao","indicador da operação","050101","destinatario adquirente","destinatário adquirente","apuracao ibs cbs","apuração ibs cbs","código nbs","mao de obra resmed","mão de obra resmed","emissor nacional","nfse","nfs-e","data de competencia","data de competência",
       "ibs cbs","issqn","pis cofins csll","valores aproximados dos tributos","descricao do servico","descrição do serviço",
       "valor da operacao","valor da operação","forms assistencia","forms assistência"],
     html: `
       <span class="tag">Faturamento — Serviço</span>
-      <h3>Emissão de Notas Fiscais — Assistência Técnica (Higienização / Mão de Obra)</h3>
+      <h3>Emissão das Notas Fiscais da Assistência — Higienização / Mão de Obra</h3>
 
       <h3>1º passo — Acesso ao portal</h3>
-      <p>Ao acessar o <a href="https://www.nfse.gov.br/EmissorNacional/Login?ReturnUrl=%2fEmissorNacional" target="_blank" rel="noopener">Portal do Emissor Nacional de NFS-e</a>, vá até a barra superior e selecione a opção <b>Emissão Completa</b>.</p>
-      <ul>
-        <li><b>"Preencher as informações de IBS/CBS?"</b> Selecionar sempre <b>SIM</b>.</li>
-        <li><b>Data de competência:</b> refere-se à data em que o serviço foi realizado. Preferencialmente, emitir as notas no mesmo dia em que as solicitações forem encaminhadas.</li>
-      </ul>
+      <ol>
+        <li>Abra o <a href="https://www.nfse.gov.br/EmissorNacional/Login?ReturnUrl=%2fEmissorNacional%2fDashboard" target="_blank" rel="noopener"><b>Portal Nacional</b></a> e, na barra superior, clique em <b>Emissão Completa</b>.</li>
+        <li><b>"Preencher as informações de IBS/CBS?"</b> Responda sempre <b>SIM</b>.</li>
+        <li><b>Data de competência:</b> é o dia em que o serviço foi realizado. Prefira sempre emitir a nota no mesmo dia em que a solicitação for enviada.</li>
+      </ol>
 
       <h3>2º passo — Identificação das partes</h3>
       <p><b>Prestador = nós</b></p>
       <ul>
-        <li>Conferir sempre os dados do emitente, que correspondem ao CNPJ da Assistência Técnica.</li>
-        <li>Não realizar nenhuma alteração nessas informações.</li>
-        <li><b>"A operação se trata de uma compra governamental?"</b> Selecionar sempre <b>NÃO</b>.</li>
+        <li>Confira sempre os dados do emitente (correspondem ao CNPJ da Assistência Técnica).</li>
+        <li>Não altere nada nessas informações.</li>
+        <li><b>"A operação se trata de uma compra governamental?"</b> Selecione sempre <b>NÃO</b>.</li>
       </ul>
       <p><b>Tomador = cliente</b></p>
       <ul>
-        <li>Selecionar o país <b>Brasil</b>.</li>
-        <li>Preencher os dados do cliente: telefone, CPF e e-mail.</li>
+        <li>Selecione o país <b>Brasil</b>.</li>
+        <li>Preencha os dados do cliente: telefone, CPF e e-mail.</li>
       </ul>
       <p><b>Intermediário do serviço</b></p>
       <ul>
-        <li>Não existe intermediário. Portanto, deixar esse campo em branco.</li>
+        <li>Não existe intermediário. Deixe esses campos em branco.</li>
       </ul>
-      <p>Após preencher, clicar em <b>Avançar</b>.</p>
+      <p>Depois de preencher, clique em <b>Avançar</b>.</p>
 
-      <h3>3º passo — Informações para apuração do IBS/CBS</h3>
+      <h3>3º passo — Apuração do IBS/CBS</h3>
       <ul>
-        <li><b>"Para fins de apuração do IBS/CBS, o destinatário é o próprio adquirente?"</b> Selecionar sempre <b>SIM</b>.</li>
+        <li><b>"Para fins de apuração do IBS/CBS, o destinatário é o próprio adquirente?"</b> Selecione sempre <b>SIM</b>.</li>
       </ul>
 
       <h3>4º passo — Dados do serviço</h3>
@@ -1052,27 +1028,27 @@ const KNOWLEDGE_BASE = [
         <li><b>Local do fornecimento / Local de prestação:</b> Rio de Janeiro.</li>
         <li><b>Código de Tributação Nacional:</b> 14.02.01 – Assistência técnica.</li>
         <li><b>Código de Tributação Municipal:</b> 14.02.01.001 – Assistência técnica.</li>
-        <li><b>"O serviço/fornecimento prestado é um caso de imunidade, exportação de serviço ou não incidência do ISSQN?"</b> Selecionar <b>NÃO</b>.</li>
-        <li><b>Código NBS</b> (selecionar de acordo com o serviço realizado):
+        <li><b>"O serviço/fornecimento prestado é um caso de imunidade, exportação de serviço ou não incidência do ISSQN?"</b> Selecione <b>NÃO</b>.</li>
+        <li><b>Código NBS</b> (escolha conforme o serviço realizado):
           <ul>
-            <li><b>118032900:</b> utilizar sempre que o serviço for de <b>higienização</b>.</li>
-            <li><b>120018200:</b> utilizar sempre que o serviço for de <b>mão de obra / ResMed</b>.</li>
+            <li><b>118032900:</b> sempre que for <b>higienização</b>.</li>
+            <li><b>120018200:</b> sempre que for <b>mão de obra / ResMed</b>.</li>
           </ul>
         </li>
         <li><b>Código indicador da operação:</b> 050101 – Serviço prestado fisicamente sobre bem móvel material – estabelecimento do fornecedor.</li>
-        <li><b>Informações complementares:</b> deixar em branco.</li>
+        <li><b>Informações complementares:</b> deixe em branco.</li>
       </ul>
 
       <h3>5º passo — Descrição do serviço/fornecimento</h3>
-      <p>A descrição deve ser preenchida de acordo com o serviço realizado:</p>
+      <p>Preencha de acordo com o serviço realizado:</p>
       <ul>
-        <li><b>Se for higienização:</b> utilizar sempre a seguinte descrição: "FOI REALIZADA A HIGIENIZAÇÃO INTERNA E EXTERNA DO EQUIPAMENTO."</li>
-        <li><b>Se for mão de obra:</b> informar o serviço realizado conforme a descrição registrada no Forms. Caso não exista nenhuma informação sobre o serviço no formulário, solicitar os detalhes à equipe da Assistência Técnica antes de prosseguir.</li>
+        <li><b>Se for higienização:</b> "FOI REALIZADA A HIGIENIZAÇÃO INTERNA E EXTERNA DO EQUIPAMENTO."</li>
+        <li><b>Se for mão de obra:</b> descreva o serviço realizado conforme o que foi escrito no Forms. Se não houver nenhuma descrição, pergunte à Assistência Técnica antes de emitir.</li>
       </ul>
 
       <h3>6º passo — Valor da operação</h3>
-      <p>Informar o valor efetivamente pago pelo cliente.</p>
-      <div class="note">⚠️ <b>Atenção ao valor:</b> sempre consulte a nota de Pedido de Venda de Serviço anexada ao Forms ou verifique diretamente no Sankhya. <b>Não considere o valor informado pela equipe da Assistência Técnica no Forms.</b> O valor correto deve ser confirmado no Pedido de Venda de Serviço ou diretamente no Sankhya.</div>
+      <p>Informe o valor que o cliente efetivamente pagou.</p>
+      <div class="note">⚠️ <b>Atenção ao valor:</b> consulte sempre a nota de Pedido de Venda de Serviço anexada ao Forms ou verifique diretamente no Sankhya. <b>Não considere o valor que a equipe da Assistência Técnica informa no Forms.</b></div>
 
       <h3>7º passo — Tributação municipal</h3>
       <ul>
@@ -1083,17 +1059,23 @@ const KNOWLEDGE_BASE = [
 
       <h3>8º passo — Tributação federal</h3>
       <ul>
-        <li><b>Tributação Federal – PIS/COFINS:</b> selecionar <b>Nenhum</b>.</li>
-        <li><b>Tributação Federal – PIS/COFINS/CSLL:</b> selecionar <b>Não retidos</b>.</li>
+        <li><b>Tributação Federal – PIS/COFINS:</b> selecione <b>Nenhum</b>.</li>
+        <li><b>Tributação Federal – PIS/COFINS/CSLL:</b> selecione <b>Não retidos</b>.</li>
       </ul>
 
-      <h3>9º passo — Valores aproximados dos tributos</h3>
+      <h3>9º passo — Situação e classificação tributária (IBS/CBS)</h3>
       <ul>
-        <li><b>Tributos municipais:</b> o valor aproximado está disponível na própria página, um pouco acima, no campo <b>Valor ISSQN</b>. Utilizar esse valor no preenchimento.</li>
-        <li><b>Tributos federais e estaduais:</b> preencher ambos com R$ 0,00.</li>
+        <li><b>Código da situação tributária:</b> Tributação integral.</li>
+        <li><b>Código de classificação tributária:</b> 000001 – Situações tributadas integralmente pelo IBS e CBS.</li>
       </ul>
 
-      <div class="note">⚠️ <b>Importante:</b> antes de finalizar a emissão, confira todos os dados preenchidos, principalmente os dados do cliente, a descrição do serviço, o código NBS e o valor da operação.</div>
+      <h3>10º passo — Valores aproximados dos tributos</h3>
+      <ul>
+        <li><b>Tributos municipais:</b> o valor aparece na própria página, um pouco acima, no campo <b>Valor ISSQN</b>. Utilize esse valor.</li>
+        <li><b>Tributos federais e estaduais:</b> preencha com R$ 0,00.</li>
+      </ul>
+
+      <div class="note">⚠️ <b>Antes de emitir:</b> confira os dados do cliente, a descrição do serviço, o código NBS e, principalmente, o valor da operação.</div>
     `
   },
   {
@@ -1138,10 +1120,10 @@ const KNOWLEDGE_BASE = [
       <div class="note">Como contamos os meses: cada mês do plano "fecha" sempre no mesmo dia do mês de início. Exemplo: se o plano começou em 15/01, o 1º mês fecha em 15/02, o 2º em 15/03, e assim por diante. Se a data de finalização já alcançou esse dia no mês, o mês conta inteiro; se for antes, esse último mês não entra na contagem.</div>
       <div class="mini-calc">
         <label>Plano de quantos meses?
-          <input type="number" class="c-meses-plano" min="1" placeholder="Ex: 12">
+          <input type="number" class="c-meses-plano" min="1" placeholder="Ex.: 12">
         </label>
         <label>Valor total do plano (R$)
-          <input type="text" class="c-valor-total" placeholder="Ex: 1200,00">
+          <input type="text" class="c-valor-total" placeholder="Ex.: 1200,00">
         </label>
         <label>O plano iniciou em qual data?
           <input type="date" class="c-data-inicio">
@@ -1287,19 +1269,19 @@ const KNOWLEDGE_BASE = [
       <p>Preencha os dados abaixo — o valor total é calculado automaticamente (dias úteis × valor diário informado) e já sai por extenso no recibo. Ao clicar em Gerar, o PDF é baixado no modelo oficial da Oxigenar.</p>
       <div class="mini-calc">
         <label>Nome completo do funcionário
-          <input type="text" class="vt-nome" placeholder="Ex: João da Silva">
+          <input type="text" class="vt-nome" placeholder="Ex.: João da Silva">
         </label>
         <label>CPF do funcionário
-          <input type="text" class="vt-cpf" placeholder="Ex: 691.017.937-48">
+          <input type="text" class="vt-cpf" placeholder="Ex.: 691.017.937-48">
         </label>
         <label>Mês de referência (do transporte)
           <input type="month" class="vt-mes">
         </label>
         <label>Quantos dias úteis o funcionário trabalhou no mês?
-          <input type="number" class="vt-dias" min="1" placeholder="Ex: 25">
+          <input type="number" class="vt-dias" min="1" placeholder="Ex.: 25">
         </label>
         <label>Valor diário gasto com transporte (R$)
-          <input type="text" class="vt-valor-diario" placeholder="Ex: 11,80">
+          <input type="text" class="vt-valor-diario" placeholder="Ex.: 11,80">
         </label>
         <label>Cidade
           <input type="text" class="vt-cidade" value="Volta Redonda">
@@ -1647,7 +1629,7 @@ const ONLY_THIS_PATTERNS = ["so isso","só isso","e so isso","é só isso","isso
 
 /* Variações de resposta, pra soar mais natural e menos repetitivo */
 const GREETING_REPLIES = [
-  "Oi! Eu sou o Oxibot ADM 🤖 Pode perguntar sobre qualquer processo de faturamento, contratos ou movimentações no Sankhya.",
+  "Oi! Eu sou o OXIBOT ADM 🤖 Pode perguntar sobre qualquer processo de faturamento, contratos ou movimentações no Sankhya.",
   "Olá! Fico por aqui pra ajudar com os processos do Faturamento. Pode perguntar à vontade.",
   "Oi, tudo bem? Me conta qual processo você precisa (locação, venda, transferência, bonificação...) que eu te explico o passo a passo."
 ];
@@ -1690,7 +1672,7 @@ function levenshtein(a, b){
     for(let j = 1; j <= bl; j++){
       const custo = a[i-1] === b[j-1] ? 0 : 1;
       d[i][j] = Math.min(d[i-1][j] + 1, d[i][j-1] + 1, d[i-1][j-1] + custo);
-      // letras trocadas de lugar (ex: "bonifiacao") contam como um erro só
+      // letras trocadas de lugar (ex.: "bonifiacao") contam como um erro só
       if(i > 1 && j > 1 && a[i-1] === b[j-2] && a[i-2] === b[j-1]){
         d[i][j] = Math.min(d[i][j], d[i-2][j-2] + 1);
       }
@@ -1707,7 +1689,7 @@ function limiteErroDigitacao(len){
 function palavraAproximada(palavrasDaBusca, palavraAlvo){
   const limite = limiteErroDigitacao(palavraAlvo.length);
   for(const w of palavrasDaBusca){
-    // palavra digitada pela metade (ex: "bonific", "recolh")
+    // palavra digitada pela metade (ex.: "bonific", "recolh")
     if(w.length >= 5 && palavraAlvo.length > w.length && palavraAlvo.startsWith(w)) return true;
     if(Math.abs(w.length - palavraAlvo.length) <= limite && levenshtein(w, palavraAlvo) <= limite){
       return true;
@@ -1749,7 +1731,7 @@ function scoreEntry(entry, queryNorm){
     }
   }
 
-  // Palavras coladas ou separadas por engano (ex: "notafiscal", "bonifi cacao")
+  // Palavras coladas ou separadas por engano (ex.: "notafiscal", "bonifi cacao")
   const querySemEspaco = queryNorm.replace(/ /g, "");
   for(const kw of entry.keywords){
     const kwSem = normalize(kw).replace(/ /g, "");
@@ -1893,6 +1875,32 @@ function renderTopics(){
 }
 renderTopics();
 
+/* Busca nos temas da lateral */
+document.getElementById("topicSearch").addEventListener("input", e=>{
+  const q = normalize(e.target.value);
+  const corr = q ? corrigirConsulta(q).texto : "";
+  const fuzzy = new Set(q ? findAnswer(corr).map(x => x.entry.id) : []);
+  let algum = false;
+  const itens = [...topicsInner.children];
+  let tituloAtual = null, visiveisNoGrupo = 0;
+  const fecharGrupo = ()=>{ if(tituloAtual) tituloAtual.style.display = (!q || visiveisNoGrupo) ? "" : "none"; };
+  itens.forEach(el=>{
+    if(el.tagName === "H2"){ fecharGrupo(); tituloAtual = el; visiveisNoGrupo = 0; return; }
+    if(!el.classList.contains("side-btn")) return;
+    const entry = KNOWLEDGE_BASE.find(x => x.id === el.dataset.id);
+    const texto = normalize(entry.title + " " + entry.keywords.join(" "));
+    const ok = !q || texto.includes(q) || fuzzy.has(entry.id);
+    el.style.display = ok ? "" : "none";
+    if(ok){ visiveisNoGrupo++; algum = true; }
+  });
+  fecharGrupo();
+  let vazio = document.getElementById("sideEmpty");
+  if(!algum){
+    if(!vazio){ vazio = document.createElement("div"); vazio.id = "sideEmpty"; vazio.className = "side-empty"; topicsInner.appendChild(vazio); }
+    vazio.textContent = "Nenhum tema encontrado para essa busca.";
+  } else if(vazio){ vazio.remove(); }
+});
+
 function setActiveTopic(entryId){
   document.querySelectorAll(".side-btn").forEach(btn=>{
     btn.classList.toggle("active", btn.dataset.id === entryId);
@@ -1921,10 +1929,10 @@ function addUserMsg(text){
 function addBotBubble(innerHtml, kind){
   const row = document.createElement("div");
   row.className = "row " + (kind || "bot");
-  row.innerHTML = `<img class="mini-avatar" src="${AVATAR_DATA}" alt="Oxibot ADM">
+  row.innerHTML = `<img class="mini-avatar" src="${AVATAR_DATA}" alt="OXIBOT ADM">
     <div class="bubble-wrap">
       <div class="bubble">${innerHtml}</div>
-      <div class="timestamp">Oxibot ADM · ${timeNow()}</div>
+      <div class="timestamp">OXIBOT ADM · ${timeNow()}</div>
     </div>`;
   messagesEl.appendChild(row);
   initSignaturePads(row);
@@ -1943,7 +1951,60 @@ function initSuggestButtons(container){
   });
 }
 
-function greetingReply(){ addBotBubble(pick(GREETING_REPLIES)); }
+/* ---- Temas em destaque, sugestões e interações ---- */
+const TEMAS_POPULARES = ["venda-por-encomenda","bonificacoes","locacao-equipamentos-pop","emissao-nf-b2b",
+  "faturamento-diario-contratos","calculadora-rompimento-plano","gerador-recibo-vale-transporte","higienizacao"];
+
+function chipsTemas(ids){
+  const botoes = ids.map(id => KNOWLEDGE_BASE.find(e => e.id === id)).filter(Boolean).map(e =>
+    `<button type="button" class="suggest-btn" data-id="${e.id}">${escapeHtml(e.title)}</button>`).join("");
+  return `<div class="suggest-list">${botoes}</div>`;
+}
+
+/* Temas mais próximos do que foi digitado (mesmo com pontuação baixa); completa com os populares */
+function temasSugeridos(qNorm, max){
+  const corr = corrigirConsulta(qNorm).texto;
+  const ids = KNOWLEDGE_BASE.map(e => scoreEntry(e, corr)).filter(x => x.total > 0)
+    .sort((a,b)=>b.total-a.total).map(x => x.entry.id);
+  sugestoesParecidas(qNorm).forEach(x => { if(!ids.includes(x.entry.id)) ids.push(x.entry.id); });
+  TEMAS_POPULARES.forEach(id => { if(!ids.includes(id)) ids.push(id); });
+  return ids.slice(0, max);
+}
+
+/* Temas relacionados a um assunto (palavras em comum nas palavras-chave) */
+function temasRelacionados(entry, max){
+  const pal = e => new Set(e.keywords.flatMap(k => normalize(k).split(" ")).filter(w => w.length > 3 && !STOPWORDS.has(w) && !PALAVRAS_GENERICAS.has(w)));
+  const base = pal(entry);
+  return KNOWLEDGE_BASE.filter(e => e.id !== entry.id).map(e => {
+    let comuns = 0; pal(e).forEach(w => { if(base.has(w)) comuns++; });
+    return { e, comuns: comuns + (e.category === entry.category ? 0.5 : 0) };
+  }).filter(x => x.comuns >= 1).sort((a,b)=>b.comuns-a.comuns).slice(0, max).map(x => x.e.id);
+}
+
+function addFollowUps(entry){
+  const rows = messagesEl.querySelectorAll(".row.bot");
+  const last = rows[rows.length - 1];
+  if(!last) return;
+  const wrap = last.querySelector(".bubble-wrap");
+  const rel = temasRelacionados(entry, 2).map(id => KNOWLEDGE_BASE.find(e => e.id === id));
+  const box = document.createElement("div");
+  box.className = "followup";
+  box.innerHTML = `<button type="button" class="action-chip" data-act="ok">👍 Ajudou</button>
+    <button type="button" class="action-chip" data-act="again">🔄 Explicar de outro jeito</button>` +
+    (rel.length ? `<span class="lbl">Ver também:</span>` + rel.map(e => `<button type="button" class="action-chip" data-id="${e.id}">${escapeHtml(e.title)}</button>`).join("") : "");
+  wrap.appendChild(box);
+  box.querySelectorAll(".action-chip").forEach(btn => btn.addEventListener("click", ()=>{
+    const act = btn.dataset.act;
+    if(act === "ok"){ box.remove(); addBotBubble(pick(THANKS_REPLIES)); }
+    else if(act === "again"){ box.remove(); ask("não entendi"); }
+    else { const en = KNOWLEDGE_BASE.find(e => e.id === btn.dataset.id); if(en){ box.remove(); ask(en.title); } }
+  }));
+  scrollDown();
+}
+
+function greetingReply(){
+  addBotBubble(pick(GREETING_REPLIES) + `<p class="fuzzy-note" style="margin-top:10px">Comece por aqui ou digite sua dúvida:</p>` + chipsTemas(TEMAS_POPULARES.slice(0,6)));
+}
 function thanksReply(){ addBotBubble(pick(THANKS_REPLIES)); }
 function onlyThisReply(){ addBotBubble(pick(ONLY_THIS_REPLIES)); }
 
@@ -1952,7 +2013,7 @@ function confusionReply(){
     const content = explicarDeOutroJeito(lastEntry);
     addBotBubble(`<span class="rephrase-tag">Explicando de outro jeito</span><br>${content}`);
   } else {
-    addBotBubble("Sem problema! Me diz qual processo você quer entender (ex: locação, venda, transferência, bonificação) que eu explico com calma. Também dá pra abrir a lista de processos no menu ☰.");
+    addBotBubble("Sem problema! Me diz qual processo você quer entender (ex.: locação, venda, transferência, bonificação) que eu explico com calma. Também dá pra abrir a lista de processos no menu ☰.");
   }
 }
 
@@ -1964,22 +2025,25 @@ function suggestOptions(candidatos, query){
 }
 
 function missReply(query){
+  const sugestoes = chipsTemas(temasSugeridos(normalize(query), 4));
   const row = document.createElement("div");
   row.className = "row miss";
-  row.innerHTML = `<img class="mini-avatar" src="${AVATAR_DATA}" alt="Oxibot ADM">
+  row.innerHTML = `<img class="mini-avatar" src="${AVATAR_DATA}" alt="OXIBOT ADM">
     <div class="bubble-wrap">
       <div class="bubble">Hmm, ainda não sei responder essa pergunta. :(<br>
-        Peça a Polly para incluir na minha base de dados essa informação.</div>
-      <div class="timestamp">Oxibot ADM · ${timeNow()}</div>
+        Peça a Polly para incluir na minha base de dados essa informação.
+        <div style="margin-top:10px;font-size:.82rem">Enquanto isso, talvez ajude um destes temas:</div>${sugestoes}</div>
+      <div class="timestamp">OXIBOT ADM · ${timeNow()}</div>
     </div>`;
   messagesEl.appendChild(row);
+  initSuggestButtons(row);
   scrollDown();
 }
 
 function showTyping(){
   const row = document.createElement("div");
   row.className = "row bot typing-row";
-  row.innerHTML = `<img class="mini-avatar" src="${AVATAR_DATA}" alt="Oxibot ADM">
+  row.innerHTML = `<img class="mini-avatar" src="${AVATAR_DATA}" alt="OXIBOT ADM">
     <div class="bubble-wrap"><div class="bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div></div>`;
   messagesEl.appendChild(row);
   scrollDown();
@@ -2028,6 +2092,7 @@ function ask(query){
         ? `<p class="fuzzy-note">Entendi como <b>"${escapeHtml(top.entry.title)}"</b> — se não for isso, me diga.</p>`
         : "";
       addBotBubble(avisoTroca + avisoCorrecao + top.entry.html);
+      addFollowUps(top.entry);
     } else if(top.total >= 0.6){
       setActiveTopic(null);
       suggestOptions(candidatos.slice(0, 3), query);
@@ -2039,11 +2104,50 @@ function ask(query){
   }, 450);
 }
 
-formEl.addEventListener("submit", e=>{ e.preventDefault(); ask(inputEl.value); });
+const liveEl = document.getElementById("liveSuggest");
+function esconderLive(){ liveEl.classList.remove("show"); liveEl.innerHTML = ""; }
+inputEl.addEventListener("input", ()=>{
+  const q = normalize(inputEl.value);
+  if(q.length < 2){ esconderLive(); return; }
+  const corr = corrigirConsulta(q).texto;
+  const ids = findAnswer(corr).slice(0, 4).map(x => x.entry.id);
+  if(!ids.length){ esconderLive(); return; }
+  liveEl.innerHTML = `<span class="lbl">Sugestões:</span>` + chipsTemas(ids).replace('<div class="suggest-list">','').replace(/<\/div>$/,'');
+  liveEl.classList.add("show");
+  initSuggestButtons(liveEl);
+});
+liveEl.addEventListener("click", e=>{ if(e.target.closest(".suggest-btn")) esconderLive(); });
+
+formEl.addEventListener("submit", e=>{ e.preventDefault(); esconderLive(); ask(inputEl.value); });
+
+document.getElementById("clearBtn").addEventListener("click", ()=>{
+  messagesEl.innerHTML = "";
+  lastEntry = null;
+  setActiveTopic(null);
+  esconderLive();
+  inputEl.value = "";
+  greetingReply();
+});
+
+/* Tema claro/escuro (a preferência é lembrada neste navegador, se possível) */
+const themeBtn = document.getElementById("themeBtn");
+function aplicarTema(t){
+  document.documentElement.setAttribute("data-theme", t);
+  themeBtn.textContent = t === "dark" ? "☀️" : "🌙";
+}
+let temaInicial = "light";
+try { temaInicial = localStorage.getItem("oxibot-adm-tema") || "light"; } catch(e){}
+aplicarTema(temaInicial);
+themeBtn.addEventListener("click", ()=>{
+  const novo = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  aplicarTema(novo);
+  try { localStorage.setItem("oxibot-adm-tema", novo); } catch(e){}
+});
 
 /* >>> Atualize esta data sempre que o conteúdo do bot for alterado <<< */
 const DATA_ATUALIZACAO = "10/11/2026";
-document.getElementById("lastUpdate").textContent = "Atualizado em " + DATA_ATUALIZACAO;
+document.getElementById("lastUpdate").textContent = "Última atualização: " + DATA_ATUALIZACAO;
+document.getElementById("lastUpdateSide").textContent = DATA_ATUALIZACAO;
 
 greetingReply();
 </script>
