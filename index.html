@@ -194,6 +194,7 @@
     color:var(--ink-soft);
     margin-top:2px;
   }
+  .updated{font-size:.7rem;color:var(--ink-soft);opacity:.75;margin-top:2px;letter-spacing:.2px;}
   .status .dot{width:7px;height:7px;border-radius:50%; background:var(--teal); box-shadow:0 0 6px var(--teal); display:inline-block;}
 
   .messages{
@@ -394,6 +395,7 @@
       <div class="header-text">
         <h1>Oxibot ADM</h1>
         <div class="status"><span class="dot"></span> online · Faturamento, contratos e movimentações no Sankhya</div>
+        <div class="updated" id="lastUpdate"></div>
       </div>
     </header>
 
@@ -516,7 +518,25 @@ const KNOWLEDGE_BASE = [
         <li>O cabeçalho da nota já virá preenchido com as informações inseridas no pedido de venda, e o equipamento aparecerá na aba de produtos — faltando apenas informar o número de série.</li>
         <li>Inserir o número de série, conferir os dados e confirmar a nota.</li>
       </ol>
+      <div class="note">⚠️ <b>Atenção na retirada:</b> confira se o documento apresentado corresponde ao da pessoa que realizou o pagamento. Se forem pessoas diferentes, solicite um documento que comprove o parentesco entre elas. Em caso de divergência, não prossiga: sinalize e peça orientação. Veja também <b>Conferência de Vendas via Link e por Encomenda</b>.</div>
       <div class="note">Caso o cliente fique com um equipamento provisório enquanto aguarda a chegada do encomendado, é necessário emitir contrato e remessa para esse equipamento provisório. Para o passo a passo completo, consulte o processo de Locação de Equipamentos.</div>
+    `
+  },
+  {
+    id: "conferencia-link-encomenda",
+    title: "Conferência de Vendas via Link e por Encomenda",
+    keywords: ["conferencia de vendas","conferência de vendas","venda via link","link de pagamento","venda por link",
+      "documento de identificacao","documento de identificação","documento do cliente","golpe","golpes","fraude",
+      "parentesco","retirada de encomenda","documento na retirada","conferir documento","seguranca das operacoes",
+      "segurança das operações","divergencia","divergência","documento anexado"],
+    html: `
+      <span class="tag">Faturamento — Segurança</span>
+      <h3>Atenção à conferência de vendas via link e vendas por encomenda</h3>
+      <h3>Vendas via link de pagamento</h3>
+      <p>Em <b>todas</b> as vendas realizadas via link de pagamento, é obrigatório verificar se o <b>documento de identificação do cliente</b> está devidamente anexado.</p>
+      <h3>Vendas por encomenda</h3>
+      <p>Conferir se o documento apresentado no momento da retirada corresponde ao da <b>pessoa que realizou o pagamento</b>. Caso sejam pessoas diferentes, é necessário solicitar um <b>documento que comprove o parentesco</b> entre elas.</p>
+      <div class="note">⚠️ Essa conferência é indispensável para prevenir possíveis golpes e garantir a segurança das operações. Em caso de divergências, <b>não prossiga com o processo</b> antes de sinalizar e solicitar orientação.</div>
     `
   },
   {
@@ -633,7 +653,7 @@ const KNOWLEDGE_BASE = [
     id: "higienizacao",
     title: "Processo de Higienização",
     keywords: ["higienizacao","higienização","limpeza do equipamento","top 1004","top 2515",
-      "pedido de venda servico","pedido de venda serviço","pedido de assistencia","pedido de assistência",
+      "pedido de venda servico","pedido de venda serviço",
       "portal de compras","ativar fornecedor","tela de parceiros higienizacao","tela de parceiros higienização"],
     html: `
       <span class="tag">Processo completo</span>
@@ -661,11 +681,66 @@ const KNOWLEDGE_BASE = [
         <li>Comprador: Anderson / sem vendedor</li>
         <li>Produto: nome do produto inserido</li>
       </ul>
-      <h3>4. Pedido de Assistência</h3>
-      <p>Produto: CLIENTE + equipamento informado. Quantidade conforme informado. No campo valor, informar o valor de venda do equipamento. Confirmar a nota.</p>
-      <h3>5. Transferência para a Assistência Técnica</h3>
+      <h3>4. Transferência para a Assistência Técnica</h3>
       <p>Finaliza o processo transferindo o equipamento da unidade para a assistência técnica.</p>
       <div class="note">Se o cliente ficar com algum equipamento enquanto o dele está em higienização, fazer contrato e remessa normalmente.</div>
+    `
+  },
+  {
+    id: "equipamento-garantia-assistencia",
+    title: "Equipamento em Garantia ou Fora da Garantia (Assistência Técnica)",
+    keywords: ["garantia","fora da garantia","equipamento em garantia","assistencia tecnica","assistência técnica","resmed","philips",
+      "conserto","entrada de equipamento para conserto","top 2515","equipamento com defeito","equipamento com problema",
+      "enviar para assistencia","enviar para assistência","habilitar fornecedor","cliente como fornecedor","equipamento fora do estado",
+      "equipamento pulmonair assistencia","equipamento pulmonair assistência","comprado na oxigenar","comprado com a oxigenar"],
+    html: `
+      <span class="tag">Assistência Técnica</span>
+      <h3>Equipamento em Garantia ou Fora da Garantia — Entrada no Sistema</h3>
+      <p><b>Quando utilizar:</b> quando recebermos a solicitação de um equipamento que apresente algum tipo de problema, esteja ele dentro ou fora do período de garantia.</p>
+      <h3>Quais equipamentos aceitamos</h3>
+      <ul>
+        <li><b>ResMed:</b> aceitamos equipamentos comprados ou não conosco.</li>
+        <li><b>Philips:</b> aceitamos somente equipamentos comprados com a Oxigenar.</li>
+      </ul>
+      <p>Antes de encaminhar o equipamento para a assistência técnica, é necessário incluí-lo no sistema, usando o Portal de Compras, conforme as etapas abaixo.</p>
+      <h3>1. Habilitar o cliente como fornecedor</h3>
+      <ol>
+        <li>Acesse a tela de <b>Parceiros</b>.</li>
+        <li>Consulte o cadastro do cliente.</li>
+        <li>No campo <b>Tipo</b>, onde já está selecionada a opção "Cliente", habilite também a opção <b>Fornecedor</b>.</li>
+      </ol>
+      <h3>2. Incluir o equipamento no sistema</h3>
+      <ol>
+        <li>Acesse o <b>Portal de Compras</b>.</li>
+        <li>Selecione a <b>TOP 2515 – Entrada de Equipamento para Conserto</b>.</li>
+        <li>Será aberta a tela da Central de Compras.</li>
+      </ol>
+      <p><b>Preenchimento do cabeçalho:</b></p>
+      <ul>
+        <li>Parceiro: nome do cliente</li>
+        <li>Tipo de negociação: 47</li>
+        <li>Empresa: preencher conforme a orientação do processo</li>
+        <li>Série: 1</li>
+        <li>Comprador: sem vendedor</li>
+        <li>Centro de Resultado: preencher conforme a orientação do processo</li>
+      </ul>
+      <p><b>Preenchimento dos itens:</b></p>
+      <ul>
+        <li>Produto: selecionar "Cliente" e, em seguida, o produto alugado</li>
+        <li>Quantidade: informar a quantidade de equipamentos que serão incluídos no sistema</li>
+        <li>Valor unitário: informar o valor de venda do equipamento</li>
+      </ul>
+      <p>Depois de conferir todas as informações, confirme a operação.</p>
+      <h3>3. Enviar a documentação para assinatura</h3>
+      <ol>
+        <li>Salve o documento gerado em PDF.</li>
+        <li>Encaminhe o PDF ao representante responsável.</li>
+        <li>Peça que o representante imprima o documento, colete a assinatura do cliente e depois faça a digitalização.</li>
+        <li>Concluída essa etapa, o equipamento poderá seguir para a transferência à assistência técnica, conforme o fluxo responsável.</li>
+      </ol>
+      <h3>4. Observações importantes</h3>
+      <div class="note"><b>Equipamentos Oxigenar fora do estado:</b> antes de realizar o procedimento, consulte o Anderson para receber as orientações necessárias.</div>
+      <div class="note"><b>Equipamentos Pulmonair:</b> o Administrativo realiza apenas a inclusão do equipamento no sistema, por meio do Portal de Compras. Depois, o representante deve procurar o Anderson, que dará continuidade à transferência do equipamento para a assistência técnica.</div>
     `
   },
   {
@@ -686,7 +761,7 @@ const KNOWLEDGE_BASE = [
     id: "nf-prefeitura",
     title: "Emissão de NF na Prefeitura (Volta Redonda)",
     keywords: ["prefeitura","simplissweb","nota da prefeitura","ajuste de cpap","leitura de relatorio",
-      "leitura de relatório","cnae","nota de servico","nota de serviço"],
+      "leitura de relatório","cnae","nota de servico","nota de serviço","ibs","cbs","ibscbs","nbs","cst","classificacao tributaria","classificação tributária","indicador de operacao","indicador de operação"],
     html: `
       <span class="tag">Faturamento — Serviço</span>
       <h3>Emissão de NF na Prefeitura</h3>
@@ -701,6 +776,16 @@ const KNOWLEDGE_BASE = [
         <li>Dados do tomador: CPF, nome, endereço, CEP, e-mail</li>
         <li>Valor</li>
       </ul>
+      <h3>Aba IBS/CBS</h3>
+      <p>Na tela da nota, role até a seção <b>IBSCBS</b> e preencha assim:</p>
+      <ul>
+        <li><b>NBS:</b> 115013000 — Serviços de suporte em tecnologia da informação</li>
+        <li><b>CST:</b> 000 — Tributação integral</li>
+        <li><b>Classificação tributária:</b> 000001 — Situações tributadas integralmente pelo IBS e CBS</li>
+        <li><b>Indicador de operação:</b> 050101</li>
+        <li><b>Valor da base de cálculo:</b> preenchido automaticamente com o valor da nota (campo bloqueado, não precisa digitar)</li>
+      </ul>
+      <p>As alíquotas aparecem sozinhas na tabela abaixo: CBS 0,90%, IBS Estadual 0,10% e IBS Municipal 0,00%, todas com redução de 0,00%. Só confira se estão iguais.</p>
       <p>Depois: conferir → emitir → enviar por e-mail. Ao final, salvar a nota em PDF e enviar ao representante.</p>
       <div class="note">Exceção: notas de ajuste de CPAP ou relatórios da <b>Pulmonair</b> devem ser emitidas somente pelo Sankhya — a emissão pelo site da Prefeitura ainda está em análise para esses casos.</div>
     `
@@ -764,6 +849,7 @@ const KNOWLEDGE_BASE = [
           Ex.: CPAP + filtro bonificado → fazer uma única nota de venda, ajustando os valores.</li>
       </ul>
       <div class="note">O valor do item bonificado deve ser o mesmo valor de venda, salvo exceções.</div>
+      <div class="note">⚠️ Analise sempre se a solicitação está dentro das condições comerciais autorizadas. Máscara vendida + máscara bonificada, ou bonificação pedida em data diferente da contratação do plano, devem ser questionadas e reportadas ao Luiz. Veja <b>Atenção às Solicitações de Bonificação</b>.</div>
     `
   },
   {
@@ -834,6 +920,26 @@ const KNOWLEDGE_BASE = [
     `
   },
   {
+    id: "atencao-solicitacoes-bonificacao",
+    title: "Atenção às Solicitações de Bonificação",
+    keywords: ["atencao bonificacao","atenção bonificação","analisar bonificacao","analisar bonificação","solicitacao de bonificacao",
+      "solicitação de bonificação","bonificacao suspeita","bonificação suspeita","bonificacao fora do padrao","bonificação fora do padrão",
+      "mascara mais mascara","máscara mais máscara","bonificacao de mascara","bonificação de máscara","bonificacao semestral",
+      "bonificação semestral","plano semestral bonificacao","condicoes comerciais","condições comerciais","reportar ao luiz","luiz"],
+    html: `
+      <span class="tag">Faturamento — Atenção</span>
+      <h3>Atenção às solicitações de bonificação</h3>
+      <p>As solicitações de bonificação devem ser analisadas com atenção pelo Administrativo, verificando se estão de acordo com as <b>condições comerciais autorizadas</b>.</p>
+      <p>As bonificações previstas para os <b>planos semestrais</b> devem ser usadas como recurso de negociação em situações específicas e mais difíceis, <b>não devendo se tornar uma prática recorrente</b>.</p>
+      <h3>Pontos que exigem atenção</h3>
+      <ul>
+        <li><b>Venda de máscara + bonificação de máscara:</b> essa combinação não é habitual e deve ser questionada e reportada ao <b>Luiz</b>.</li>
+        <li><b>Bonificação em data diferente da contratação do plano:</b> por exemplo, um plano anual contratado em 05/10, com a bonificação solicitada somente em 14/10. Situações como essa devem ser sinalizadas e verificadas.</li>
+      </ul>
+      <div class="note">⚠️ Sempre que identificar alguma situação fora do padrão, questione o representante responsável e, se necessário, <b>interrompa a solicitação</b> até receber a devida orientação. Em caso de dúvidas ou situações suspeitas, reporte ao <b>Luiz</b> antes de dar continuidade ao processo.</div>
+    `
+  },
+  {
     id: "processo-emissao-bonificacao",
     title: "Emissão da Nota Fiscal de Bonificação",
     keywords: ["nota de bonificacao","nota de bonificação","emitir bonificacao","emitir bonificação",
@@ -900,30 +1006,94 @@ const KNOWLEDGE_BASE = [
   },
   {
     id: "nf-assistencia-tecnica-higienizacao-portal",
-    title: "Emissão de Notas da Assistência Técnica (Higienização)",
+    title: "Emissão de Notas da Assistência Técnica (Higienização / Mão de Obra)",
     keywords: ["assistencia tecnica","assistência técnica","emissao completa","emissão completa",
       "codigo de tributacao","código de tributação","cnbs","nbs","prestador tomador",
-      "nota assistencia tecnica higienizacao"],
+      "nota assistencia tecnica higienizacao","nota assistencia tecnica mao de obra","mao de obra","mão de obra",
+      "nota de higienizacao","nota de higienização","120018200","118032900","nbs resmed","codigo nbs","compra governamental","indicador da operacao","indicador da operação","050101","destinatario adquirente","destinatário adquirente","apuracao ibs cbs","apuração ibs cbs","código nbs","mao de obra resmed","mão de obra resmed","emissor nacional","nfse","nfs-e","data de competencia","data de competência",
+      "ibs cbs","issqn","pis cofins csll","valores aproximados dos tributos","descricao do servico","descrição do serviço",
+      "valor da operacao","valor da operação","forms assistencia","forms assistência"],
     html: `
       <span class="tag">Faturamento — Serviço</span>
-      <h3>Emissão das Notas da Assistência Técnica — Higienização</h3>
-      <ol>
-        <li>Abrir o <a href="https://www.nfse.gov.br/EmissorNacional/Login?ReturnUrl=%2fEmissorNacional" target="_blank" rel="noopener">Portal do Emissor Nacional de NFS-e</a> e clicar em <b>Emissão completa</b>, na barra superior.</li>
-        <li><b>Data de competência:</b> dia em que o serviço foi realizado — preferir sempre emitir a nota no mesmo dia da solicitação.</li>
-        <li><b>Prestador:</b> Oxigenar — conferir sempre os dados do emitente (CNPJ da assistência técnica).</li>
-        <li><b>Tomador:</b> o cliente — selecionar Brasil e preencher telefone, CPF e e-mail do cliente.</li>
-        <li><b>Intermediário do serviço:</b> não existe — deixar em branco.</li>
-        <li>Avançar.</li>
+      <h3>Emissão de Notas Fiscais — Assistência Técnica (Higienização / Mão de Obra)</h3>
+
+      <h3>1º passo — Acesso ao portal</h3>
+      <p>Ao acessar o <a href="https://www.nfse.gov.br/EmissorNacional/Login?ReturnUrl=%2fEmissorNacional" target="_blank" rel="noopener">Portal do Emissor Nacional de NFS-e</a>, vá até a barra superior e selecione a opção <b>Emissão Completa</b>.</p>
+      <ul>
+        <li><b>"Preencher as informações de IBS/CBS?"</b> Selecionar sempre <b>SIM</b>.</li>
+        <li><b>Data de competência:</b> refere-se à data em que o serviço foi realizado. Preferencialmente, emitir as notas no mesmo dia em que as solicitações forem encaminhadas.</li>
+      </ul>
+
+      <h3>2º passo — Identificação das partes</h3>
+      <p><b>Prestador = nós</b></p>
+      <ul>
+        <li>Conferir sempre os dados do emitente, que correspondem ao CNPJ da Assistência Técnica.</li>
+        <li>Não realizar nenhuma alteração nessas informações.</li>
+        <li><b>"A operação se trata de uma compra governamental?"</b> Selecionar sempre <b>NÃO</b>.</li>
+      </ul>
+      <p><b>Tomador = cliente</b></p>
+      <ul>
+        <li>Selecionar o país <b>Brasil</b>.</li>
+        <li>Preencher os dados do cliente: telefone, CPF e e-mail.</li>
+      </ul>
+      <p><b>Intermediário do serviço</b></p>
+      <ul>
+        <li>Não existe intermediário. Portanto, deixar esse campo em branco.</li>
+      </ul>
+      <p>Após preencher, clicar em <b>Avançar</b>.</p>
+
+      <h3>3º passo — Informações para apuração do IBS/CBS</h3>
+      <ul>
+        <li><b>"Para fins de apuração do IBS/CBS, o destinatário é o próprio adquirente?"</b> Selecionar sempre <b>SIM</b>.</li>
+      </ul>
+
+      <h3>4º passo — Dados do serviço</h3>
+      <ul>
+        <li><b>Local do fornecimento / Local de prestação:</b> Rio de Janeiro.</li>
         <li><b>Código de Tributação Nacional:</b> 14.02.01 – Assistência técnica.</li>
         <li><b>Código de Tributação Municipal:</b> 14.02.01.001 – Assistência técnica.</li>
-        <li><b>"Serviço prestado é um caso de...?":</b> sempre marcar Não.</li>
-        <li><b>Código NBS:</b> 118032900 (sempre que for higienização).</li>
-        <li><b>Informações complementares:</b> não preencher.</li>
-        <li><b>Tributação Municipal:</b> sempre Não / Nenhum.</li>
-        <li><b>Tributação Federal PIS/COFINS:</b> Nenhum.</li>
-        <li><b>Tributação Federal PIS/COFINS/CSLL:</b> Nenhum.</li>
-      </ol>
-      <div class="note">Valor aproximado dos tributos municipais já aparece na própria página, um pouco acima. Tributos federais e estaduais: preencher zerado (0,00).</div>
+        <li><b>"O serviço/fornecimento prestado é um caso de imunidade, exportação de serviço ou não incidência do ISSQN?"</b> Selecionar <b>NÃO</b>.</li>
+        <li><b>Código NBS</b> (selecionar de acordo com o serviço realizado):
+          <ul>
+            <li><b>118032900:</b> utilizar sempre que o serviço for de <b>higienização</b>.</li>
+            <li><b>120018200:</b> utilizar sempre que o serviço for de <b>mão de obra / ResMed</b>.</li>
+          </ul>
+        </li>
+        <li><b>Código indicador da operação:</b> 050101 – Serviço prestado fisicamente sobre bem móvel material – estabelecimento do fornecedor.</li>
+        <li><b>Informações complementares:</b> deixar em branco.</li>
+      </ul>
+
+      <h3>5º passo — Descrição do serviço/fornecimento</h3>
+      <p>A descrição deve ser preenchida de acordo com o serviço realizado:</p>
+      <ul>
+        <li><b>Se for higienização:</b> utilizar sempre a seguinte descrição: "FOI REALIZADA A HIGIENIZAÇÃO INTERNA E EXTERNA DO EQUIPAMENTO."</li>
+        <li><b>Se for mão de obra:</b> informar o serviço realizado conforme a descrição registrada no Forms. Caso não exista nenhuma informação sobre o serviço no formulário, solicitar os detalhes à equipe da Assistência Técnica antes de prosseguir.</li>
+      </ul>
+
+      <h3>6º passo — Valor da operação</h3>
+      <p>Informar o valor efetivamente pago pelo cliente.</p>
+      <div class="note">⚠️ <b>Atenção ao valor:</b> sempre consulte a nota de Pedido de Venda de Serviço anexada ao Forms ou verifique diretamente no Sankhya. <b>Não considere o valor informado pela equipe da Assistência Técnica no Forms.</b> O valor correto deve ser confirmado no Pedido de Venda de Serviço ou diretamente no Sankhya.</div>
+
+      <h3>7º passo — Tributação municipal</h3>
+      <ul>
+        <li><b>A exigibilidade do recolhimento do ISSQN devido nesta operação está suspensa?</b> NÃO.</li>
+        <li><b>Há retenção do ISSQN pelo Tomador ou pelo Intermediário?</b> NÃO.</li>
+        <li><b>Este serviço prestado está amparado por algum benefício municipal?</b> NÃO.</li>
+      </ul>
+
+      <h3>8º passo — Tributação federal</h3>
+      <ul>
+        <li><b>Tributação Federal – PIS/COFINS:</b> selecionar <b>Nenhum</b>.</li>
+        <li><b>Tributação Federal – PIS/COFINS/CSLL:</b> selecionar <b>Não retidos</b>.</li>
+      </ul>
+
+      <h3>9º passo — Valores aproximados dos tributos</h3>
+      <ul>
+        <li><b>Tributos municipais:</b> o valor aproximado está disponível na própria página, um pouco acima, no campo <b>Valor ISSQN</b>. Utilizar esse valor no preenchimento.</li>
+        <li><b>Tributos federais e estaduais:</b> preencher ambos com R$ 0,00.</li>
+      </ul>
+
+      <div class="note">⚠️ <b>Importante:</b> antes de finalizar a emissão, confira todos os dados preenchidos, principalmente os dados do cliente, a descrição do serviço, o código NBS e o valor da operação.</div>
     `
   },
   {
@@ -944,7 +1114,7 @@ const KNOWLEDGE_BASE = [
             <li><b>CIF:</b> a Oxigenar é responsável por solicitar o frete.</li>
           </ul>
         </li>
-        <li><b>Conferência do pagamento:</b> quando a forma de pagamento for PIX ou Link de Pagamento, confirme que o pagamento foi aprovado antes de emitir a nota fiscal.</li>
+        <li><b>Conferência do pagamento:</b> quando a forma de pagamento for PIX ou Link de Pagamento, confirme que o pagamento foi aprovado antes de emitir a nota fiscal. Nas vendas por link, verifique também se o documento de identificação do cliente está anexado.</li>
         <li><b>Cadastro do cliente</b> (clientes novos no B2B): verifique se o cliente possui Inscrição Estadual. Caso possua, selecione a opção <b>Revendedor</b> no cadastro, antes da emissão.</li>
         <li><b>Emissão da nota fiscal e do contrato:</b> depois de conferir todas as informações, emita a nota fiscal e o contrato. No preenchimento da nota fiscal, a Empresa deve ser sempre <b>1 – Matriz</b>, o Centro de Resultado deve ser <b>Vendas para PJ</b>, e a saída dos produtos sempre pelo <b>Estoque Central</b> (confirme essa informação na planilha).</li>
         <li><b>Envio da documentação:</b> depois de emitida, envie a nota fiscal no grupo "Faturamento PJ".</li>
@@ -1513,16 +1683,20 @@ function levenshtein(a, b){
   const al = a.length, bl = b.length;
   if(al === 0) return bl;
   if(bl === 0) return al;
-  let prev = Array.from({ length: bl + 1 }, (_, i) => i);
+  const d = [];
+  for(let i = 0; i <= al; i++){ d[i] = [i]; }
+  for(let j = 0; j <= bl; j++){ d[0][j] = j; }
   for(let i = 1; i <= al; i++){
-    const curr = [i];
     for(let j = 1; j <= bl; j++){
       const custo = a[i-1] === b[j-1] ? 0 : 1;
-      curr[j] = Math.min(curr[j-1] + 1, prev[j] + 1, prev[j-1] + custo);
+      d[i][j] = Math.min(d[i-1][j] + 1, d[i][j-1] + 1, d[i-1][j-1] + custo);
+      // letras trocadas de lugar (ex: "bonifiacao") contam como um erro só
+      if(i > 1 && j > 1 && a[i-1] === b[j-2] && a[i-2] === b[j-1]){
+        d[i][j] = Math.min(d[i][j], d[i-2][j-2] + 1);
+      }
     }
-    prev = curr;
   }
-  return prev[bl];
+  return d[al][bl];
 }
 function limiteErroDigitacao(len){
   if(len <= 3) return 0;
@@ -1533,6 +1707,8 @@ function limiteErroDigitacao(len){
 function palavraAproximada(palavrasDaBusca, palavraAlvo){
   const limite = limiteErroDigitacao(palavraAlvo.length);
   for(const w of palavrasDaBusca){
+    // palavra digitada pela metade (ex: "bonific", "recolh")
+    if(w.length >= 5 && palavraAlvo.length > w.length && palavraAlvo.startsWith(w)) return true;
     if(Math.abs(w.length - palavraAlvo.length) <= limite && levenshtein(w, palavraAlvo) <= limite){
       return true;
     }
@@ -1573,6 +1749,16 @@ function scoreEntry(entry, queryNorm){
     }
   }
 
+  // Palavras coladas ou separadas por engano (ex: "notafiscal", "bonifi cacao")
+  const querySemEspaco = queryNorm.replace(/ /g, "");
+  for(const kw of entry.keywords){
+    const kwSem = normalize(kw).replace(/ /g, "");
+    if(kwSem.length >= 6 && !queryNorm.includes(normalize(kw)) && querySemEspaco.includes(kwSem)){
+      fuzzyScore += 2;
+      break;
+    }
+  }
+
   // Palavras relevantes únicas (evita contar a mesma palavra várias vezes só porque
   // ela aparece repetida em diferentes frases-chave da mesma entrada, e ignora stopwords)
   const palavrasRelevantes = new Set();
@@ -1588,6 +1774,53 @@ function scoreEntry(entry, queryNorm){
   });
 
   return { entry, exactScore, fuzzyScore, total: exactScore + fuzzyScore };
+}
+
+/* ---- Vocabulário do bot e correção automática de palavras digitadas errado ---- */
+const VOCAB = (()=>{
+  const set = new Set();
+  KNOWLEDGE_BASE.forEach(e=>{
+    e.keywords.forEach(kw => normalize(kw).split(" ").forEach(w => { if(w.length >= 4 && !STOPWORDS.has(w)) set.add(w); }));
+    normalize(e.title).split(" ").forEach(w => { if(w.length >= 4 && !STOPWORDS.has(w)) set.add(w); });
+  });
+  return [...set];
+})();
+
+/* Troca cada palavra que não existe no vocabulário pela mais parecida (se for parecida o bastante) */
+function corrigirConsulta(qNorm){
+  const trocas = [];
+  const palavras = qNorm.split(" ").map(w=>{
+    if(w.length < 4 || STOPWORDS.has(w) || /\d/.test(w)) return w;
+    if(VOCAB.includes(w)) return w;
+    if(w.length >= 5 && VOCAB.some(v => v.startsWith(w))) return w;     // palavra incompleta: deixa a busca tratar
+    const limite = limiteErroDigitacao(w.length);
+    let melhor = null, melhorDist = Infinity;
+    for(const v of VOCAB){
+      if(Math.abs(v.length - w.length) > limite) continue;
+      const dist = levenshtein(w, v);
+      if(dist <= limite && dist < melhorDist){ melhor = v; melhorDist = dist; }
+    }
+    if(melhor){ trocas.push([w, melhor]); return melhor; }
+    return w;
+  });
+  return { texto: palavras.join(" "), trocas };
+}
+
+/* Último recurso: quando nada bateu, procura os temas com palavras "parecidas" com o que foi digitado */
+function sugestoesParecidas(qNorm){
+  const palavras = qNorm.split(" ").filter(w => w.length >= 5 && !STOPWORDS.has(w));
+  if(!palavras.length) return [];
+  return KNOWLEDGE_BASE.map(entry=>{
+    const alvo = new Set();
+    entry.keywords.forEach(kw => normalize(kw).split(" ").forEach(w => { if(w.length >= 5 && !STOPWORDS.has(w)) alvo.add(w); }));
+    normalize(entry.title).split(" ").forEach(w => { if(w.length >= 5 && !STOPWORDS.has(w)) alvo.add(w); });
+    let melhor = 0;
+    palavras.forEach(q => alvo.forEach(a=>{
+      const sim = 1 - levenshtein(q, a) / Math.max(q.length, a.length);
+      if(sim > melhor) melhor = sim;
+    }));
+    return { entry, total: melhor };
+  }).filter(x => x.total >= 0.7).sort((a,b)=>b.total-a.total).slice(0,3);
 }
 
 /* Retorna a lista de candidatos ordenada por pontuação (do mais provável ao menos provável) */
@@ -1768,8 +2001,18 @@ function ask(query){
     if(matchesAny(qNorm, ONLY_THIS_PATTERNS) && qNorm.split(" ").length <= 5){ onlyThisReply(); return; }
     if(matchesAny(qNorm, CONFUSION_PATTERNS)){ confusionReply(); return; }
 
-    const candidatos = findAnswer(query);
-    if(candidatos.length === 0){ setActiveTopic(null); missReply(query); return; }
+    const correcao = corrigirConsulta(qNorm);
+    const textoBusca = correcao.trocas.length ? correcao.texto : query;
+    const avisoTroca = correcao.trocas.length
+      ? `<p class="fuzzy-note">Entendi ${correcao.trocas.map(t=>`<b>"${escapeHtml(t[0])}"</b> como <b>"${escapeHtml(t[1])}"</b>`).join(", ")}.</p>`
+      : "";
+    const candidatos = findAnswer(textoBusca);
+    if(candidatos.length === 0){
+      setActiveTopic(null);
+      const parecidos = sugestoesParecidas(qNorm);
+      if(parecidos.length){ suggestOptions(parecidos, query); } else { missReply(query); }
+      return;
+    }
 
     const top = candidatos[0];
     const segundo = candidatos[1];
@@ -1784,18 +2027,23 @@ function ask(query){
       const avisoCorrecao = top.exactScore === 0
         ? `<p class="fuzzy-note">Entendi como <b>"${escapeHtml(top.entry.title)}"</b> — se não for isso, me diga.</p>`
         : "";
-      addBotBubble(avisoCorrecao + top.entry.html);
+      addBotBubble(avisoTroca + avisoCorrecao + top.entry.html);
     } else if(top.total >= 0.6){
       setActiveTopic(null);
       suggestOptions(candidatos.slice(0, 3), query);
     } else {
       setActiveTopic(null);
-      missReply(query);
+      const parecidos = sugestoesParecidas(qNorm);
+      if(parecidos.length){ suggestOptions(parecidos, query); } else { missReply(query); }
     }
   }, 450);
 }
 
 formEl.addEventListener("submit", e=>{ e.preventDefault(); ask(inputEl.value); });
+
+/* >>> Atualize esta data sempre que o conteúdo do bot for alterado <<< */
+const DATA_ATUALIZACAO = "10/11/2026";
+document.getElementById("lastUpdate").textContent = "Atualizado em " + DATA_ATUALIZACAO;
 
 greetingReply();
 </script>
